@@ -32,14 +32,25 @@
     <h2>2. Data Storage</h2>
     <p>All journal data is stored using React Native Async Storage and the local file system on your device. We do not have access to this data.</p>
 
-    <h2>3. Third-Party Services</h2>
-    <p>The App may use third-party tools (like AI SDKs) to process text for sentiment analysis. In such cases, only the specific text you provide for analysis may be processed by these services. Please refer to their respective privacy policies for more information.</p>
+    <h2>3. Sentiment Analysis</h2>
+    <p>SentiLog performs sentiment analysis locally on your device. Your journal text is processed by on-device AI models and is <strong>not sent to any external servers</strong> for analysis. This ensures your private thoughts remain entirely on your device.</p>
 
     <h2>4. Changes to This Privacy Policy</h2>
     <p>We may update our Privacy Policy from time to time. You are advised to review this page periodically for any changes.</p>
 
     <h2>5. Contact Us</h2>
-    <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:tojothere@gmail.com">tojothere@gmail.com</a>.</p>
+    <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="#" id="contact-email">loading email...</a>.</p>
+
+    <script>
+        (function() {
+            var u = 'tojohere'; var d = 'outlook.com';
+            var el = document.getElementById('contact-email');
+            if (el) { 
+                el.href = 'mai' + 'lto:' + u + '@' + d; 
+                el.textContent = u + '@' + d;
+            }
+        })();
+    </script>
 
     <div class="footer">
         &copy; 2026 Tojo Thomas. All rights reserved.
