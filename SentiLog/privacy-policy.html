@@ -5,55 +5,247 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - SentiLog</title>
     <style>
+        :root {
+            --primary: #1a1a2e;
+            --surface: #16213e;
+            --accent: #e94560;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
             line-height: 1.6;
-            color: #333;
+            padding: 2rem 1rem;
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #f9f9f9;
         }
-        h1 { color: #1a1a2e; border-bottom: 2px solid #1a1a2e; padding-bottom: 10px; }
-        h2 { color: #16213e; margin-top: 30px; }
-        p { margin-bottom: 15px; }
-        .footer { margin-top: 50px; font-size: 0.9em; color: #666; text-align: center; }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .lang-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .lang-btn {
+            background: var(--surface);
+            border: 1px solid var(--text-secondary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--accent);
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            border-bottom: 1px solid rgba(160, 160, 176, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .status-badge {
+            background: rgba(233, 69, 96, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        [data-lang]:not(.active-lang) {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy for SentiLog</h1>
-    <p>Last updated: March 26, 2026</p>
 
-    <p>SentiLog (the "App") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our App.</p>
+    <header>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('en')">English</button>
+            <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+            <button class="lang-btn" onclick="switchLang('de')">Deutsch</button>
+        </div>
+        <h1 id="title">Privacy Policy - SentiLog</h1>
+        <div class="status-badge" id="last-updated">Last updated: March 27, 2026</div>
+    </header>
 
-    <h2>1. Information Collection and Use</h2>
-    <p><strong>Personal Data:</strong> SentiLog is designed to be a private journal. Most of your data, including journal entries and sentiment analysis results, are stored <strong>locally on your device</strong>. We do not transmit your private journal entries to our servers.</p>
+    <main class="card">
+        <!-- ENGLISH CONTENT -->
+        <section id="content-en" data-lang="en" class="active-lang">
+            <p>SentiLog (the "App") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our App.</p>
 
-    <h2>2. Data Storage</h2>
-    <p>All journal data is stored using React Native Async Storage and the local file system on your device. We do not have access to this data.</p>
+            <h2>1. Information Collection and Use</h2>
+            <p><strong>Personal Data:</strong> SentiLog is a private-first journal. All your data, including journal entries and sentiment analysis results, are stored exclusively on your device. We do not transmit your private thoughts to any external servers.</p>
 
-    <h2>3. Sentiment Analysis</h2>
-    <p>SentiLog performs sentiment analysis locally on your device. Your journal text is processed by on-device AI models and is <strong>not sent to any external servers</strong> for analysis. This ensures your private thoughts remain entirely on your device.</p>
+            <h2>2. Advanced Data Encryption</h2>
+            <p><strong>Military-Grade Security:</strong> Your journal entries are protected with <strong>AES-256 encryption</strong>. The encryption key is generated locally and stored securely in your device's hardware-backed Secure Store (Keystore/Keychain), ensuring that your journals remain private even if the device is accessed by others.</p>
 
-    <h2>4. Changes to This Privacy Policy</h2>
-    <p>We may update our Privacy Policy from time to time. You are advised to review this page periodically for any changes.</p>
+            <h2>3. SQLite Long-Term Storage</h2>
+            <p><strong>Built for Decades:</strong> To ensure your memories survive for years, we use a high-performance <strong>SQLite database</strong>. This implementation is designed for 10+ years of storage, providing durability and swift access to your journal history.</p>
 
-    <h2>5. Contact Us</h2>
-    <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="#" id="contact-email">loading email...</a>.</p>
+            <h2>4. On-Device AI & Analysis</h2>
+            <p><strong>Private Analysis:</strong> SentiLog performs sentiment analysis locally on your phone. Your text is processed by on-device AI models and never leaves your device. This ensures your mental well-being is analyzed without compromising your privacy.</p>
+
+            <h2>5. Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy. You are advised to review this page periodically for any changes. Changes are effective immediately after they are posted on this page.</p>
+
+            <h2>6. Contact Us</h2>
+            <p>If you have any questions or suggestions, reach out to us at: <strong class="protected-email">Loading...</strong></p>
+        </section>
+
+        <!-- JAPANESE CONTENT -->
+        <section id="content-ja" data-lang="ja">
+            <p>SentiLog（以下「本アプリ」）は、お客様のプライバシー保護に万全を期しています。本プライバシーポリシーでは、本アプリの使用時における情報の取り扱いについて説明します。</p>
+
+            <h2>1. 情報の収集と利用</h2>
+            <p><strong>個人データ：</strong>SentiLogは、プライバシーを最優先したジャーナルアプリです。日記の内容や感情分析結果を含むすべてのデータは、お客様のデバイス内にのみ保存されます。お客様の個人的な思考を外部サーバーに送信することはありません。</p>
+
+            <h2>2. 高度なデータ暗号化</h2>
+            <p><strong>強固なセキュリティ：</strong>日記の内容は、<strong>AES-256暗号化</strong>によって保護されています。暗号化キーはローカルで生成され、デバイスのハードウェアに保護されたセキュアストア（キーストア/キーチェーン）に安全に保管されます。これにより、第三者がデバイスにアクセスしても日記のプライバシーは守られます。</p>
+
+            <h2>3. SQLiteによる長期保存</h2>
+            <p><strong>数十年の保存に対応：</strong>大切な思い出を長期間保存できるよう、高性能な<strong>SQLiteデータベース</strong>を採用しています。この仕組みは10年以上の使用を想定して設計されており、耐久性と履歴への迅速なアクセスを提供します。</p>
+
+            <h2>4. デバイス上でのAI分析</h2>
+            <p><strong>プライベートな分析：</strong>SentiLogの感情分析は、お客様のスマートフォン上でのみ実行されます。テキストはデバイス上のAIモデルによって処理され、デバイス外に出ることはありません。これにより、プライバシーを損なうことなく心の健康状態を分析できます。</p>
+
+            <h2>5. プライバシーポリシーの変更</h2>
+            <p>本プライバシーポリシーは随時更新されることがあります。変更がないか定期的に確認することをお勧めします。変更は、このページに掲載された時点から直ちに適用されます。</p>
+
+            <h2>6. お問い合わせ</h2>
+            <p>ご質問やご提案がございましたら、下記までご連絡ください： <strong class="protected-email">読み込み中...</strong></p>
+        </section>
+
+        <!-- GERMAN CONTENT -->
+        <section id="content-de" data-lang="de">
+            <p>SentiLog (die "App") verpflichtet sich zum Schutz Ihrer Privatsphäre. Diese Datenschutzerklärung erläutert, wie wir mit Ihren Informationen umgehen, wenn Sie unsere App nutzen.</p>
+
+            <h2>1. Datenerhebung und -verwendung</h2>
+            <p><strong>Persönliche Daten:</strong> SentiLog ist als privates Tagebuch konzipiert. Alle Ihre Daten, einschließlich der Tagebucheinträge und der Ergebnisse der Stimmungsanalyse, werden ausschließlich auf Ihrem Gerät gespeichert. Wir übertragen Ihre privaten Gedanken nicht an externe Server.</p>
+
+            <h2>2. Fortschrittliche Datenverschlüsselung</h2>
+            <p><strong>Sicherheit auf höchstem Niveau:</strong> Ihre Tagebucheinträge sind mit einer <strong>AES-256-Verschlüsselung</strong> geschützt. Der Verschlüsselungsschlüssel wird lokal generiert und sicher im hardwaregestützten Secure Store Ihres Geräts (Keystore/Keychain) gespeichert, sodass Ihre Einträge privat bleiben, selbst wenn andere Zugriff auf Ihr Gerät haben.</p>
+
+            <h2>3. SQLite Langzeitspeicherung</h2>
+            <p><strong>Für Jahrzehnte gebaut:</strong> Um sicherzustellen, dass Ihre Erinnerungen jahrelang erhalten bleiben, verwenden wir eine leistungsstarke <strong>SQLite-Datenbank</strong>. Diese Implementierung ist für eine Speicherung von über 10 Jahren ausgelegt und bietet Langlebigkeit sowie schnellen Zugriff auf Ihre Historie.</p>
+
+            <h2>4. On-Device KI & Analyse</h2>
+            <p><strong>Private Analyse:</strong> SentiLog führt die Stimmungsanalyse lokal auf Ihrem Telefon durch. Ihr Text wird von KI-Modellen direkt auf dem Gerät verarbeitet und verlässt dieses niemals. So wird Ihr Wohlbefinden analysiert, ohne Ihre Privatsphäre zu gefährden.</p>
+
+            <h2>5. Änderungen dieser Datenschutzerklärung</h2>
+            <p>Wir können unsere Datenschutzerklärung von Zeit zu Zeit aktualisieren. Es wird empfohlen, diese Seite regelmäßig auf Änderungen zu überprüfen. Änderungen treten unmittelbar nach ihrer Veröffentlichung auf dieser Seite in Kraft.</p>
+
+            <h2>6. Kontakt</h2>
+            <p>Bei Fragen oder Anregungen wenden Sie sich bitte an: <strong class="protected-email">Wird geladen...</strong></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SentiLog App. All rights reserved.</p>
+    </footer>
 
     <script>
-        (function() {
-            var u = 'tojohere'; var d = 'outlook.com';
-            var el = document.getElementById('contact-email');
-            if (el) { 
-                el.href = 'mai' + 'lto:' + u + '@' + d; 
-                el.textContent = u + '@' + d;
-            }
-        })();
-    </script>
+        const titles = {
+            en: 'Privacy Policy - SentiLog',
+            ja: 'プライバシーポリシー - SentiLog',
+            de: 'Datenschutzerklärung - SentiLog'
+        };
 
-    <div class="footer">
-        &copy; 2026 Tojo Thomas. All rights reserved.
-    </div>
+        const updates = {
+            en: 'Last updated: March 27, 2026',
+            ja: '最終更新日：2026年3月27日',
+            de: 'Zuletzt aktualisiert: 27. März 2026'
+        };
+
+        function switchLang(lang) {
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase().includes(lang) || (lang === 'ja' && btn.innerText.includes('日本語')) || (lang === 'de' && btn.innerText.includes('Deutsch'))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update content visibility
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.remove('active-lang');
+                if (el.getAttribute('data-lang') === lang) {
+                    el.classList.add('active-lang');
+                }
+            });
+
+            // Update headers
+            document.getElementById('title').innerText = titles[lang];
+            document.getElementById('last-updated').innerText = updates[lang];
+            document.documentElement.lang = lang;
+        }
+
+        // Email Protection: Injecting email to avoid bots
+        document.addEventListener('DOMContentLoaded', () => {
+            const e = "dG9qb2hlcmVAb3V0bG9vay5jb20="; // Base64 for tojohere@outlook.com
+            const email = atob(e);
+            document.querySelectorAll('.protected-email').forEach(el => {
+                el.innerHTML = `<a href="mailto:${email}" style="color:var(--text-primary); text-decoration: none;">${email}</a>`;
+            });
+        });
+    </script>
 </body>
 </html>
