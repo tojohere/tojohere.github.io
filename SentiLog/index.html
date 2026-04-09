@@ -68,10 +68,10 @@
         .footer-links { margin-top: 0.5rem; }
         .footer-links a { margin: 0 1rem; }
 
-        [data-lang] { display: none; }
-        [data-lang].active { display: block; }
-        .features[data-lang].active, .emotion-grid[data-lang].active, .privacy-points[data-lang].active, .lang-grid[data-lang].active, .theme-strip[data-lang].active { display: flex; }
-        .features[data-lang].active { display: grid; }
+        [data-lang] { display: none !important; }
+        [data-lang].active { display: block !important; }
+        a[data-lang].active { display: inline-block !important; }
+        div.features[data-lang].active { display: grid !important; }
 
         @media (max-width: 600px) { .hero h1 { font-size: 2.5rem; } .hero .tagline { font-size: 1.05rem; } section { padding: 3rem 1.2rem; } .features { grid-template-columns: 1fr; } }
     </style>
@@ -89,7 +89,7 @@
 <div class="hero">
     <img src="sentilog_pen.png" alt="SentiLog" class="hero-img">
     <h1>SentiLog</h1>
-    <p class="tagline" data-lang="en" class="active">AI-powered journaling that understands how you feel. 28 emotions detected in real-time, fully on-device, completely private.</p>
+    <p class="tagline active" data-lang="en">AI-powered journaling that understands how you feel. 28 emotions detected in real-time, fully on-device, completely private.</p>
     <p class="tagline" data-lang="de">KI-gestütztes Tagebuch, das Ihre Gefühle versteht. 28 Emotionen in Echtzeit erkannt, vollständig auf dem Gerät, absolut privat.</p>
     <p class="tagline" data-lang="ja">あなたの感情を理解するAIジャーナル。28の感情をリアルタイムで検出。完全オンデバイス、完全プライベート。</p>
     <p class="tagline" data-lang="ko">당신의 감정을 이해하는 AI 일기장. 28가지 감정을 실시간 감지. 완전한 온디바이스, 완전한 프라이버시.</p>
