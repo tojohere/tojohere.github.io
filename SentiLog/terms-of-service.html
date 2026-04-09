@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - SentiLog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e; --surface: #16213e; --accent: #e94560;
+            --text-primary: #ffffff; --text-secondary: #a0a0b0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--primary); color: var(--text-primary); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.7; padding: 2rem 1rem; max-width: 800px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; }
+        .lang-switcher { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .lang-btn { background: var(--surface); border: 1px solid var(--text-secondary); color: var(--text-primary); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem; }
+        .lang-btn:hover { border-color: var(--accent); }
+        .lang-btn.active { background: var(--accent); border-color: var(--accent); }
+        h1 { font-size: 2.2rem; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, var(--text-secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { font-size: 1.3rem; margin-top: 2.5rem; margin-bottom: 0.8rem; color: var(--accent); border-bottom: 1px solid rgba(160,160,176,0.2); padding-bottom: 0.5rem; }
+        p, li { margin-bottom: 1rem; color: var(--text-secondary); }
+        ul { margin-left: 1.5rem; margin-bottom: 1.2rem; }
+        strong { color: var(--text-primary); }
+        .status-badge { background: rgba(233,69,96,0.1); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; display: inline-block; }
+        .card { background: var(--surface); padding: 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); }
+        .important { background: rgba(233,69,96,0.08); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
+        .important p { margin-bottom: 0; }
+        footer { margin-top: 4rem; text-align: center; color: var(--text-secondary); font-size: 0.85rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+        [data-lang] { display: none; }
+        [data-lang].active { display: block; }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } .card { padding: 1.5rem; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="switchLang('en')">English</button>
+        <button class="lang-btn" onclick="switchLang('de')">Deutsch</button>
+        <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+        <button class="lang-btn" onclick="switchLang('ko')">한국어</button>
+    </div>
+    <h1 id="title">Terms of Service - SentiLog</h1>
+    <div class="status-badge" id="last-updated">Effective: April 9, 2026</div>
+</header>
+
+<main class="card">
+
+<!-- ═══════════════════ ENGLISH ═══════════════════ -->
+<section data-lang="en" class="active">
+
+<p>Please read these Terms of Service ("Terms") carefully before using the SentiLog mobile application ("App") operated by the SentiLog developer ("we", "us", or "our"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
+
+<h2>1. Description of Service</h2>
+<p>SentiLog is a personal journaling application that uses on-device artificial intelligence to detect emotions in your text entries. The App provides sentiment analysis, an emoji-based mood calendar, encrypted data storage, and optional cloud backup via Google Drive.</p>
+
+<h2>2. Eligibility</h2>
+<p>You must be at least 13 years of age to use this App. By using the App, you represent and warrant that you meet this age requirement. If you are under 18, you should review these Terms with a parent or guardian.</p>
+
+<h2>3. User Content</h2>
+<p><strong>Ownership:</strong> You retain full ownership of all journal entries, text, and content you create within the App ("User Content"). We do not claim any ownership rights over your User Content.</p>
+<p><strong>Responsibility:</strong> You are solely responsible for your User Content. We do not review, monitor, or access your journal entries at any time.</p>
+
+<h2>4. Privacy and Data Security</h2>
+<p>Your privacy is fundamental to our service. Please refer to our <a href="privacy-policy.html" style="color:var(--accent)">Privacy Policy</a> for detailed information on how your data is handled. Key points:</p>
+<ul>
+    <li>All data is stored on your device and encrypted using industry-standard AES-256 encryption (SQLCipher).</li>
+    <li>Sentiment analysis is performed entirely on your device. Your text is never transmitted to any external server.</li>
+    <li>Cloud backup, if enabled, is encrypted before upload to your personal Google Drive account.</li>
+    <li>We do not collect, access, or store any of your personal data or journal entries.</li>
+</ul>
+
+<h2>5. Subscriptions and Payments</h2>
+<p><strong>Free Tier:</strong> The App is free to use with basic features including 3 emotion categories and the English sentiment model.</p>
+<p><strong>Premium Subscription:</strong> Premium features (28 emotions, multilingual AI models, additional themes, biometric lock, calendar history, cloud backup) are available through a paid subscription managed by Google Play.</p>
+<ul>
+    <li>Payment is processed exclusively through Google Play. We do not collect or store payment information.</li>
+    <li>Subscription terms, pricing, renewal, and cancellation are governed by Google Play's terms and policies.</li>
+    <li>You may cancel your subscription at any time through Google Play. Access to Premium features will continue until the end of your current billing period.</li>
+    <li>Refund requests must be directed to Google Play in accordance with their refund policy.</li>
+</ul>
+
+<h2>6. Intellectual Property</h2>
+<p>The App, including its design, code, AI models, graphics, user interface, and branding, is the intellectual property of the SentiLog developer and is protected by applicable copyright and intellectual property laws. You may not copy, modify, distribute, reverse-engineer, or create derivative works from the App.</p>
+
+<h2>7. Acceptable Use</h2>
+<p>You agree not to:</p>
+<ul>
+    <li>Use the App for any unlawful purpose or in violation of any applicable laws.</li>
+    <li>Attempt to reverse-engineer, decompile, or extract the source code or AI models from the App.</li>
+    <li>Circumvent, disable, or interfere with any security features of the App.</li>
+    <li>Use the App to develop competing products or services.</li>
+</ul>
+
+<div class="important">
+<h2 style="margin-top:0; border:none; padding:0;">8. Important Health Disclaimer</h2>
+<p><strong>SentiLog is NOT a medical device, therapeutic tool, or substitute for professional mental health care.</strong></p>
+<p>The emotion detection feature uses artificial intelligence and may not accurately reflect your actual emotional state. The App is intended for personal journaling and self-reflection purposes only. It does not provide medical advice, diagnosis, or treatment.</p>
+<p><strong>If you are experiencing a mental health crisis, please contact a qualified healthcare professional or your local emergency services immediately.</strong></p>
+</div>
+
+<h2>9. Disclaimer of Warranties</h2>
+<p>The App is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+<p>We do not warrant that:</p>
+<ul>
+    <li>The App will be uninterrupted, error-free, or secure.</li>
+    <li>The emotion detection or sentiment analysis will be accurate or reliable.</li>
+    <li>Any defects in the App will be corrected.</li>
+    <li>The App is free of viruses or other harmful components.</li>
+</ul>
+
+<h2>10. Limitation of Liability</h2>
+<p>To the maximum extent permitted by applicable law, in no event shall the SentiLog developer be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
+<ul>
+    <li>Loss of data, including journal entries, whether caused by device failure, App malfunction, encryption key loss, or any other reason.</li>
+    <li>Inaccurate emotion detection or sentiment analysis results.</li>
+    <li>Unauthorized access to your data due to factors beyond our reasonable control.</li>
+    <li>Any decision made or action taken based on information provided by the App.</li>
+</ul>
+<p><strong>You acknowledge that you use the App at your own risk and are responsible for maintaining backups of your data.</strong></p>
+
+<h2>11. Data Loss</h2>
+<p>While we implement robust encryption and data protection measures, we cannot guarantee against data loss. Circumstances that may result in data loss include:</p>
+<ul>
+    <li>Device loss, damage, or factory reset.</li>
+    <li>App uninstallation without prior cloud backup.</li>
+    <li>Corruption of encryption keys.</li>
+    <li>Failure of cloud backup or restore processes.</li>
+</ul>
+<p>We strongly recommend enabling cloud backup and regularly verifying that your backups are current.</p>
+
+<h2>12. Third-Party Services</h2>
+<p>The App integrates with the following third-party services, each governed by their own terms:</p>
+<ul>
+    <li><strong>Google Play:</strong> For app distribution, subscription management, and billing.</li>
+    <li><strong>Google Drive:</strong> For optional encrypted cloud backup (requires Google account sign-in).</li>
+</ul>
+<p>We are not responsible for the availability, performance, or terms of these third-party services.</p>
+
+<h2>13. Updates and Changes</h2>
+<p>We may update the App from time to time to improve features, fix bugs, or address security issues. Continued use of the App after an update constitutes acceptance of any changes. We may also modify these Terms. Material changes will be communicated through the App or our website.</p>
+
+<h2>14. Termination</h2>
+<p>You may stop using the App and uninstall it at any time. Upon uninstallation, all locally stored data will be permanently deleted. Cloud backups on Google Drive will remain until you manually delete them.</p>
+
+<h2>15. Governing Law</h2>
+<p>These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions. Any dispute arising from these Terms shall be subject to the exclusive jurisdiction of the courts located in Kerala, India.</p>
+
+<h2>16. Severability</h2>
+<p>If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.</p>
+
+<h2>17. Entire Agreement</h2>
+<p>These Terms, together with the Privacy Policy, constitute the entire agreement between you and the SentiLog developer regarding your use of the App and supersede all prior agreements and understandings.</p>
+
+<h2>18. Contact</h2>
+<p>If you have questions about these Terms, please contact us at: <strong class="protected-email">Loading...</strong></p>
+
+</section>
+
+<!-- ═══════════════════ GERMAN ═══════════════════ -->
+<section data-lang="de">
+
+<p>Bitte lesen Sie diese Nutzungsbedingungen ("Bedingungen") sorgfältig durch, bevor Sie die mobile Anwendung SentiLog ("App") verwenden, die vom SentiLog-Entwickler ("wir", "uns" oder "unser") betrieben wird. Durch das Herunterladen, Installieren oder Verwenden der App erklären Sie sich mit diesen Bedingungen einverstanden. Wenn Sie nicht einverstanden sind, verwenden Sie die App nicht.</p>
+
+<h2>1. Beschreibung des Dienstes</h2>
+<p>SentiLog ist eine persönliche Tagebuch-Anwendung, die On-Device-KI verwendet, um Emotionen in Ihren Texteinträgen zu erkennen. Die App bietet Stimmungsanalyse, einen Emoji-basierten Stimmungskalender, verschlüsselte Datenspeicherung und optionales Cloud-Backup über Google Drive.</p>
+
+<h2>2. Nutzungsberechtigung</h2>
+<p>Sie müssen mindestens 13 Jahre alt sein, um diese App zu nutzen. Durch die Nutzung der App bestätigen Sie, dass Sie diese Altersanforderung erfüllen. Wenn Sie unter 18 sind, sollten Sie diese Bedingungen mit einem Elternteil oder Erziehungsberechtigten durchlesen.</p>
+
+<h2>3. Benutzerinhalte</h2>
+<p><strong>Eigentum:</strong> Sie behalten das vollständige Eigentum an allen Tagebucheinträgen, Texten und Inhalten, die Sie in der App erstellen ("Benutzerinhalte"). Wir erheben keine Eigentumsrechte an Ihren Benutzerinhalten.</p>
+<p><strong>Verantwortung:</strong> Sie sind allein für Ihre Benutzerinhalte verantwortlich. Wir überprüfen, überwachen oder greifen zu keinem Zeitpunkt auf Ihre Tagebucheinträge zu.</p>
+
+<h2>4. Datenschutz und Datensicherheit</h2>
+<p>Ihre Privatsphäre ist grundlegend für unseren Dienst. Bitte lesen Sie unsere <a href="privacy-policy.html" style="color:var(--accent)">Datenschutzerklärung</a> für Details. Wichtige Punkte:</p>
+<ul>
+    <li>Alle Daten werden auf Ihrem Gerät gespeichert und mit AES-256-Verschlüsselung (SQLCipher) geschützt.</li>
+    <li>Die Stimmungsanalyse erfolgt vollständig auf Ihrem Gerät. Ihr Text wird nie an externe Server übertragen.</li>
+    <li>Cloud-Backup wird vor dem Upload auf Ihr Google Drive verschlüsselt.</li>
+    <li>Wir erfassen, nutzen oder speichern keine Ihrer persönlichen Daten oder Tagebucheinträge.</li>
+</ul>
+
+<h2>5. Abonnements und Zahlungen</h2>
+<p><strong>Kostenlose Version:</strong> Die App ist mit Grundfunktionen kostenlos nutzbar, einschließlich 3 Emotionskategorien und dem englischen Stimmungsmodell.</p>
+<p><strong>Premium-Abonnement:</strong> Premium-Funktionen (28 Emotionen, mehrsprachige KI-Modelle, zusätzliche Themes, biometrische Sperre, Kalenderhistorie, Cloud-Backup) sind über ein kostenpflichtiges Abonnement über Google Play verfügbar.</p>
+<ul>
+    <li>Die Zahlung wird ausschließlich über Google Play abgewickelt. Wir erheben oder speichern keine Zahlungsinformationen.</li>
+    <li>Abonnementbedingungen, Preise, Verlängerung und Kündigung unterliegen den Bedingungen und Richtlinien von Google Play.</li>
+    <li>Sie können Ihr Abonnement jederzeit über Google Play kündigen.</li>
+    <li>Erstattungsanträge sind gemäß den Erstattungsrichtlinien an Google Play zu richten.</li>
+</ul>
+
+<h2>6. Geistiges Eigentum</h2>
+<p>Die App, einschließlich Design, Code, KI-Modelle, Grafiken, Benutzeroberfläche und Branding, ist geistiges Eigentum des SentiLog-Entwicklers und durch geltende Urheber- und Gesetze zum Schutz geistigen Eigentums geschützt.</p>
+
+<h2>7. Zulässige Nutzung</h2>
+<p>Sie verpflichten sich, die App nicht für rechtswidrige Zwecke zu verwenden, nicht zu versuchen, die App zu dekompilieren oder zu reverse-engineeren, Sicherheitsfunktionen zu umgehen oder die App zur Entwicklung konkurrierender Produkte zu verwenden.</p>
+
+<div class="important">
+<h2 style="margin-top:0; border:none; padding:0;">8. Wichtiger Gesundheitshinweis</h2>
+<p><strong>SentiLog ist KEIN medizinisches Gerät, therapeutisches Werkzeug oder Ersatz für professionelle psychische Gesundheitsversorgung.</strong></p>
+<p>Die Emotionserkennung verwendet künstliche Intelligenz und spiegelt möglicherweise nicht genau Ihren tatsächlichen emotionalen Zustand wider. Die App ist ausschließlich für persönliches Tagebuchführen und Selbstreflexion bestimmt.</p>
+<p><strong>Wenn Sie sich in einer psychischen Krise befinden, wenden Sie sich bitte sofort an einen qualifizierten Gesundheitsfachmann oder Ihren örtlichen Notdienst.</strong></p>
+</div>
+
+<h2>9. Gewährleistungsausschluss</h2>
+<p>Die App wird "WIE BESEHEN" und "WIE VERFÜGBAR" ohne jegliche ausdrückliche oder stillschweigende Gewährleistung bereitgestellt. Wir übernehmen keine Gewähr dafür, dass die App unterbrechungsfrei, fehlerfrei oder sicher ist, oder dass die Emotionserkennung genau oder zuverlässig ist.</p>
+
+<h2>10. Haftungsbeschränkung</h2>
+<p>Im maximal gesetzlich zulässigen Umfang haftet der SentiLog-Entwickler nicht für indirekte, zufällige, besondere, Folge- oder Strafschäden, einschließlich Datenverlust, ungenaue Emotionserkennung oder unbefugten Datenzugriff.</p>
+<p><strong>Sie erkennen an, dass Sie die App auf eigenes Risiko nutzen und für die Pflege von Datensicherungen verantwortlich sind.</strong></p>
+
+<h2>11. Datenverlust</h2>
+<p>Trotz robuster Verschlüsselungs- und Datenschutzmaßnahmen können wir keinen Datenverlust ausschließen. Wir empfehlen dringend, Cloud-Backup zu aktivieren und regelmäßig zu überprüfen.</p>
+
+<h2>12. Drittanbieterdienste</h2>
+<p>Die App integriert Google Play (Vertrieb, Abonnements, Abrechnung) und Google Drive (optionales verschlüsseltes Cloud-Backup). Wir sind nicht verantwortlich für die Verfügbarkeit oder Bedingungen dieser Drittanbieterdienste.</p>
+
+<h2>13. Aktualisierungen und Änderungen</h2>
+<p>Wir können die App und diese Bedingungen von Zeit zu Zeit aktualisieren. Die fortgesetzte Nutzung nach einem Update gilt als Zustimmung zu Änderungen.</p>
+
+<h2>14. Kündigung</h2>
+<p>Sie können die Nutzung der App jederzeit beenden und sie deinstallieren. Bei der Deinstallation werden alle lokal gespeicherten Daten dauerhaft gelöscht. Cloud-Backups auf Google Drive bleiben bestehen, bis Sie sie manuell löschen.</p>
+
+<h2>15. Anwendbares Recht</h2>
+<p>Diese Bedingungen unterliegen den Gesetzen Indiens. Streitigkeiten unterliegen der ausschließlichen Zuständigkeit der Gerichte in Kerala, Indien.</p>
+
+<h2>16. Salvatorische Klausel</h2>
+<p>Sollte eine Bestimmung dieser Bedingungen für unwirksam befunden werden, bleiben die übrigen Bestimmungen in vollem Umfang wirksam.</p>
+
+<h2>17. Gesamte Vereinbarung</h2>
+<p>Diese Bedingungen bilden zusammen mit der Datenschutzerklärung die gesamte Vereinbarung zwischen Ihnen und dem SentiLog-Entwickler.</p>
+
+<h2>18. Kontakt</h2>
+<p>Fragen zu diesen Bedingungen? Kontaktieren Sie uns unter: <strong class="protected-email">Wird geladen...</strong></p>
+
+</section>
+
+<!-- ═══════════════════ JAPANESE ═══════════════════ -->
+<section data-lang="ja">
+
+<p>SentiLogモバイルアプリケーション（以下「本アプリ」）をご利用になる前に、本利用規約（以下「本規約」）をよくお読みください。本アプリをダウンロード、インストール、または使用することにより、本規約に同意したものとみなされます。同意いただけない場合は、本アプリを使用しないでください。</p>
+
+<h2>1. サービスの説明</h2>
+<p>SentiLogは、デバイス上の人工知能を使用してテキストエントリの感情を検出する個人用ジャーナルアプリケーションです。感情分析、絵文字ベースの気分カレンダー、暗号化データストレージ、Google Drive経由のオプションのクラウドバックアップを提供します。</p>
+
+<h2>2. 利用資格</h2>
+<p>本アプリを使用するには13歳以上である必要があります。本アプリを使用することにより、この年齢要件を満たしていることを表明し保証するものとします。18歳未満の方は、保護者とともに本規約を確認してください。</p>
+
+<h2>3. ユーザーコンテンツ</h2>
+<p><strong>所有権：</strong>本アプリ内で作成されたすべてのジャーナルエントリ、テキスト、コンテンツ（以下「ユーザーコンテンツ」）の完全な所有権はお客様に帰属します。当社はユーザーコンテンツに対するいかなる所有権も主張しません。</p>
+<p><strong>責任：</strong>ユーザーコンテンツについてはお客様が単独で責任を負います。当社はいかなる時もお客様のジャーナルエントリを確認、監視、またはアクセスすることはありません。</p>
+
+<h2>4. プライバシーとデータセキュリティ</h2>
+<p>プライバシーは当社サービスの基本です。詳細については<a href="privacy-policy.html" style="color:var(--accent)">プライバシーポリシー</a>をご参照ください。主なポイント：</p>
+<ul>
+    <li>すべてのデータはお客様のデバイスに保存され、AES-256暗号化（SQLCipher）で保護されます。</li>
+    <li>感情分析は完全にデバイス上で実行されます。テキストが外部サーバーに送信されることはありません。</li>
+    <li>クラウドバックアップは、Google Driveへのアップロード前に暗号化されます。</li>
+    <li>当社はお客様の個人データやジャーナルエントリを収集、アクセス、または保存しません。</li>
+</ul>
+
+<h2>5. サブスクリプションと支払い</h2>
+<p><strong>無料プラン：</strong>3つの感情カテゴリと英語の感情モデルを含む基本機能で無料で使用できます。</p>
+<p><strong>プレミアムサブスクリプション：</strong>プレミアム機能（28の感情、多言語AIモデル、追加テーマ、生体認証ロック、カレンダー履歴、クラウドバックアップ）はGoogle Play経由の有料サブスクリプションで利用できます。</p>
+<ul>
+    <li>支払いはGoogle Playを通じてのみ処理されます。当社は支払い情報を収集または保存しません。</li>
+    <li>サブスクリプションの条件、価格、更新、キャンセルはGoogle Playの規約に準拠します。</li>
+    <li>Google Playを通じていつでもサブスクリプションをキャンセルできます。</li>
+    <li>払い戻しの請求はGoogle Playの払い戻しポリシーに従ってください。</li>
+</ul>
+
+<h2>6. 知的財産権</h2>
+<p>本アプリ（デザイン、コード、AIモデル、グラフィックス、UI、ブランディングを含む）はSentiLog開発者の知的財産であり、適用される著作権法および知的財産法により保護されています。</p>
+
+<h2>7. 許容される使用</h2>
+<p>違法な目的での使用、リバースエンジニアリング、逆コンパイル、ソースコードやAIモデルの抽出の試み、セキュリティ機能の回避、競合製品の開発への使用を行わないことに同意するものとします。</p>
+
+<div class="important">
+<h2 style="margin-top:0; border:none; padding:0;">8. 重要な健康に関する免責事項</h2>
+<p><strong>SentiLogは医療機器、治療ツール、または専門的なメンタルヘルスケアの代替品ではありません。</strong></p>
+<p>感情検出機能は人工知能を使用しており、お客様の実際の感情状態を正確に反映しない場合があります。本アプリは個人的なジャーナリングと自己省察のみを目的としています。医療上の助言、診断、または治療を提供するものではありません。</p>
+<p><strong>メンタルヘルスの危機的状況にある場合は、直ちに資格のある医療専門家またはお住まいの地域の緊急サービスにご連絡ください。</strong></p>
+</div>
+
+<h2>9. 保証の免責</h2>
+<p>本アプリは、明示的または黙示的を問わず、いかなる種類の保証もなく「現状有姿」および「利用可能な状態」で提供されます。本アプリが中断なく、エラーなく、安全に動作すること、または感情検出が正確であることを保証しません。</p>
+
+<h2>10. 責任の制限</h2>
+<p>適用法令で認められる最大限の範囲において、SentiLog開発者は、データの喪失、不正確な感情検出、または不正なデータアクセスを含む、間接的、偶発的、特別、結果的、または懲罰的損害について一切の責任を負いません。</p>
+<p><strong>お客様は、自己の責任において本アプリを使用し、データのバックアップを維持する責任があることを認めるものとします。</strong></p>
+
+<h2>11. データの損失</h2>
+<p>堅牢な暗号化とデータ保護措置を講じていますが、データの損失を完全に防ぐことはできません。クラウドバックアップを有効にし、定期的に確認することを強くお勧めします。</p>
+
+<h2>12. 第三者サービス</h2>
+<p>本アプリはGoogle Play（配信、サブスクリプション、請求）およびGoogle Drive（オプションの暗号化クラウドバックアップ）と連携しています。これらの第三者サービスの可用性や条件について当社は責任を負いません。</p>
+
+<h2>13. 更新と変更</h2>
+<p>本アプリおよび本規約は随時更新されることがあります。更新後の継続使用は変更への同意とみなされます。</p>
+
+<h2>14. 終了</h2>
+<p>いつでも本アプリの使用を中止し、アンインストールできます。アンインストールにより、ローカルに保存されたすべてのデータは完全に削除されます。Google Drive上のクラウドバックアップは手動で削除するまで残ります。</p>
+
+<h2>15. 準拠法</h2>
+<p>本規約はインドの法律に準拠します。紛争はインド・ケララ州の裁判所の専属管轄に服するものとします。</p>
+
+<h2>16. 分離可能性</h2>
+<p>本規約のいずれかの条項が無効と判断された場合、残りの条項は引き続き完全に有効です。</p>
+
+<h2>17. 完全な合意</h2>
+<p>本規約はプライバシーポリシーとともに、本アプリの使用に関するお客様とSentiLog開発者との間の完全な合意を構成します。</p>
+
+<h2>18. お問い合わせ</h2>
+<p>本規約についてのご質問は、こちらまで: <strong class="protected-email">読み込み中...</strong></p>
+
+</section>
+
+<!-- ═══════════════════ KOREAN ═══════════════════ -->
+<section data-lang="ko">
+
+<p>SentiLog 모바일 애플리케이션(이하 "앱")을 사용하기 전에 본 이용약관(이하 "약관")을 주의 깊게 읽어주십시오. 앱을 다운로드, 설치 또는 사용함으로써 본 약관에 동의하는 것으로 간주됩니다. 동의하지 않으시면 앱을 사용하지 마십시오.</p>
+
+<h2>1. 서비스 설명</h2>
+<p>SentiLog는 온디바이스 인공지능을 사용하여 텍스트 항목의 감정을 감지하는 개인 일기 애플리케이션입니다. 감정 분석, 이모지 기반 기분 캘린더, 암호화된 데이터 저장, Google Drive를 통한 선택적 클라우드 백업을 제공합니다.</p>
+
+<h2>2. 이용 자격</h2>
+<p>본 앱을 사용하려면 만 13세 이상이어야 합니다. 앱을 사용함으로써 이 연령 요건을 충족함을 진술하고 보증합니다. 만 18세 미만인 경우 부모 또는 보호자와 함께 본 약관을 검토해야 합니다.</p>
+
+<h2>3. 사용자 콘텐츠</h2>
+<p><strong>소유권:</strong> 앱 내에서 생성한 모든 일기 항목, 텍스트 및 콘텐츠(이하 "사용자 콘텐츠")에 대한 완전한 소유권은 사용자에게 있습니다. 당사는 사용자 콘텐츠에 대한 어떠한 소유권도 주장하지 않습니다.</p>
+<p><strong>책임:</strong> 사용자 콘텐츠에 대한 책임은 전적으로 사용자에게 있습니다. 당사는 어떠한 경우에도 사용자의 일기 항목을 검토, 모니터링 또는 접근하지 않습니다.</p>
+
+<h2>4. 개인정보 보호 및 데이터 보안</h2>
+<p>개인정보 보호는 당사 서비스의 기본입니다. 자세한 내용은 <a href="privacy-policy.html" style="color:var(--accent)">개인정보처리방침</a>을 참조하십시오. 주요 사항:</p>
+<ul>
+    <li>모든 데이터는 기기에 저장되며 AES-256 암호화(SQLCipher)로 보호됩니다.</li>
+    <li>감정 분석은 기기에서 완전히 수행됩니다. 텍스트가 외부 서버로 전송되지 않습니다.</li>
+    <li>클라우드 백업은 Google Drive 업로드 전에 암호화됩니다.</li>
+    <li>당사는 사용자의 개인 데이터나 일기 항목을 수집, 접근 또는 저장하지 않습니다.</li>
+</ul>
+
+<h2>5. 구독 및 결제</h2>
+<p><strong>무료 버전:</strong> 3가지 감정 카테고리와 영어 감정 모델을 포함한 기본 기능으로 무료 사용 가능합니다.</p>
+<p><strong>프리미엄 구독:</strong> 프리미엄 기능(28가지 감정, 다국어 AI 모델, 추가 테마, 생체 인증 잠금, 캘린더 기록, 클라우드 백업)은 Google Play를 통한 유료 구독으로 이용 가능합니다.</p>
+<ul>
+    <li>결제는 Google Play를 통해서만 처리됩니다. 당사는 결제 정보를 수집하거나 저장하지 않습니다.</li>
+    <li>구독 조건, 가격, 갱신 및 취소는 Google Play의 약관에 따릅니다.</li>
+    <li>Google Play를 통해 언제든지 구독을 취소할 수 있습니다.</li>
+    <li>환불 요청은 Google Play의 환불 정책에 따라 진행해야 합니다.</li>
+</ul>
+
+<h2>6. 지적 재산권</h2>
+<p>앱(디자인, 코드, AI 모델, 그래픽, UI, 브랜딩 포함)은 SentiLog 개발자의 지적 재산이며 해당 저작권법 및 지적재산권법의 보호를 받습니다.</p>
+
+<h2>7. 허용되는 사용</h2>
+<p>불법적인 목적으로의 사용, 리버스 엔지니어링, 디컴파일, 소스 코드 또는 AI 모델 추출 시도, 보안 기능 우회, 경쟁 제품 개발을 위한 사용을 하지 않을 것에 동의합니다.</p>
+
+<div class="important">
+<h2 style="margin-top:0; border:none; padding:0;">8. 중요 건강 면책 조항</h2>
+<p><strong>SentiLog는 의료 기기, 치료 도구 또는 전문적인 정신 건강 관리의 대체물이 아닙니다.</strong></p>
+<p>감정 감지 기능은 인공지능을 사용하며 실제 감정 상태를 정확히 반영하지 못할 수 있습니다. 본 앱은 개인 일기 작성과 자기 성찰 목적으로만 사용됩니다. 의학적 조언, 진단 또는 치료를 제공하지 않습니다.</p>
+<p><strong>정신 건강 위기 상황에 처한 경우, 즉시 자격을 갖춘 의료 전문가 또는 지역 응급 서비스에 연락하십시오.</strong></p>
+</div>
+
+<h2>9. 보증의 부인</h2>
+<p>앱은 명시적이든 묵시적이든 어떠한 종류의 보증 없이 "있는 그대로" 및 "이용 가능한 상태로" 제공됩니다. 앱이 중단 없이, 오류 없이, 안전하게 작동하거나 감정 감지가 정확할 것을 보증하지 않습니다.</p>
+
+<h2>10. 책임의 제한</h2>
+<p>관련 법률이 허용하는 최대 범위 내에서, SentiLog 개발자는 데이터 손실, 부정확한 감정 감지, 무단 데이터 접근을 포함한 간접적, 우발적, 특별, 결과적 또는 징벌적 손해에 대해 책임지지 않습니다.</p>
+<p><strong>사용자는 자신의 위험 부담으로 앱을 사용하며 데이터 백업 유지에 대한 책임이 있음을 인정합니다.</strong></p>
+
+<h2>11. 데이터 손실</h2>
+<p>강력한 암호화 및 데이터 보호 조치에도 불구하고 데이터 손실을 완전히 방지할 수 없습니다. 클라우드 백업을 활성화하고 정기적으로 확인하는 것을 강력히 권장합니다.</p>
+
+<h2>12. 제3자 서비스</h2>
+<p>앱은 Google Play(배포, 구독, 결제) 및 Google Drive(선택적 암호화 클라우드 백업)와 연동됩니다. 이러한 제3자 서비스의 가용성이나 약관에 대해 당사는 책임지지 않습니다.</p>
+
+<h2>13. 업데이트 및 변경</h2>
+<p>앱과 본 약관은 수시로 업데이트될 수 있습니다. 업데이트 후 계속 사용하면 변경 사항에 동의한 것으로 간주됩니다.</p>
+
+<h2>14. 해지</h2>
+<p>언제든지 앱 사용을 중단하고 삭제할 수 있습니다. 삭제 시 로컬에 저장된 모든 데이터가 영구적으로 삭제됩니다. Google Drive의 클라우드 백업은 수동으로 삭제할 때까지 유지됩니다.</p>
+
+<h2>15. 준거법</h2>
+<p>본 약관은 인도 법률에 따라 적용됩니다. 분쟁은 인도 케랄라주 법원의 전속 관할에 따릅니다.</p>
+
+<h2>16. 분리 가능성</h2>
+<p>본 약관의 어떤 조항이 무효로 판명되더라도 나머지 조항은 완전히 유효합니다.</p>
+
+<h2>17. 완전한 합의</h2>
+<p>본 약관은 개인정보처리방침과 함께 앱 사용에 관한 사용자와 SentiLog 개발자 간의 완전한 합의를 구성합니다.</p>
+
+<h2>18. 문의</h2>
+<p>본 약관에 대한 질문은 다음으로 연락해 주세요: <strong class="protected-email">로딩 중...</strong></p>
+
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 SentiLog. All rights reserved.</p>
+    <p style="margin-top:0.5rem"><a href="index.html">Home</a> &bull; <a href="privacy-policy.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+const titles = { en:'Terms of Service - SentiLog', de:'Nutzungsbedingungen - SentiLog', ja:'利用規約 - SentiLog', ko:'이용약관 - SentiLog' };
+const dates = { en:'Effective: April 9, 2026', de:'Gültig ab: 9. April 2026', ja:'発効日：2026年4月9日', ko:'시행일: 2026년 4월 9일' };
+function switchLang(lang) {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('active', el.getAttribute('data-lang') === lang));
+    document.getElementById('title').innerText = titles[lang];
+    document.getElementById('last-updated').innerText = dates[lang];
+    document.documentElement.lang = lang;
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const e = "dG9qb2hlcmVAZ21haWwuY29t";
+    const email = atob(e);
+    document.querySelectorAll('.protected-email').forEach(el => {
+        el.innerHTML = '<a href="mailto:' + email + '" style="color:var(--text-primary);text-decoration:none">' + email + '</a>';
+    });
+});
+</script>
+
+</body>
+</html>
