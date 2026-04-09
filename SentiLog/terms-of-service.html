@@ -67,7 +67,7 @@
 <h2>4. Privacy and Data Security</h2>
 <p>Your privacy is fundamental to our service. Please refer to our <a href="privacy-policy.html" style="color:var(--accent)">Privacy Policy</a> for detailed information on how your data is handled. Key points:</p>
 <ul>
-    <li>All data is stored on your device and encrypted using industry-standard AES-256 encryption (SQLCipher).</li>
+    <li>All data is stored on your device and encrypted using industry-standard AES-256 encryption.</li>
     <li>Sentiment analysis is performed entirely on your device. Your text is never transmitted to any external server.</li>
     <li>Cloud backup, if enabled, is encrypted before upload to your personal Google Drive account.</li>
     <li>We do not collect, access, or store any of your personal data or journal entries.</li>
@@ -178,7 +178,7 @@
 <h2>4. Datenschutz und Datensicherheit</h2>
 <p>Ihre Privatsphäre ist grundlegend für unseren Dienst. Bitte lesen Sie unsere <a href="privacy-policy.html" style="color:var(--accent)">Datenschutzerklärung</a> für Details. Wichtige Punkte:</p>
 <ul>
-    <li>Alle Daten werden auf Ihrem Gerät gespeichert und mit AES-256-Verschlüsselung (SQLCipher) geschützt.</li>
+    <li>Alle Daten werden auf Ihrem Gerät gespeichert und mit AES-256-Verschlüsselung geschützt.</li>
     <li>Die Stimmungsanalyse erfolgt vollständig auf Ihrem Gerät. Ihr Text wird nie an externe Server übertragen.</li>
     <li>Cloud-Backup wird vor dem Upload auf Ihr Google Drive verschlüsselt.</li>
     <li>Wir erfassen, nutzen oder speichern keine Ihrer persönlichen Daten oder Tagebucheinträge.</li>
@@ -258,7 +258,7 @@
 <h2>4. プライバシーとデータセキュリティ</h2>
 <p>プライバシーは当社サービスの基本です。詳細については<a href="privacy-policy.html" style="color:var(--accent)">プライバシーポリシー</a>をご参照ください。主なポイント：</p>
 <ul>
-    <li>すべてのデータはお客様のデバイスに保存され、AES-256暗号化（SQLCipher）で保護されます。</li>
+    <li>すべてのデータはお客様のデバイスに保存され、AES-256暗号化で保護されます。</li>
     <li>感情分析は完全にデバイス上で実行されます。テキストが外部サーバーに送信されることはありません。</li>
     <li>クラウドバックアップは、Google Driveへのアップロード前に暗号化されます。</li>
     <li>当社はお客様の個人データやジャーナルエントリを収集、アクセス、または保存しません。</li>
@@ -338,7 +338,7 @@
 <h2>4. 개인정보 보호 및 데이터 보안</h2>
 <p>개인정보 보호는 당사 서비스의 기본입니다. 자세한 내용은 <a href="privacy-policy.html" style="color:var(--accent)">개인정보처리방침</a>을 참조하십시오. 주요 사항:</p>
 <ul>
-    <li>모든 데이터는 기기에 저장되며 AES-256 암호화(SQLCipher)로 보호됩니다.</li>
+    <li>모든 데이터는 기기에 저장되며 AES-256 암호화로 보호됩니다.</li>
     <li>감정 분석은 기기에서 완전히 수행됩니다. 텍스트가 외부 서버로 전송되지 않습니다.</li>
     <li>클라우드 백업은 Google Drive 업로드 전에 암호화됩니다.</li>
     <li>당사는 사용자의 개인 데이터나 일기 항목을 수집, 접근 또는 저장하지 않습니다.</li>
@@ -418,11 +418,11 @@ function switchLang(lang) {
     document.getElementById('last-updated').innerText = dates[lang];
     document.documentElement.lang = lang;
 }
-document.addEventListener('DOMContentLoaded', () => {
-    const e = "dG9qb2hlcmVAZ21haWwuY29t";
-    const email = atob(e);
-    document.querySelectorAll('.protected-email').forEach(el => {
-        el.innerHTML = '<a href="mailto:' + email + '" style="color:var(--text-primary);text-decoration:none">' + email + '</a>';
+document.addEventListener('DOMContentLoaded', function() {
+    var p=['t','o','j','o','h','e','r','e'];var d=['g','m','a','i','l'];
+    var em=p.join('')+String.fromCharCode(64)+d.join('')+'.com';
+    document.querySelectorAll('.protected-email').forEach(function(el) {
+        el.innerHTML='<a href="mai'+'lto:'+em+'" style="color:var(--text-primary);text-decoration:none">'+em+'</a>';
     });
 });
 </script>

@@ -82,7 +82,7 @@
         <p><strong>Fully Offline:</strong> Sentiment analysis is performed locally on your phone using on-device neural network models. Your text is never sent to any cloud service for processing. No internet connection is required for emotion detection.</p>
 
         <h2>3. Data Encryption</h2>
-        <p><strong>Full Database Encryption:</strong> Your entire journal database is encrypted using <strong>SQLCipher (AES-256)</strong>. The encryption key is generated locally and stored in your device's hardware-backed Android Keystore. Even if someone accesses your device's storage, your journal data is unreadable without the key.</p>
+        <p><strong>Full Database Encryption:</strong> Your entire journal database is encrypted using <strong>AES-256</strong>. The encryption key is generated locally and stored in your device's hardware-backed Android Keystore. Even if someone accesses your device's storage, your journal data is unreadable without the key.</p>
 
         <h2>4. Cloud Backup</h2>
         <p><strong>Encrypted Backups:</strong> If you choose to enable cloud backup, your data is encrypted before uploading to your personal Google Drive. The encryption key is managed automatically — you don't need to remember a password. Only you can access your backups through your Google account. We never have access to your backup data.</p>
@@ -118,7 +118,7 @@
         <p><strong>完全オフライン：</strong>感情分析はデバイス上のニューラルネットワークモデルを使用してローカルで実行されます。テキストがクラウドサービスに送信されることはありません。感情検出にインターネット接続は不要です。</p>
 
         <h2>3. データ暗号化</h2>
-        <p><strong>データベース全体の暗号化：</strong>日記データベース全体が<strong>SQLCipher（AES-256）</strong>で暗号化されています。暗号化キーはローカルで生成され、デバイスのハードウェアで保護されたAndroid Keystoreに保管されます。第三者がデバイスのストレージにアクセスしても、キーなしではデータを読み取ることはできません。</p>
+        <p><strong>データベース全体の暗号化：</strong>日記データベース全体が<strong>AES-256</strong>で暗号化されています。暗号化キーはローカルで生成され、デバイスのハードウェアで保護されたAndroid Keystoreに保管されます。第三者がデバイスのストレージにアクセスしても、キーなしではデータを読み取ることはできません。</p>
 
         <h2>4. クラウドバックアップ</h2>
         <p><strong>暗号化バックアップ：</strong>クラウドバックアップを有効にした場合、データは暗号化された上でGoogle Driveにアップロードされます。暗号化キーは自動管理されます。バックアップにアクセスできるのは、お客様のGoogleアカウントからのみです。</p>
@@ -154,7 +154,7 @@
         <p><strong>Vollständig offline:</strong> Die Stimmungsanalyse wird lokal auf Ihrem Telefon mit neuronalen Netzwerkmodellen durchgeführt. Ihr Text wird niemals an einen Cloud-Dienst gesendet. Für die Emotionserkennung ist keine Internetverbindung erforderlich.</p>
 
         <h2>3. Datenverschlüsselung</h2>
-        <p><strong>Vollständige Datenbankverschlüsselung:</strong> Ihre gesamte Tagebuch-Datenbank ist mit <strong>SQLCipher (AES-256)</strong> verschlüsselt. Der Verschlüsselungsschlüssel wird lokal generiert und im hardwaregestützten Android Keystore Ihres Geräts gespeichert. Selbst bei Zugriff auf den Gerätespeicher sind Ihre Daten ohne den Schlüssel nicht lesbar.</p>
+        <p><strong>Vollständige Datenbankverschlüsselung:</strong> Ihre gesamte Tagebuch-Datenbank ist mit <strong>AES-256</strong> verschlüsselt. Der Verschlüsselungsschlüssel wird lokal generiert und im hardwaregestützten Android Keystore Ihres Geräts gespeichert. Selbst bei Zugriff auf den Gerätespeicher sind Ihre Daten ohne den Schlüssel nicht lesbar.</p>
 
         <h2>4. Cloud-Backup</h2>
         <p><strong>Verschlüsselte Backups:</strong> Wenn Sie Cloud-Backup aktivieren, werden Ihre Daten vor dem Upload auf Ihr persönliches Google Drive verschlüsselt. Der Verschlüsselungsschlüssel wird automatisch verwaltet. Nur Sie können über Ihr Google-Konto auf Ihre Backups zugreifen.</p>
@@ -190,7 +190,7 @@
         <p><strong>완전 오프라인:</strong> 감정 분석은 기기 내 신경망 모델을 사용하여 로컬에서 수행됩니다. 텍스트가 클라우드 서비스로 전송되는 일은 없습니다. 감정 감지에 인터넷 연결이 필요하지 않습니다.</p>
 
         <h2>3. 데이터 암호화</h2>
-        <p><strong>전체 데이터베이스 암호화:</strong> 일기 데이터베이스 전체가 <strong>SQLCipher(AES-256)</strong>로 암호화됩니다. 암호화 키는 로컬에서 생성되어 기기의 하드웨어 기반 Android Keystore에 안전하게 저장됩니다. 누군가 기기 저장소에 접근하더라도 키 없이는 데이터를 읽을 수 없습니다.</p>
+        <p><strong>전체 데이터베이스 암호화:</strong> 일기 데이터베이스 전체가 <strong>AES-256</strong>로 암호화됩니다. 암호화 키는 로컬에서 생성되어 기기의 하드웨어 기반 Android Keystore에 안전하게 저장됩니다. 누군가 기기 저장소에 접근하더라도 키 없이는 데이터를 읽을 수 없습니다.</p>
 
         <h2>4. 클라우드 백업</h2>
         <p><strong>암호화된 백업:</strong> 클라우드 백업을 활성화하면 데이터가 암호화된 후 개인 Google Drive에 업로드됩니다. 암호화 키는 자동으로 관리됩니다. Google 계정을 통해서만 백업에 접근할 수 있습니다.</p>
@@ -245,11 +245,11 @@
         document.getElementById('last-updated').innerText = updates[lang];
         document.documentElement.lang = lang;
     }
-    document.addEventListener('DOMContentLoaded', () => {
-        const e = "dG9qb2hlcmVAZ21haWwuY29t";
-        const email = atob(e);
-        document.querySelectorAll('.protected-email').forEach(el => {
-            el.innerHTML = '<a href="mailto:' + email + '" style="color:var(--text-primary);text-decoration:none">' + email + '</a>';
+    document.addEventListener('DOMContentLoaded', function() {
+        var p=['t','o','j','o','h','e','r','e'];var d=['g','m','a','i','l'];
+        var em=p.join('')+String.fromCharCode(64)+d.join('')+'.com';
+        document.querySelectorAll('.protected-email').forEach(function(el) {
+            el.innerHTML='<a href="mai'+'lto:'+em+'" style="color:var(--text-primary);text-decoration:none">'+em+'</a>';
         });
     });
 </script>
