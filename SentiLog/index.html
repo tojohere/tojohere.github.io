@@ -72,6 +72,7 @@
         [data-lang].active { display: block !important; }
         a[data-lang].active { display: inline-block !important; }
         div.features[data-lang].active { display: grid !important; }
+        div.emotion-grid[data-lang].active { display: flex !important; }
 
         @media (max-width: 600px) { .hero h1 { font-size: 2.5rem; } .hero .tagline { font-size: 1.05rem; } section { padding: 3rem 1.2rem; } .features { grid-template-columns: 1fr; } }
     </style>
@@ -108,7 +109,7 @@
     <h2 data-lang="de">28 Emotionen, in Echtzeit erkannt</h2>
     <h2 data-lang="ja">28の感情をリアルタイム検出</h2>
     <h2 data-lang="ko">28가지 감정, 실시간 감지</h2>
-    <div class="emotion-grid">
+    <div class="emotion-grid" data-lang="en">
         <span class="emotion-chip"><span class="em">🤩</span> admiration</span>
         <span class="emotion-chip"><span class="em">😂</span> amusement</span>
         <span class="emotion-chip"><span class="em">😠</span> anger</span>
@@ -137,6 +138,96 @@
         <span class="emotion-chip"><span class="em">😢</span> sadness</span>
         <span class="emotion-chip"><span class="em">😲</span> surprise</span>
         <span class="emotion-chip"><span class="em">😐</span> neutral</span>
+    </div>
+    <div class="emotion-grid" data-lang="de">
+        <span class="emotion-chip"><span class="em">🤩</span> Bewunderung</span>
+        <span class="emotion-chip"><span class="em">😂</span> Belustigung</span>
+        <span class="emotion-chip"><span class="em">😠</span> Wut</span>
+        <span class="emotion-chip"><span class="em">😤</span> Ärger</span>
+        <span class="emotion-chip"><span class="em">👍</span> Zustimmung</span>
+        <span class="emotion-chip"><span class="em">🤗</span> Fürsorge</span>
+        <span class="emotion-chip"><span class="em">🤔</span> Verwirrung</span>
+        <span class="emotion-chip"><span class="em">🧐</span> Neugier</span>
+        <span class="emotion-chip"><span class="em">😍</span> Verlangen</span>
+        <span class="emotion-chip"><span class="em">😞</span> Enttäuschung</span>
+        <span class="emotion-chip"><span class="em">👎</span> Missbilligung</span>
+        <span class="emotion-chip"><span class="em">🤢</span> Ekel</span>
+        <span class="emotion-chip"><span class="em">😳</span> Verlegenheit</span>
+        <span class="emotion-chip"><span class="em">🤩</span> Begeisterung</span>
+        <span class="emotion-chip"><span class="em">😨</span> Angst</span>
+        <span class="emotion-chip"><span class="em">🙏</span> Dankbarkeit</span>
+        <span class="emotion-chip"><span class="em">😢</span> Trauer</span>
+        <span class="emotion-chip"><span class="em">😊</span> Freude</span>
+        <span class="emotion-chip"><span class="em">❤️</span> Liebe</span>
+        <span class="emotion-chip"><span class="em">😰</span> Nervosität</span>
+        <span class="emotion-chip"><span class="em">🌟</span> Optimismus</span>
+        <span class="emotion-chip"><span class="em">🏆</span> Stolz</span>
+        <span class="emotion-chip"><span class="em">💡</span> Erkenntnis</span>
+        <span class="emotion-chip"><span class="em">😌</span> Erleichterung</span>
+        <span class="emotion-chip"><span class="em">😔</span> Reue</span>
+        <span class="emotion-chip"><span class="em">😢</span> Traurigkeit</span>
+        <span class="emotion-chip"><span class="em">😲</span> Überraschung</span>
+        <span class="emotion-chip"><span class="em">😐</span> Neutral</span>
+    </div>
+    <div class="emotion-grid" data-lang="ja">
+        <span class="emotion-chip"><span class="em">🤩</span> 称賛</span>
+        <span class="emotion-chip"><span class="em">😂</span> 面白さ</span>
+        <span class="emotion-chip"><span class="em">😠</span> 怒り</span>
+        <span class="emotion-chip"><span class="em">😤</span> 苛立ち</span>
+        <span class="emotion-chip"><span class="em">👍</span> 賛同</span>
+        <span class="emotion-chip"><span class="em">🤗</span> 思いやり</span>
+        <span class="emotion-chip"><span class="em">🤔</span> 混乱</span>
+        <span class="emotion-chip"><span class="em">🧐</span> 好奇心</span>
+        <span class="emotion-chip"><span class="em">😍</span> 願望</span>
+        <span class="emotion-chip"><span class="em">😞</span> 失望</span>
+        <span class="emotion-chip"><span class="em">👎</span> 不賛成</span>
+        <span class="emotion-chip"><span class="em">🤢</span> 嫌悪</span>
+        <span class="emotion-chip"><span class="em">😳</span> 恥ずかしさ</span>
+        <span class="emotion-chip"><span class="em">🤩</span> 興奮</span>
+        <span class="emotion-chip"><span class="em">😨</span> 恐怖</span>
+        <span class="emotion-chip"><span class="em">🙏</span> 感謝</span>
+        <span class="emotion-chip"><span class="em">😢</span> 悲嘆</span>
+        <span class="emotion-chip"><span class="em">😊</span> 喜び</span>
+        <span class="emotion-chip"><span class="em">❤️</span> 愛</span>
+        <span class="emotion-chip"><span class="em">😰</span> 緊張</span>
+        <span class="emotion-chip"><span class="em">🌟</span> 楽観</span>
+        <span class="emotion-chip"><span class="em">🏆</span> 誇り</span>
+        <span class="emotion-chip"><span class="em">💡</span> 気づき</span>
+        <span class="emotion-chip"><span class="em">😌</span> 安堵</span>
+        <span class="emotion-chip"><span class="em">😔</span> 後悔</span>
+        <span class="emotion-chip"><span class="em">😢</span> 悲しみ</span>
+        <span class="emotion-chip"><span class="em">😲</span> 驚き</span>
+        <span class="emotion-chip"><span class="em">😐</span> 中立</span>
+    </div>
+    <div class="emotion-grid" data-lang="ko">
+        <span class="emotion-chip"><span class="em">🤩</span> 감탄</span>
+        <span class="emotion-chip"><span class="em">😂</span> 즐거움</span>
+        <span class="emotion-chip"><span class="em">😠</span> 분노</span>
+        <span class="emotion-chip"><span class="em">😤</span> 짜증</span>
+        <span class="emotion-chip"><span class="em">👍</span> 승인</span>
+        <span class="emotion-chip"><span class="em">🤗</span> 배려</span>
+        <span class="emotion-chip"><span class="em">🤔</span> 혼란</span>
+        <span class="emotion-chip"><span class="em">🧐</span> 호기심</span>
+        <span class="emotion-chip"><span class="em">😍</span> 욕구</span>
+        <span class="emotion-chip"><span class="em">😞</span> 실망</span>
+        <span class="emotion-chip"><span class="em">👎</span> 반대</span>
+        <span class="emotion-chip"><span class="em">🤢</span> 혐오</span>
+        <span class="emotion-chip"><span class="em">😳</span> 당혹</span>
+        <span class="emotion-chip"><span class="em">🤩</span> 흥분</span>
+        <span class="emotion-chip"><span class="em">😨</span> 두려움</span>
+        <span class="emotion-chip"><span class="em">🙏</span> 감사</span>
+        <span class="emotion-chip"><span class="em">😢</span> 비탄</span>
+        <span class="emotion-chip"><span class="em">😊</span> 기쁨</span>
+        <span class="emotion-chip"><span class="em">❤️</span> 사랑</span>
+        <span class="emotion-chip"><span class="em">😰</span> 긴장</span>
+        <span class="emotion-chip"><span class="em">🌟</span> 낙관</span>
+        <span class="emotion-chip"><span class="em">🏆</span> 자부심</span>
+        <span class="emotion-chip"><span class="em">💡</span> 깨달음</span>
+        <span class="emotion-chip"><span class="em">😌</span> 안도</span>
+        <span class="emotion-chip"><span class="em">😔</span> 후회</span>
+        <span class="emotion-chip"><span class="em">😢</span> 슬픔</span>
+        <span class="emotion-chip"><span class="em">😲</span> 놀라움</span>
+        <span class="emotion-chip"><span class="em">😐</span> 중립</span>
     </div>
     <p class="emotion-note" data-lang="en">Powered by RoBERTa neural network &bull; Runs entirely on your phone</p>
     <p class="emotion-note" data-lang="de">Angetrieben von RoBERTa-Neuronales Netz &bull; Läuft vollständig auf Ihrem Telefon</p>
