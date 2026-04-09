@@ -27,8 +27,11 @@
         .hero-img { width: 180px; height: 180px; border-radius: 24px; object-fit: cover; margin-bottom: 1.5rem; box-shadow: 0 12px 40px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.1); }
         .hero h1 { font-family: 'Caveat', cursive; font-size: 3.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -1px; }
         .hero .tagline { font-size: 1.25rem; color: var(--text-secondary); max-width: 520px; margin: 0 auto 2rem; font-weight: 300; }
-        .hero .cta { display: inline-block; background: var(--accent); color: white; text-decoration: none; padding: 0.9rem 2.5rem; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; }
-        .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(233,69,96,0.4); }
+        .hero .cta { display: inline-block; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+        .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .hero .cta img, .cta-bottom img { height: 60px; }
+        .cta-bottom { display: inline-block; text-decoration: none; transition: transform 0.2s; }
+        .cta-bottom:hover { transform: translateY(-2px); }
         .badge { display: inline-block; margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary); }
 
         section { max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; }
@@ -70,7 +73,7 @@
 
         [data-lang] { display: none !important; }
         [data-lang].active { display: block !important; }
-        a[data-lang].active { display: inline-block !important; }
+        a.cta[data-lang].active { display: inline-block !important; }
         div.features[data-lang].active { display: grid !important; }
         div.emotion-grid[data-lang].active { display: flex !important; }
 
@@ -95,10 +98,9 @@
     <p class="tagline" data-lang="ja">あなたの感情を理解するAIジャーナル。28の感情をリアルタイムで検出。完全オンデバイス、完全プライベート。</p>
     <p class="tagline" data-lang="ko">당신의 감정을 이해하는 AI 일기장. 28가지 감정을 실시간 감지. 완전한 온디바이스, 완전한 프라이버시.</p>
 
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" data-lang="en">Get it on Google Play</a>
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" data-lang="de">Bei Google Play herunterladen</a>
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" data-lang="ja">Google Playで入手</a>
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" data-lang="ko">Google Play에서 다운로드</a>
+    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:60px">
+    </a>
 
     <div class="badge">Android &bull; Free with Premium</div>
 </div>
@@ -348,17 +350,16 @@
     <p style="color:var(--text-secondary);margin-bottom:2rem;max-width:450px;margin-left:auto;margin-right:auto;" data-lang="ja">3つの感情カテゴリで無料利用可能。プレミアムで28の感情、テーマ、多言語AIにアップグレード。</p>
     <p style="color:var(--text-secondary);margin-bottom:2rem;max-width:450px;margin-left:auto;margin-right:auto;" data-lang="ko">3가지 감정 카테고리로 무료 사용. 프리미엄으로 28가지 감정, 테마, 다국어 AI로 업그레이드.</p>
 
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" data-lang="en">Download Free on Google Play</a>
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" data-lang="de">Kostenlos bei Google Play</a>
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" data-lang="ja">Google Playで無料ダウンロード</a>
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" data-lang="ko">Google Play에서 무료 다운로드</a>
+    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta-bottom">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:60px">
+    </a>
 </section>
 
 <footer>
     <p>&copy; 2026 SentiLog</p>
     <div class="footer-links">
         <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="mailto:tojohere@gmail.com">Contact</a>
+        <a href="terms-of-service.html">Terms of Use</a>
         <a href="https://play.google.com/store/apps/details?id=com.sentilog.app">Google Play</a>
     </div>
 </footer>
