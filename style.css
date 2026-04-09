@@ -338,6 +338,52 @@ body::after {
   transform: translateY(-2px);
 }
 
+/* ---------- Projects Section ---------- */
+.projects { padding: var(--section-gap) 0; }
+.projects-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.project-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.project-card:hover { color: inherit; }
+.project-icon {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.project-info h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+  color: var(--text-primary);
+}
+.project-tagline {
+  font-size: 0.9rem;
+  color: var(--accent-start);
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+.project-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  max-width: 600px;
+}
+.project-card .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+@media (max-width: 768px) {
+  .project-card { flex-direction: column; align-items: center; text-align: center; }
+  .project-desc { margin-left: auto; margin-right: auto; }
+  .project-card .project-tags { justify-content: center; }
+}
+
 /* ---------- Testimonials Section ---------- */
 .testimonials { padding: var(--section-gap) 0; }
 .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
