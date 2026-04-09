@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - SentiLog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1a1a2e;
@@ -11,240 +13,246 @@
             --accent: #e94560;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
-            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             background-color: var(--primary);
             color: var(--text-primary);
-            font-family: var(--font-main);
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
             padding: 2rem 1rem;
             max-width: 800px;
             margin: 0 auto;
         }
-
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .lang-switcher {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
+        header { text-align: center; margin-bottom: 3rem; }
+        .lang-switcher { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
         .lang-btn {
-            background: var(--surface);
-            border: 1px solid var(--text-secondary);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            background: var(--surface); border: 1px solid var(--text-secondary);
+            color: var(--text-primary); padding: 0.5rem 1rem; border-radius: 8px;
+            cursor: pointer; transition: all 0.3s; font-weight: 500; font-size: 0.9rem;
         }
-
-        .lang-btn:hover {
-            border-color: var(--accent);
-        }
-
-        .lang-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-
+        .lang-btn:hover { border-color: var(--accent); }
+        .lang-btn.active { background: var(--accent); border-color: var(--accent); }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem; margin-bottom: 1rem;
             background: linear-gradient(135deg, #fff, var(--text-secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-            border-bottom: 1px solid rgba(160, 160, 176, 0.2);
-            padding-bottom: 0.5rem;
-        }
-
-        p {
-            margin-bottom: 1.2rem;
-            color: var(--text-secondary);
-        }
-
+        h2 { font-size: 1.3rem; margin-top: 2.5rem; margin-bottom: 0.8rem; color: var(--accent);
+             border-bottom: 1px solid rgba(160,160,176,0.2); padding-bottom: 0.5rem; }
+        p { margin-bottom: 1.2rem; color: var(--text-secondary); }
+        strong { color: var(--text-primary); }
         .status-badge {
-            background: rgba(233, 69, 96, 0.1);
-            color: var(--accent);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            display: inline-block;
-            margin-bottom: 1rem;
+            background: rgba(233,69,96,0.1); color: var(--accent);
+            padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; display: inline-block;
         }
-
         .card {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--surface); padding: 2rem; border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
         }
-
-        footer {
-            margin-top: 4rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        [data-lang]:not(.active-lang) {
-            display: none;
-        }
+        footer { margin-top: 4rem; text-align: center; color: var(--text-secondary); font-size: 0.85rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+        [data-lang]:not(.active-lang) { display: none; }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } .card { padding: 1.5rem; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="lang-switcher">
-            <button class="lang-btn active" onclick="switchLang('en')">English</button>
-            <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
-            <button class="lang-btn" onclick="switchLang('de')">Deutsch</button>
-        </div>
-        <h1 id="title">Privacy Policy - SentiLog</h1>
-        <div class="status-badge" id="last-updated">Last updated: March 27, 2026</div>
-    </header>
+<header>
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="switchLang('en')">English</button>
+        <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+        <button class="lang-btn" onclick="switchLang('de')">Deutsch</button>
+        <button class="lang-btn" onclick="switchLang('ko')">한국어</button>
+    </div>
+    <h1 id="title">Privacy Policy - SentiLog</h1>
+    <div class="status-badge" id="last-updated">Last updated: April 9, 2026</div>
+</header>
 
-    <main class="card">
-        <!-- ENGLISH CONTENT -->
-        <section id="content-en" data-lang="en" class="active-lang">
-            <p>SentiLog (the "App") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our App.</p>
+<main class="card">
 
-            <h2>1. Information Collection and Use</h2>
-            <p><strong>Personal Data:</strong> SentiLog is a private-first journal. All your data, including journal entries and sentiment analysis results, are stored exclusively on your device. We do not transmit your private thoughts to any external servers.</p>
+    <!-- ENGLISH -->
+    <section data-lang="en" class="active-lang">
+        <p>SentiLog (the "App") is committed to protecting your privacy. This Privacy Policy explains how we handle your information.</p>
 
-            <h2>2. On-Device AI & Analysis</h2>
-            <p><strong>Private Analysis:</strong> SentiLog performs sentiment analysis locally on your phone. Your text is processed by on-device AI models and never leaves your device. This ensures your mental well-being is analyzed without compromising your privacy.</p>
+        <h2>1. Information Collection</h2>
+        <p><strong>Privacy-First Design:</strong> All your data — journal entries, sentiment analysis results, and settings — are stored exclusively on your device. We do not collect, transmit, or store any of your personal data on external servers.</p>
 
-            <h2>3. Advanced Data Encryption</h2>
-            <p><strong>Military-Grade Security:</strong> Your journal entries are protected with <strong>AES-256 encryption</strong>. The encryption key is generated locally and stored securely in your device's hardware-backed Secure Store (Keystore/Keychain), ensuring that your journals remain private even if the device is accessed by others.</p>
+        <h2>2. On-Device AI Analysis</h2>
+        <p><strong>Fully Offline:</strong> Sentiment analysis is performed locally on your phone using on-device neural network models. Your text is never sent to any cloud service for processing. No internet connection is required for emotion detection.</p>
 
-            <h2>4. Long-Term Secure Storage</h2>
-            <p><strong>Secure Memories:</strong> Our storage system is built to safely preserve up to <strong>10 years of your journal data</strong>. This high-performance implementation ensures your memories are stored securely and retrieved instantly whenever you want to look back.</p>
+        <h2>3. Data Encryption</h2>
+        <p><strong>Full Database Encryption:</strong> Your entire journal database is encrypted using <strong>SQLCipher (AES-256)</strong>. The encryption key is generated locally and stored in your device's hardware-backed Android Keystore. Even if someone accesses your device's storage, your journal data is unreadable without the key.</p>
 
-            <h2>5. Changes to This Privacy Policy</h2>
-            <p>We may update our Privacy Policy. You are advised to review this page periodically for any changes. Changes are effective immediately after they are posted on this page.</p>
+        <h2>4. Cloud Backup</h2>
+        <p><strong>Encrypted Backups:</strong> If you choose to enable cloud backup, your data is encrypted before uploading to your personal Google Drive. The encryption key is managed automatically — you don't need to remember a password. Only you can access your backups through your Google account. We never have access to your backup data.</p>
 
-            <h2>6. Contact Us</h2>
-            <p>If you have any questions or suggestions, reach out to us at: <strong class="protected-email">Loading...</strong></p>
-        </section>
+        <h2>5. Biometric Security</h2>
+        <p>SentiLog supports fingerprint and face unlock to prevent unauthorized access to your journal. Biometric data is handled entirely by the Android operating system and is never accessed by the App.</p>
 
-        <!-- JAPANESE CONTENT -->
-        <section id="content-ja" data-lang="ja">
-            <p>SentiLog（以下「本アプリ」）は、お客様のプライバシー保護に万全を期しています。本プライバシーポリシーでは、本アプリの使用時における情報の取り扱いについて説明します。</p>
+        <h2>6. Third-Party Services</h2>
+        <p><strong>Google Play Billing:</strong> If you purchase Premium, the transaction is handled by Google Play. We do not collect or store payment information.<br>
+        <strong>Google Drive:</strong> Used only for optional cloud backup. We access only the App's own folder on your Drive — we cannot read any other files.</p>
 
-            <h2>1. 情報の収集と利用</h2>
-            <p><strong>個人データ：</strong>SentiLogは、プライバシーを最優先したジャーナルアプリです。日記の内容や感情分析結果を含むすべてのデータは、お客様のデバイス内にのみ保存されます。お客様の個人的な思考を外部サーバーに送信することはありません。</p>
+        <h2>7. Data Retention</h2>
+        <p>Your data lives on your device for as long as you keep the App installed. If you uninstall the App, all local data is deleted. Cloud backups remain on your Google Drive until you delete them.</p>
 
-            <h2>2. デバイス上でのAI分析</h2>
-            <p><strong>プライベートな分析：</strong>SentiLogの感情分析は、お客様のスマートフォン上でのみ実行されます。テキストはデバイス上のAIモデルによって処理され、デバイス外に出ることはありません。これにより、プライバシーを損なうことなく心の健康状態を分析できます。</p>
-            
-            <h2>3. 高度なデータ暗号化</h2>
-            <p><strong>強固なセキュリティ：</strong>日記の内容は、<strong>AES-256暗号化</strong>によって保護されています。暗号化キーはローカルで生成され、デバイスのハードウェアで保護されたセキュアストア（キーストア/キーチェーン）に安全に保管されます。これにより、第三者がデバイスにアクセスしても日記のプライバシーは守られます。</p>
+        <h2>8. Children's Privacy</h2>
+        <p>SentiLog is not directed at children under 13. We do not knowingly collect data from children.</p>
 
-            <h2>4. 長期的な安全保存</h2>
-            <p><strong>思い出の保護：</strong>当社の保存システムは、最大 <strong>10年分の日記データ</strong>を安全に保管できるように構築されています。この高性能な仕組みにより、思い出が安全に保存され、振り返りたいときにいつでも瞬時に取り出すことができます。</p>
+        <h2>9. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy. Changes are effective immediately upon posting. We recommend reviewing this page periodically.</p>
 
-            <h2>5. プライバシーポリシーの変更</h2>
-            <p>本プライバシーポリシーは随時更新されることがあります。変更がないか定期的に確認することをお勧めします。変更は、このページに掲載された時点から直ちに適用されます。</p>
+        <h2>10. Contact</h2>
+        <p>Questions or concerns? Contact us at: <strong class="protected-email">Loading...</strong></p>
+    </section>
 
-            <h2>6. お問い合わせ</h2>
-            <p>ご質問やご提案がございましたら、下記までご連絡ください： <strong class="protected-email">読み込み中...</strong></p>
-        </section>
+    <!-- JAPANESE -->
+    <section data-lang="ja">
+        <p>SentiLog（以下「本アプリ」）は、お客様のプライバシー保護に万全を期しています。本ポリシーでは、情報の取り扱いについて説明します。</p>
 
-        <!-- GERMAN CONTENT -->
-        <section id="content-de" data-lang="de">
-            <p>SentiLog (die "App") verpflichtet sich zum Schutz Ihrer Privatsphäre. Diese Datenschutzerklärung erläutert, wie wir mit Ihren Informationen umgehen, wenn Sie unsere App nutzen.</p>
+        <h2>1. 情報の収集</h2>
+        <p><strong>プライバシー優先設計：</strong>日記の内容、感情分析結果、設定を含むすべてのデータは、お客様のデバイス内にのみ保存されます。個人データを外部サーバーに収集・送信・保存することはありません。</p>
 
-            <h2>1. Datenerhebung und -verwendung</h2>
-            <p><strong>Persönliche Daten:</strong> SentiLog ist als privates Tagebuch konzipiert. Alle Ihre Daten, einschließlich der Tagebucheinträge und der Ergebnisse der Stimmungsanalyse, werden ausschließlich auf Ihrem Gerät gespeichert. Wir übertragen Ihre privaten Gedanken nicht an externe Server.</p>
+        <h2>2. デバイス上でのAI分析</h2>
+        <p><strong>完全オフライン：</strong>感情分析はデバイス上のニューラルネットワークモデルを使用してローカルで実行されます。テキストがクラウドサービスに送信されることはありません。感情検出にインターネット接続は不要です。</p>
 
-            <h2>2. On-Device KI & Analyse</h2>
-            <p><strong>Private Analyse:</strong> SentiLog führt die Stimmungsanalyse lokal auf Ihrem Telefon durch. Ihr Text wird von KI-Modellen direkt auf dem Gerät verarbeitet und verlässt dieses niemals. So wird Ihr Wohlbefinden analysiert, ohne Ihre Privatsphäre zu gefährden.</p>
+        <h2>3. データ暗号化</h2>
+        <p><strong>データベース全体の暗号化：</strong>日記データベース全体が<strong>SQLCipher（AES-256）</strong>で暗号化されています。暗号化キーはローカルで生成され、デバイスのハードウェアで保護されたAndroid Keystoreに保管されます。第三者がデバイスのストレージにアクセスしても、キーなしではデータを読み取ることはできません。</p>
 
-            <h2>3. Fortschrittliche Datenverschlüsselung</h2>
-            <p><strong>Sicherheit auf höchstem Niveau:</strong> Ihre Tagebucheinträge sind mit einer <strong>AES-256-Verschlüsselung</strong> geschützt. Der Verschlüsselungsschlüssel wird lokal generiert und sicher im hardwaregestützten Secure Store Ihres Geräts (Keystore/Keychain) gespeichert, sodass Ihre Einträge privat bleiben, selbst wenn andere Zugriff auf Ihr Gerät haben.</p>
+        <h2>4. クラウドバックアップ</h2>
+        <p><strong>暗号化バックアップ：</strong>クラウドバックアップを有効にした場合、データは暗号化された上でGoogle Driveにアップロードされます。暗号化キーは自動管理されます。バックアップにアクセスできるのは、お客様のGoogleアカウントからのみです。</p>
 
-            <h2>4. Langfristige sichere Speicherung</h2>
-            <p><strong>Sichere Erinnerungen:</strong> Unser Speichersystem ist darauf ausgelegt, bis zu <strong>10 Jahre Ihrer Tagebuchdaten</strong> sicher zu bewahren. Diese leistungsstarke Implementierung stellt sicher, dass Ihre Erinnerungen sicher gespeichert werden und sofort abrufbar sind, wann immer Sie zurückblicken möchten.</p>
+        <h2>5. 生体認証セキュリティ</h2>
+        <p>SentiLogは指紋認証と顔認証をサポートしています。生体データはAndroidオペレーティングシステムによって処理され、本アプリがアクセスすることはありません。</p>
 
-            <h2>5. Änderungen dieser Datenschutzerklärung</h2>
-            <p>Wir können unsere Datenschutzerklärung von Zeit zu Zeit aktualisieren. Es wird empfohlen, diese Seite regelmäßig auf Änderungen zu überprüfen. Änderungen treten unmittelbar nach ihrer Veröffentlichung auf dieser Seite in Kraft.</p>
+        <h2>6. 第三者サービス</h2>
+        <p><strong>Google Play課金：</strong>プレミアム購入はGoogle Playが処理します。支払い情報の収集・保存は行いません。<br>
+        <strong>Google Drive：</strong>オプションのクラウドバックアップにのみ使用します。アプリ専用フォルダのみアクセスし、他のファイルを読み取ることはできません。</p>
 
-            <h2>6. Contact</h2>
-            <p>Bei Fragen oder Anregungen wenden Sie sich bitte an: <strong class="protected-email">Wird geladen...</strong></p>
+        <h2>7. データの保持</h2>
+        <p>データはアプリがインストールされている限りデバイスに保存されます。アンインストールするとローカルデータは削除されます。クラウドバックアップはお客様が削除するまでGoogle Driveに残ります。</p>
+
+        <h2>8. 児童のプライバシー</h2>
+        <p>SentiLogは13歳未満の児童を対象としていません。児童のデータを故意に収集することはありません。</p>
+
+        <h2>9. ポリシーの変更</h2>
+        <p>本プライバシーポリシーは随時更新されることがあります。変更は掲載時点から有効です。定期的にご確認ください。</p>
+
+        <h2>10. お問い合わせ</h2>
+        <p>ご質問やご懸念がございましたら、こちらまでご連絡ください： <strong class="protected-email">読み込み中...</strong></p>
+    </section>
+
+    <!-- GERMAN -->
+    <section data-lang="de">
+        <p>SentiLog (die "App") verpflichtet sich zum Schutz Ihrer Privatsphäre. Diese Datenschutzerklärung erläutert unseren Umgang mit Ihren Informationen.</p>
+
+        <h2>1. Datenerhebung</h2>
+        <p><strong>Privacy-First-Design:</strong> Alle Ihre Daten — Tagebucheinträge, Stimmungsanalyseergebnisse und Einstellungen — werden ausschließlich auf Ihrem Gerät gespeichert. Wir erheben, übermitteln oder speichern keine persönlichen Daten auf externen Servern.</p>
+
+        <h2>2. On-Device-KI-Analyse</h2>
+        <p><strong>Vollständig offline:</strong> Die Stimmungsanalyse wird lokal auf Ihrem Telefon mit neuronalen Netzwerkmodellen durchgeführt. Ihr Text wird niemals an einen Cloud-Dienst gesendet. Für die Emotionserkennung ist keine Internetverbindung erforderlich.</p>
+
+        <h2>3. Datenverschlüsselung</h2>
+        <p><strong>Vollständige Datenbankverschlüsselung:</strong> Ihre gesamte Tagebuch-Datenbank ist mit <strong>SQLCipher (AES-256)</strong> verschlüsselt. Der Verschlüsselungsschlüssel wird lokal generiert und im hardwaregestützten Android Keystore Ihres Geräts gespeichert. Selbst bei Zugriff auf den Gerätespeicher sind Ihre Daten ohne den Schlüssel nicht lesbar.</p>
+
+        <h2>4. Cloud-Backup</h2>
+        <p><strong>Verschlüsselte Backups:</strong> Wenn Sie Cloud-Backup aktivieren, werden Ihre Daten vor dem Upload auf Ihr persönliches Google Drive verschlüsselt. Der Verschlüsselungsschlüssel wird automatisch verwaltet. Nur Sie können über Ihr Google-Konto auf Ihre Backups zugreifen.</p>
+
+        <h2>5. Biometrische Sicherheit</h2>
+        <p>SentiLog unterstützt Fingerabdruck- und Gesichtserkennung. Biometrische Daten werden ausschließlich vom Android-Betriebssystem verarbeitet und nie von der App abgerufen.</p>
+
+        <h2>6. Drittanbieterdienste</h2>
+        <p><strong>Google Play-Abrechnung:</strong> Premium-Käufe werden von Google Play abgewickelt. Wir erheben oder speichern keine Zahlungsinformationen.<br>
+        <strong>Google Drive:</strong> Wird nur für optionales Cloud-Backup verwendet. Wir greifen nur auf den App-eigenen Ordner zu und können keine anderen Dateien lesen.</p>
+
+        <h2>7. Datenspeicherung</h2>
+        <p>Ihre Daten verbleiben auf Ihrem Gerät, solange die App installiert ist. Bei Deinstallation werden alle lokalen Daten gelöscht. Cloud-Backups verbleiben auf Ihrem Google Drive, bis Sie sie löschen.</p>
+
+        <h2>8. Datenschutz für Kinder</h2>
+        <p>SentiLog richtet sich nicht an Kinder unter 13 Jahren. Wir erheben wissentlich keine Daten von Kindern.</p>
+
+        <h2>9. Änderungen dieser Erklärung</h2>
+        <p>Wir können diese Datenschutzerklärung aktualisieren. Änderungen treten sofort nach Veröffentlichung in Kraft. Wir empfehlen eine regelmäßige Überprüfung.</p>
+
+        <h2>10. Kontakt</h2>
+        <p>Fragen oder Anliegen? Kontaktieren Sie uns unter: <strong class="protected-email">Wird geladen...</strong></p>
+    </section>
+
+    <!-- KOREAN -->
+    <section data-lang="ko">
+        <p>SentiLog(이하 "앱")는 사용자의 개인정보 보호에 최선을 다하고 있습니다. 본 개인정보처리방침은 정보 처리 방법을 설명합니다.</p>
+
+        <h2>1. 정보 수집</h2>
+        <p><strong>프라이버시 우선 설계:</strong> 일기 내용, 감정 분석 결과, 설정을 포함한 모든 데이터는 사용자의 기기에만 저장됩니다. 개인 데이터를 외부 서버에 수집, 전송 또는 저장하지 않습니다.</p>
+
+        <h2>2. 기기 내 AI 분석</h2>
+        <p><strong>완전 오프라인:</strong> 감정 분석은 기기 내 신경망 모델을 사용하여 로컬에서 수행됩니다. 텍스트가 클라우드 서비스로 전송되는 일은 없습니다. 감정 감지에 인터넷 연결이 필요하지 않습니다.</p>
+
+        <h2>3. 데이터 암호화</h2>
+        <p><strong>전체 데이터베이스 암호화:</strong> 일기 데이터베이스 전체가 <strong>SQLCipher(AES-256)</strong>로 암호화됩니다. 암호화 키는 로컬에서 생성되어 기기의 하드웨어 기반 Android Keystore에 안전하게 저장됩니다. 누군가 기기 저장소에 접근하더라도 키 없이는 데이터를 읽을 수 없습니다.</p>
+
+        <h2>4. 클라우드 백업</h2>
+        <p><strong>암호화된 백업:</strong> 클라우드 백업을 활성화하면 데이터가 암호화된 후 개인 Google Drive에 업로드됩니다. 암호화 키는 자동으로 관리됩니다. Google 계정을 통해서만 백업에 접근할 수 있습니다.</p>
+
+        <h2>5. 생체 인증 보안</h2>
+        <p>SentiLog는 지문 및 얼굴 인식 잠금을 지원합니다. 생체 데이터는 Android 운영 체제에서 처리되며 앱이 접근하지 않습니다.</p>
+
+        <h2>6. 제3자 서비스</h2>
+        <p><strong>Google Play 결제:</strong> 프리미엄 구매는 Google Play에서 처리합니다. 결제 정보를 수집하거나 저장하지 않습니다.<br>
+        <strong>Google Drive:</strong> 선택적 클라우드 백업에만 사용됩니다. 앱 전용 폴더에만 접근하며 다른 파일을 읽을 수 없습니다.</p>
+
+        <h2>7. 데이터 보관</h2>
+        <p>데이터는 앱이 설치되어 있는 동안 기기에 저장됩니다. 앱을 삭제하면 모든 로컬 데이터가 삭제됩니다. 클라우드 백업은 사용자가 삭제할 때까지 Google Drive에 유지됩니다.</p>
+
+        <h2>8. 아동 개인정보</h2>
+        <p>SentiLog는 13세 미만 아동을 대상으로 하지 않습니다. 아동의 데이터를 고의로 수집하지 않습니다.</p>
+
+        <h2>9. 정책 변경</h2>
+        <p>본 개인정보처리방침은 수시로 업데이트될 수 있습니다. 변경 사항은 게시 즉시 적용됩니다. 정기적으로 확인하시기 바랍니다.</p>
+
+        <h2>10. 문의</h2>
+        <p>질문이나 우려 사항이 있으시면 다음으로 연락해 주세요: <strong class="protected-email">로딩 중...</strong></p>
+    </section>
+
 </main>
 
-    <footer>
-        <p>&copy; 2026 SentiLog App. All rights reserved.</p>
-    </footer>
+<footer>
+    <p>&copy; 2026 SentiLog. All rights reserved.</p>
+    <p style="margin-top:0.5rem"><a href="index.html">Home</a></p>
+</footer>
 
-    <script>
-        const titles = {
-            en: 'Privacy Policy - SentiLog',
-            ja: 'プライバシーポリシー - SentiLog',
-            de: 'Datenschutzerklärung - SentiLog'
-        };
-
-        const updates = {
-            en: 'Last updated: March 27, 2026',
-            ja: '最終更新日：2026年3月27日',
-            de: 'Zuletzt aktualisiert: 27. März 2026'
-        };
-
-        function switchLang(lang) {
-            // Update buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.innerText.toLowerCase().includes(lang) || (lang === 'ja' && btn.innerText.includes('日本語')) || (lang === 'de' && btn.innerText.includes('Deutsch'))) {
-                    btn.classList.add('active');
-                }
-            });
-
-            // Update content visibility
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                el.classList.remove('active-lang');
-                if (el.getAttribute('data-lang') === lang) {
-                    el.classList.add('active-lang');
-                }
-            });
-
-            // Update headers
-            document.getElementById('title').innerText = titles[lang];
-            document.getElementById('last-updated').innerText = updates[lang];
-            document.documentElement.lang = lang;
-        }
-
-        // Email Protection: Injecting email to avoid bots
-        document.addEventListener('DOMContentLoaded', () => {
-            const e = "dG9qb2hlcmVAb3V0bG9vay5jb20="; // Base64 for tojohere@outlook.com
-            const email = atob(e);
-            document.querySelectorAll('.protected-email').forEach(el => {
-                el.innerHTML = `<a href="mailto:${email}" style="color:var(--text-primary); text-decoration: none;">${email}</a>`;
-            });
+<script>
+    const titles = {
+        en: 'Privacy Policy - SentiLog',
+        ja: 'プライバシーポリシー - SentiLog',
+        de: 'Datenschutzerklärung - SentiLog',
+        ko: '개인정보처리방침 - SentiLog'
+    };
+    const updates = {
+        en: 'Last updated: April 9, 2026',
+        ja: '最終更新日：2026年4月9日',
+        de: 'Zuletzt aktualisiert: 9. April 2026',
+        ko: '최종 업데이트: 2026년 4월 9일'
+    };
+    function switchLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.classList.toggle('active-lang', el.getAttribute('data-lang') === lang);
         });
-    </script>
+        document.getElementById('title').innerText = titles[lang];
+        document.getElementById('last-updated').innerText = updates[lang];
+        document.documentElement.lang = lang;
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const e = "dG9qb2hlcmVAZ21haWwuY29t";
+        const email = atob(e);
+        document.querySelectorAll('.protected-email').forEach(el => {
+            el.innerHTML = '<a href="mailto:' + email + '" style="color:var(--text-primary);text-decoration:none">' + email + '</a>';
+        });
+    });
+</script>
+
 </body>
 </html>
