@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentiLog - AI-Powered Journaling</title>
+    <meta name="description" content="SentiLog detects 28 emotions in your journal entries using on-device AI. Private, encrypted, beautiful.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --surface: #16213e;
+            --accent: #e94560;
+            --accent-soft: rgba(233, 69, 96, 0.15);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Hero ─────────────────────────────────────────────── */
+        .hero {
+            background: var(--bg-gradient);
+            text-align: center;
+            padding: 5rem 1.5rem 4rem;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(transparent, var(--primary));
+        }
+        .hero-emoji { font-size: 4rem; margin-bottom: 1rem; }
+        .hero h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+        .hero .tagline {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+        .hero .cta {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hero .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(233, 69, 96, 0.4);
+        }
+        .badge {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── Sections ─────────────────────────────────────────── */
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+        section h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--accent);
+        }
+
+        /* ── Emotion Grid ─────────────────────────────────────── */
+        .emotion-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .emotion-chip {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .emotion-chip .em { margin-right: 0.3rem; }
+
+        /* ── Features ─────────────────────────────────────────── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .feature-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: transform 0.2s;
+        }
+        .feature-card:hover { transform: translateY(-4px); }
+        .feature-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ── Privacy ──────────────────────────────────────────── */
+        .privacy-box {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(233, 69, 96, 0.2);
+        }
+        .privacy-box .shield { font-size: 3rem; margin-bottom: 1rem; }
+        .privacy-box h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .privacy-box p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+        .privacy-points {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .privacy-point {
+            background: var(--accent-soft);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ── Languages ────────────────────────────────────────── */
+        .lang-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .lang-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            min-width: 120px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .lang-flag { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .lang-name { font-weight: 600; }
+
+        /* ── Themes ────────────────────────────────────────────── */
+        .theme-strip {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .theme-dot {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.15);
+            position: relative;
+        }
+        .theme-dot span {
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-links { margin-top: 0.5rem; }
+        .footer-links a { margin: 0 1rem; }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .tagline { font-size: 1.05rem; }
+            section { padding: 3rem 1.2rem; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-emoji">✍️</div>
+    <h1>SentiLog</h1>
+    <p class="tagline">AI-powered journaling that understands how you feel. 28 emotions detected in real-time, fully on-device, completely private.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
+        Get it on Google Play
+    </a>
+    <div class="badge">Android &bull; Free with Premium</div>
+</div>
+
+<!-- 28 Emotions -->
+<section>
+    <h2>28 Emotions, Detected in Real-Time</h2>
+    <div class="emotion-grid">
+        <span class="emotion-chip"><span class="em">🤩</span> admiration</span>
+        <span class="emotion-chip"><span class="em">😂</span> amusement</span>
+        <span class="emotion-chip"><span class="em">😠</span> anger</span>
+        <span class="emotion-chip"><span class="em">😤</span> annoyance</span>
+        <span class="emotion-chip"><span class="em">👍</span> approval</span>
+        <span class="emotion-chip"><span class="em">🤗</span> caring</span>
+        <span class="emotion-chip"><span class="em">🤔</span> confusion</span>
+        <span class="emotion-chip"><span class="em">🧐</span> curiosity</span>
+        <span class="emotion-chip"><span class="em">😍</span> desire</span>
+        <span class="emotion-chip"><span class="em">😞</span> disappointment</span>
+        <span class="emotion-chip"><span class="em">👎</span> disapproval</span>
+        <span class="emotion-chip"><span class="em">🤢</span> disgust</span>
+        <span class="emotion-chip"><span class="em">😳</span> embarrassment</span>
+        <span class="emotion-chip"><span class="em">🤩</span> excitement</span>
+        <span class="emotion-chip"><span class="em">😨</span> fear</span>
+        <span class="emotion-chip"><span class="em">🙏</span> gratitude</span>
+        <span class="emotion-chip"><span class="em">😢</span> grief</span>
+        <span class="emotion-chip"><span class="em">😊</span> joy</span>
+        <span class="emotion-chip"><span class="em">❤️</span> love</span>
+        <span class="emotion-chip"><span class="em">😰</span> nervousness</span>
+        <span class="emotion-chip"><span class="em">🌟</span> optimism</span>
+        <span class="emotion-chip"><span class="em">🏆</span> pride</span>
+        <span class="emotion-chip"><span class="em">💡</span> realization</span>
+        <span class="emotion-chip"><span class="em">😌</span> relief</span>
+        <span class="emotion-chip"><span class="em">😔</span> remorse</span>
+        <span class="emotion-chip"><span class="em">😢</span> sadness</span>
+        <span class="emotion-chip"><span class="em">😲</span> surprise</span>
+        <span class="emotion-chip"><span class="em">😐</span> neutral</span>
+    </div>
+    <p style="text-align:center; color: var(--text-secondary); font-size: 0.9rem;">
+        Powered by RoBERTa neural network &bull; Runs entirely on your phone
+    </p>
+</section>
+
+<!-- Features -->
+<section>
+    <h2>Features</h2>
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>On-Device AI</h3>
+            <p>Neural sentiment analysis runs locally. Your words never leave your phone. No internet needed for emotion detection.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📅</div>
+            <h3>Emoji Calendar</h3>
+            <p>Monthly heatmap of your emotions. See your mood patterns at a glance with dominant emotion emoji per day.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>Encrypted Everything</h3>
+            <p>SQLCipher full-database encryption. Biometric lock. Your journal is unreadable without your fingerprint.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">✍️</div>
+            <h3>Beautiful Editor</h3>
+            <p>Ruled paper design with animated feather pen cursor. Emotion watermark updates as you type. Feels like a real journal.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">☁️</div>
+            <h3>Cloud Backup</h3>
+            <p>Encrypted backup to Google Drive. Automatic daily sync. Restore on any device with one tap.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>Multilingual</h3>
+            <p>Write in English, German, Japanese, or Korean. Each language has a dedicated AI model trained on native data.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Privacy -->
+<section>
+    <div class="privacy-box">
+        <div class="shield">🛡️</div>
+        <h3>Your Privacy is Non-Negotiable</h3>
+        <p>SentiLog is built privacy-first. Your journal entries are encrypted on your device and never sent to any server for analysis. The AI runs completely offline.</p>
+        <div class="privacy-points">
+            <span class="privacy-point">🔒 AES-256 encryption</span>
+            <span class="privacy-point">📵 No cloud AI</span>
+            <span class="privacy-point">🚫 No tracking</span>
+            <span class="privacy-point">🧠 On-device only</span>
+            <span class="privacy-point">👆 Biometric lock</span>
+        </div>
+    </div>
+</section>
+
+<!-- Languages -->
+<section>
+    <h2>Write in Your Language</h2>
+    <div class="lang-grid">
+        <div class="lang-card">
+            <div class="lang-flag">🇬🇧</div>
+            <div class="lang-name">English</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary)">Bundled</div>
+        </div>
+        <div class="lang-card">
+            <div class="lang-flag">🇩🇪</div>
+            <div class="lang-name">Deutsch</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary)">Premium</div>
+        </div>
+        <div class="lang-card">
+            <div class="lang-flag">🇯🇵</div>
+            <div class="lang-name">日本語</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary)">Premium</div>
+        </div>
+        <div class="lang-card">
+            <div class="lang-flag">🇰🇷</div>
+            <div class="lang-name">한국어</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary)">Premium</div>
+        </div>
+    </div>
+</section>
+
+<!-- Themes -->
+<section>
+    <h2>6 Handcrafted Themes</h2>
+    <p style="text-align:center; color:var(--text-secondary); margin-bottom: 1.5rem;">
+        Each theme is designed for a different mood. Switch anytime.
+    </p>
+    <div class="theme-strip">
+        <div class="theme-dot" style="background: linear-gradient(135deg, #1a1a2e, #16213e);"><span>Midnight</span></div>
+        <div class="theme-dot" style="background: linear-gradient(135deg, #f5f0e8, #e8e0d0);"><span>Zen</span></div>
+        <div class="theme-dot" style="background: linear-gradient(135deg, #2d2d2d, #3a3a3a);"><span>Graphite</span></div>
+        <div class="theme-dot" style="background: linear-gradient(135deg, #e8eff5, #d0dfe8);"><span>Mist</span></div>
+        <div class="theme-dot" style="background: linear-gradient(135deg, #1a0a2e, #2d1b4e);"><span>Velvet</span></div>
+        <div class="theme-dot" style="background: linear-gradient(135deg, #f5e6d0, #e8d0a8);"><span>Golden</span></div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section style="text-align: center;">
+    <h2>Start Journaling Today</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 400px; margin-left: auto; margin-right: auto;">
+        Free to use with 3 emotion categories. Upgrade to Premium for all 28 emotions, themes, and multilingual AI.
+    </p>
+    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta" style="background: var(--accent);">
+        Download Free on Google Play
+    </a>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 SentiLog. Built with care for your mental wellbeing.</p>
+    <div class="footer-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="mailto:tojohere@gmail.com">Contact</a>
+        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app">Google Play</a>
+    </div>
+</footer>
+
+</body>
+</html>
