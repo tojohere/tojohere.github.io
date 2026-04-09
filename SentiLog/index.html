@@ -364,16 +364,17 @@
 </footer>
 
 <script>
+var langLabels = {en:'English', de:'Deutsch', ja:'日本語', ko:'한국어'};
 function switchLang(lang) {
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-    document.querySelectorAll('[data-lang]').forEach(el => {
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+        b.classList.toggle('active', b.textContent.trim() === langLabels[lang]);
+    });
+    document.querySelectorAll('[data-lang]').forEach(function(el) {
         el.classList.toggle('active', el.getAttribute('data-lang') === lang);
     });
     document.documentElement.lang = lang;
 }
-// Init: show English
-document.addEventListener('DOMContentLoaded', () => switchLang('en'));
+switchLang('en');
 </script>
 
 </body>
