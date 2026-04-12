@@ -35,6 +35,51 @@
         .cta-bottom:hover { transform: translateY(-2px); }
         .badge { display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); }
 
+        /* ── App Screenshots ── */
+        .screenshots { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .phone-frame { position: relative; width: 200px; border-radius: 28px; overflow: hidden; border: 3px solid rgba(255,255,255,0.12); box-shadow: 0 20px 60px rgba(0,0,0,0.5); transition: transform 0.3s; }
+        .phone-frame:hover { transform: translateY(-8px) scale(1.02); }
+        .phone-frame img { width: 100%; display: block; }
+        .phone-label { text-align: center; margin-top: 0.6rem; font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; }
+
+        /* ── Architecture Flow ── */
+        .arch-flow { display: flex; align-items: center; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin: 2rem auto; max-width: 800px; }
+        .arch-node { background: var(--surface); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1rem 1.4rem; text-align: center; min-width: 130px; transition: transform 0.2s, border-color 0.2s; }
+        .arch-node:hover { transform: translateY(-3px); border-color: var(--accent); }
+        .arch-node .arch-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+        .arch-node .arch-label { font-size: 0.85rem; font-weight: 600; }
+        .arch-node .arch-detail { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
+        .arch-arrow { font-size: 1.4rem; color: var(--accent); flex-shrink: 0; }
+        .arch-note { text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 1.5rem; }
+
+        /* ── ML Pipeline ── */
+        .pipeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+        .pipeline-step { background: var(--surface); border-radius: 14px; padding: 1.5rem; border-left: 3px solid var(--accent); }
+        .pipeline-step .step-num { font-size: 0.7rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+        .pipeline-step h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+        .pipeline-step p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
+        .model-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.85rem; }
+        .model-table th { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 2px solid var(--accent); color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        .model-table td { padding: 0.6rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); }
+        .model-table tr:hover td { color: var(--text-primary); }
+        .hf-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; margin-top: 1rem; }
+        .hf-link:hover { text-decoration: underline; }
+
+        /* ── PDF Export ── */
+        .pdf-showcase { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .pdf-img { width: 160px; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s; }
+        .pdf-img:hover { transform: translateY(-4px); }
+        .pdf-desc { max-width: 380px; }
+        .pdf-desc h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+        .pdf-desc p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .pdf-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+        .pdf-tag { background: var(--accent-soft); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.78rem; color: var(--accent); }
+
+        /* ── Tech Stack ── */
+        .tech-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 1.5rem; }
+        .tech-badge { background: var(--surface); border: 1px solid rgba(255,255,255,0.08); padding: 0.5rem 1.2rem; border-radius: 30px; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: all 0.2s; }
+        .tech-badge:hover { border-color: var(--accent); color: var(--text-primary); transform: translateY(-2px); }
+
         section { max-width: 900px; margin: 0 auto; padding: 4rem 1.5rem; }
         section h2 { font-family: 'Caveat', cursive; font-size: 2.2rem; text-align: center; margin-bottom: 2.5rem; color: var(--accent); }
 
@@ -78,7 +123,18 @@
         div.features[data-lang].active { display: grid !important; }
         div.emotion-grid[data-lang].active { display: flex !important; }
 
-        @media (max-width: 600px) { .hero h1 { font-size: 2.5rem; } .hero .tagline { font-size: 1.05rem; } section { padding: 3rem 1.2rem; } .features { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .tagline { font-size: 1.05rem; }
+            section { padding: 3rem 1.2rem; }
+            .features { grid-template-columns: 1fr; }
+            .phone-frame { width: 140px; }
+            .arch-flow { flex-direction: column; }
+            .arch-arrow { transform: rotate(90deg); }
+            .pdf-showcase { flex-direction: column; text-align: center; }
+            .pdf-desc { text-align: center; }
+            .pdf-tags { justify-content: center; }
+        }
     </style>
 </head>
 <body>
@@ -104,6 +160,28 @@
     </a>
     <div class="badge">Android &bull; Free with Premium</div>
 </div>
+
+<!-- App Screenshots -->
+<section>
+    <h2 data-lang="en">See It in Action</h2>
+    <h2 data-lang="de">In Aktion erleben</h2>
+    <h2 data-lang="ja">動作を見る</h2>
+    <h2 data-lang="ko">직접 확인하세요</h2>
+    <div class="screenshots">
+        <div>
+            <div class="phone-frame"><img src="screen_home.png" alt="SentiLog Home — Journal entries with emotion emojis" loading="lazy"></div>
+            <p class="phone-label">Home</p>
+        </div>
+        <div>
+            <div class="phone-frame"><img src="screen_journal.png" alt="SentiLog Journal — Writing with real-time emotion detection" loading="lazy"></div>
+            <p class="phone-label">Journal Entry</p>
+        </div>
+        <div>
+            <div class="phone-frame"><img src="screen_calendar.png" alt="SentiLog Calendar — Monthly emoji heatmap" loading="lazy"></div>
+            <p class="phone-label">Emotion Calendar</p>
+        </div>
+    </div>
+</section>
 
 <!-- 28 Emotions -->
 <section>
@@ -275,6 +353,130 @@
         <div class="feature-card"><div class="feature-icon">✍️</div><h3>아름다운 에디터</h3><p>줄이 있는 종이 디자인과 애니메이션 만년필 커서. 입력하면서 감정 워터마크가 업데이트.</p></div>
         <div class="feature-card"><div class="feature-icon">☁️</div><h3>클라우드 백업</h3><p>Google Drive로 암호화된 백업. 매일 자동 동기화. 한 번의 탭으로 어떤 기기에서든 복원.</p></div>
         <div class="feature-card"><div class="feature-icon">🌍</div><h3>다국어 지원</h3><p>영어, 독일어, 일본어, 한국어로 작성. 각 언어에 전용 AI 모델 탑재.</p></div>
+    </div>
+</section>
+
+<!-- How It Works — Architecture Flow -->
+<section>
+    <h2 data-lang="en">How It Works</h2>
+    <h2 data-lang="de">So funktioniert es</h2>
+    <h2 data-lang="ja">仕組み</h2>
+    <h2 data-lang="ko">작동 방식</h2>
+    <div class="arch-flow">
+        <div class="arch-node">
+            <div class="arch-icon">✍️</div>
+            <div class="arch-label">You Write</div>
+            <div class="arch-detail">Journal entry text</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+            <div class="arch-icon">🧠</div>
+            <div class="arch-label">ONNX Runtime</div>
+            <div class="arch-detail">On-device inference</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+            <div class="arch-icon">🎯</div>
+            <div class="arch-label">28 Emotions</div>
+            <div class="arch-detail">RoBERTa classifier</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+            <div class="arch-icon">🔐</div>
+            <div class="arch-label">SQLCipher DB</div>
+            <div class="arch-detail">AES-256 encrypted</div>
+        </div>
+    </div>
+    <p class="arch-note">Every step happens on your phone. Nothing leaves the device. No internet required.</p>
+</section>
+
+<!-- ML Pipeline — The Technical Story -->
+<section>
+    <h2 data-lang="en">The ML Pipeline</h2>
+    <h2 data-lang="de">Die ML-Pipeline</h2>
+    <h2 data-lang="ja">MLパイプライン</h2>
+    <h2 data-lang="ko">ML 파이프라인</h2>
+
+    <div class="pipeline-grid">
+        <div class="pipeline-step">
+            <div class="step-num">Step 1</div>
+            <h4>Translate</h4>
+            <p>Google's GoEmotions dataset (58K Reddit texts, 28 labels) translated to DE/JA/KO using NLLB-200 on Apple Silicon.</p>
+        </div>
+        <div class="pipeline-step">
+            <div class="step-num">Step 2</div>
+            <h4>Augment</h4>
+            <p>Merge native-language datasets: GermEval (10K DE), WRIME (35K JA), KOTE (50K KO) for authentic emotional context.</p>
+        </div>
+        <div class="pipeline-step">
+            <div class="step-num">Step 3</div>
+            <h4>Fine-Tune</h4>
+            <p>XLM-RoBERTa-base fine-tuned per language on RunPod GPU (RTX 4090). 10 epochs, PBKDF2 learning rate warmup.</p>
+        </div>
+        <div class="pipeline-step">
+            <div class="step-num">Step 4</div>
+            <h4>Quantize &amp; Ship</h4>
+            <p>ONNX export + INT8 dynamic quantization. 1.1GB FP32 → 266MB INT8. Runs in ONNX Runtime on Android.</p>
+        </div>
+    </div>
+
+    <table class="model-table">
+        <tr><th>Language</th><th>F1 Macro</th><th>Top-1 Acc</th><th>Top-3 Acc</th><th>Native Data</th></tr>
+        <tr><td>English</td><td>0.46</td><td>—</td><td>—</td><td>GoEmotions (58K)</td></tr>
+        <tr><td>German v2</td><td>0.447</td><td>69%</td><td>82%</td><td>GermEval (10K)</td></tr>
+        <tr><td>Japanese v2</td><td>0.396</td><td>56%</td><td>74%</td><td>WRIME (35K)</td></tr>
+        <tr><td>Korean v2</td><td>0.568</td><td>68%</td><td>81%</td><td>KOTE (50K)</td></tr>
+    </table>
+
+    <a href="https://huggingface.co/tojohere" class="hf-link" target="_blank" rel="noopener noreferrer">
+        <span style="font-size:1.2rem">🤗</span> View models on HuggingFace →
+    </a>
+</section>
+
+<!-- PDF Export -->
+<section>
+    <h2 data-lang="en">Premium PDF Export</h2>
+    <h2 data-lang="de">Premium PDF-Export</h2>
+    <h2 data-lang="ja">プレミアムPDFエクスポート</h2>
+    <h2 data-lang="ko">프리미엄 PDF 내보내기</h2>
+    <div class="pdf-showcase">
+        <img src="pdf_cover.png" alt="SentiLog PDF cover — dark navy with gold trim" class="pdf-img" loading="lazy">
+        <img src="pdf_page.png" alt="SentiLog PDF entry page — watercolor template" class="pdf-img" loading="lazy">
+        <div class="pdf-desc">
+            <h3>Your journal, as a beautiful diary</h3>
+            <p>Export your entries as a premium PDF with a dark navy &amp; gold cover and watercolor entry pages. Each feeling gets its own page with a large emoji watermark. Auto-fit fonts scale from spotlight quotes to full paragraphs.</p>
+            <div class="pdf-tags">
+                <span class="pdf-tag">Watercolor template</span>
+                <span class="pdf-tag">One entry per page</span>
+                <span class="pdf-tag">Pinch-to-zoom preview</span>
+                <span class="pdf-tag">Date range filters</span>
+                <span class="pdf-tag">Share to any app</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tech Stack -->
+<section>
+    <h2 data-lang="en">Built With</h2>
+    <h2 data-lang="de">Gebaut mit</h2>
+    <h2 data-lang="ja">使用技術</h2>
+    <h2 data-lang="ko">사용 기술</h2>
+    <div class="tech-grid">
+        <span class="tech-badge">Kotlin</span>
+        <span class="tech-badge">Jetpack Compose</span>
+        <span class="tech-badge">ONNX Runtime</span>
+        <span class="tech-badge">XLM-RoBERTa</span>
+        <span class="tech-badge">Room + SQLCipher</span>
+        <span class="tech-badge">Google Play Billing</span>
+        <span class="tech-badge">Google Drive API</span>
+        <span class="tech-badge">Firebase Crashlytics</span>
+        <span class="tech-badge">WorkManager</span>
+        <span class="tech-badge">Android PdfDocument</span>
+        <span class="tech-badge">HuggingFace</span>
+        <span class="tech-badge">NLLB-200 Translation</span>
+        <span class="tech-badge">RunPod GPU</span>
+        <span class="tech-badge">Claude Code</span>
     </div>
 </section>
 
