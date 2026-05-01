@@ -179,15 +179,17 @@
   <article class="blog-content">
     <div class="container">
 
-      <h2>TL;DR</h2>
-      <ol>
-        <li><strong>Generic LiteRT NPU dispatch doesn't work for transformers</strong> &mdash; LayerNorm and Softmax create CPU fallback subgraphs that kill performance</li>
-        <li><strong>Qualcomm AI Hub compilation fixes this</strong> &mdash; it fuses ops that the runtime dispatcher can't</li>
-        <li><strong>Use INT8 weights + INT16 activations (w8a16)</strong> &mdash; Google's recipe for transformer NPU deployment</li>
-        <li><strong>Use a two-step pipeline</strong> &mdash; quantize first, then compile (workaround for AI Hub dtype conflict)</li>
-        <li><strong>Provide calibration data</strong> &mdash; blind INT8 drops accuracy by ~8%, w8a16 with calibration loses only ~1.4%</li>
-        <li><strong>Result: 48.3% accuracy at 67ms on NPU</strong> &mdash; comparable to ONNX CPU (49.7% at 46.5ms), CPU freed for other work</li>
-      </ol>
+      <div class="callout" style="border-left-color: var(--accent-mid);">
+        <p><strong>Key takeaways:</strong></p>
+        <ol style="margin-top:0.5rem; margin-bottom:0;">
+          <li><strong>Generic LiteRT NPU dispatch doesn't work for transformers</strong> &mdash; LayerNorm and Softmax create CPU fallback subgraphs that kill performance</li>
+          <li><strong>Qualcomm AI Hub compilation fixes this</strong> &mdash; it fuses ops that the runtime dispatcher can't</li>
+          <li><strong>Use INT8 weights + INT16 activations (w8a16)</strong> &mdash; Google's recipe for transformer NPU deployment</li>
+          <li><strong>Use a two-step pipeline</strong> &mdash; quantize first, then compile (workaround for AI Hub dtype conflict)</li>
+          <li><strong>Provide calibration data</strong> &mdash; blind INT8 drops accuracy by ~8%, w8a16 with calibration loses only ~1.4%</li>
+          <li><strong>Result: 48.3% accuracy at 67ms on NPU</strong> &mdash; comparable to ONNX CPU (49.7% at 46.5ms), CPU freed for other work</li>
+        </ol>
+      </div>
 
       <h2>The Problem</h2>
       <p>We have a 28-emotion sentiment classifier (<a href="https://huggingface.co/SamLowe/roberta-base-go_emotions">SamLowe/roberta-base-go_emotions</a>, 125M parameters) running on-device in <strong>SentiLog</strong>, an Android journaling app. It detects emotions as you type using ONNX Runtime at 46.5ms per inference on CPU. We wanted to explore NPU acceleration for better battery life and CPU offload.</p>
