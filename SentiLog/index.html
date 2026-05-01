@@ -158,7 +158,7 @@
     <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
     </a>
-    <div class="badge">Android &bull; Free with Premium</div>
+    <div class="badge">Android &bull; v2.4.6 &bull; Free with Premium</div>
 </div>
 
 <!-- App Screenshots -->
@@ -179,6 +179,14 @@
         <div>
             <div class="phone-frame"><img src="screen_calendar.png" alt="SentiLog Calendar — Monthly emoji heatmap" loading="lazy"></div>
             <p class="phone-label">Emotion Calendar</p>
+        </div>
+        <div>
+            <div class="phone-frame"><img src="screen_summary.png" alt="SentiLog Summary — Year and month mood stats" loading="lazy"></div>
+            <p class="phone-label">Mood Summary</p>
+        </div>
+        <div>
+            <div class="phone-frame"><img src="screen_midnight.png" alt="SentiLog Midnight Theme — Dark mode journal" loading="lazy"></div>
+            <p class="phone-label">Midnight Theme</p>
         </div>
     </div>
 </section>
@@ -369,10 +377,10 @@
             <div class="arch-detail">Journal entry text</div>
         </div>
         <div class="arch-arrow">→</div>
-        <div class="arch-node">
-            <div class="arch-icon">🧠</div>
-            <div class="arch-label">ONNX Runtime</div>
-            <div class="arch-detail">On-device inference</div>
+        <div class="arch-node" style="border-color: var(--accent);">
+            <div class="arch-icon">⚡</div>
+            <div class="arch-label">NPU / CPU</div>
+            <div class="arch-detail">Hexagon NPU or ONNX CPU</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node">
@@ -387,7 +395,7 @@
             <div class="arch-detail">AES-256 encrypted</div>
         </div>
     </div>
-    <p class="arch-note">Every step happens on your phone. Nothing leaves the device. No internet required.</p>
+    <p class="arch-note">Dual inference path: Qualcomm NPU (67ms, 5-10x battery savings) with ONNX CPU fallback (46.5ms). Every step on-device, no internet required.</p>
 </section>
 
 <!-- ML Pipeline — The Technical Story -->
@@ -431,6 +439,10 @@
     <a href="https://huggingface.co/tojohere" class="hf-link" target="_blank" rel="noopener noreferrer">
         <span style="font-size:1.2rem">🤗</span> View models on HuggingFace →
     </a>
+    <br>
+    <a href="/blog/npu-transformer-guide.html" class="hf-link">
+        <span style="font-size:1.2rem">⚡</span> Read: Running Transformers on Mobile NPUs →
+    </a>
 </section>
 
 <!-- PDF Export -->
@@ -463,9 +475,12 @@
     <h2 data-lang="ja">使用技術</h2>
     <h2 data-lang="ko">사용 기술</h2>
     <div class="tech-grid">
-        <span class="tech-badge">Kotlin</span>
+        <span class="tech-badge">Kotlin 2.2</span>
         <span class="tech-badge">Jetpack Compose</span>
-        <span class="tech-badge">ONNX Runtime</span>
+        <span class="tech-badge">ONNX Runtime + QNN EP</span>
+        <span class="tech-badge">LiteRT (TFLite)</span>
+        <span class="tech-badge">Qualcomm AI Hub</span>
+        <span class="tech-badge">Hexagon NPU</span>
         <span class="tech-badge">XLM-RoBERTa</span>
         <span class="tech-badge">Room + SQLCipher</span>
         <span class="tech-badge">Google Play Billing</span>
