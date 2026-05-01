@@ -191,6 +191,12 @@
         </ol>
       </div>
 
+      <div class="callout-success callout" style="padding:1.5rem; margin: 2rem 0;">
+        <p style="font-size:1.1rem; font-weight:700; color: #10b981; margin-bottom:0.75rem;">The Bottom Line: 5-10x Battery Savings</p>
+        <p>Our RoBERTa transformer runs at <strong>67ms on the Hexagon NPU</strong> vs 46.5ms on CPU &mdash; the NPU is slightly slower. But that misses the point entirely. The NPU uses <strong>5-10x less energy per inference</strong> (~2-3mW vs ~15mW). In a 1-hour journaling session with ~4,500 sentiment inferences, that's the difference between noticeable battery drain and barely registering. Plus: all 8 CPU cores stay free for buttery 120fps UI, the phone doesn't thermal throttle, and background sync runs uninterrupted.</p>
+        <p style="margin-bottom:0;"><strong>NPU isn't about speed. It's about building apps that don't kill the battery.</strong></p>
+      </div>
+
       <h2>The Problem</h2>
       <p>We have a 28-emotion sentiment classifier (<a href="https://huggingface.co/SamLowe/roberta-base-go_emotions">SamLowe/roberta-base-go_emotions</a>, 125M parameters) running on-device in <strong>SentiLog</strong>, an Android journaling app. It detects emotions as you type using ONNX Runtime at 46.5ms per inference on CPU. We wanted to explore NPU acceleration for better battery life and CPU offload.</p>
 
