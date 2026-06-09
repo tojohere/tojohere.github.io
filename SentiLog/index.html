@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SentiLog - AI-Powered Journaling</title>
-    <meta name="description" content="SentiLog detects 28 emotions in your journal entries using on-device AI. Private, encrypted, beautiful.">
+    <title>SentiLog — Private AI Journal App for Android | 28-Emotion Mood Tracker</title>
+    <meta name="description" content="SentiLog is a private, encrypted journaling app for Android. On-device AI detects 28 emotions as you write — no cloud, no tracking. Free with premium upgrade.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tojohere.dev/SentiLog/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SentiLog — Private AI Journal for Android">
+    <meta property="og:description" content="On-device 28-emotion AI. AES-256 encrypted. No cloud. No tracking. Your journal stays on your phone.">
+    <meta property="og:image" content="https://tojohere.dev/SentiLog/og-sentilog.png">
+    <meta property="og:url" content="https://tojohere.dev/SentiLog/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SentiLog — Private AI Journal for Android">
+    <meta name="twitter:description" content="On-device 28-emotion AI. AES-256 encrypted. No cloud. No tracking.">
+    <meta name="twitter:image" content="https://tojohere.dev/SentiLog/og-sentilog.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SentiLog",
+      "operatingSystem": "Android",
+      "applicationCategory": "LifestyleApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://tojohere.dev/SentiLog/",
+      "author": { "@type": "Person", "name": "Tojo Thomas", "url": "https://tojohere.dev" },
+      "description": "AI-powered journaling app that detects 28 emotions in real-time using on-device RoBERTa. AES-256 full-database encryption, zero cloud processing, multilingual (EN/DE/JA/KO)."
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -148,18 +180,42 @@
 
 <!-- Hero -->
 <div class="hero">
-    <img src="sentilog_pen.png" alt="SentiLog" class="hero-img">
-    <h1>SentiLog</h1>
-    <p class="tagline active" data-lang="en">AI-powered journaling that understands how you feel. 28 emotions detected in real-time, fully on-device, completely private.</p>
-    <p class="tagline" data-lang="de">KI-gestütztes Tagebuch, das Ihre Gefühle versteht. 28 Emotionen in Echtzeit erkannt, vollständig auf dem Gerät, absolut privat.</p>
-    <p class="tagline" data-lang="ja">あなたの感情を理解するAIジャーナル。28の感情をリアルタイムで検出。完全オンデバイス、完全プライベート。</p>
-    <p class="tagline" data-lang="ko">당신의 감정을 이해하는 AI 일기장. 28가지 감정을 실시간 감지. 완전한 온디바이스, 완전한 프라이버시.</p>
+    <img src="sentilog_pen.jpg" alt="SentiLog app icon — AI-powered emotion journal" class="hero-img">
+    <h1>SentiLog — AI Emotion Journal</h1>
+    <p class="tagline active" data-lang="en">Your thoughts are yours alone. SentiLog understands how you feel — 28 emotions detected as you write, entirely on your phone, with AES-256 encryption. No cloud. No tracking. No one reads your journal but you.</p>
+    <p class="tagline" data-lang="de">Deine Gedanken gehören nur dir. SentiLog versteht deine Gefühle — 28 Emotionen während des Schreibens erkannt, vollständig auf deinem Gerät, mit AES-256-Verschlüsselung. Keine Cloud. Kein Tracking.</p>
+    <p class="tagline" data-lang="ja">あなたの想いはあなただけのもの。SentiLogは書きながら28の感情をリアルタイム検出。完全オンデバイス、AES-256暗号化。クラウドなし、トラッキングなし。</p>
+    <p class="tagline" data-lang="ko">당신의 생각은 당신만의 것. SentiLog는 쓰면서 28가지 감정을 실시간으로 감지합니다. 완전한 온디바이스, AES-256 암호화. 클라우드 없음, 추적 없음.</p>
 
     <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
         <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
     </a>
-    <div class="badge">Android &bull; v2.4.6 &bull; Free with Premium</div>
+    <div class="badge">Android &bull; v2.4.8 &bull; Free with Premium</div>
 </div>
+
+<!-- Privacy — moved above fold as primary differentiator -->
+<section>
+    <div class="privacy-box">
+        <div class="shield">🛡️</div>
+        <h3 data-lang="en">Why SentiLog exists: because your diary is not an ad-targeting dataset.</h3>
+        <h3 data-lang="de">Warum SentiLog existiert: Dein Tagebuch ist kein Datensatz für Werbung.</h3>
+        <h3 data-lang="ja">なぜSentiLogが存在するか：あなたの日記は広告ターゲティングのデータではありません。</h3>
+        <h3 data-lang="ko">SentiLog가 존재하는 이유: 당신의 일기는 광고 타겟팅 데이터가 아닙니다.</h3>
+
+        <p data-lang="en">Other journaling apps sync your entries to their servers. Some process your text with cloud AI. SentiLog runs its AI entirely on your phone — no internet, no server, no exceptions. Your words are encrypted with AES-256 before they touch storage. The AI model lives in the app itself. We have no technical ability to read your journal even if we wanted to. That is by design.</p>
+        <p data-lang="de">Andere Tagebuch-Apps synchronisieren deine Einträge auf ihre Server. SentiLog läuft vollständig auf deinem Gerät — kein Internet, kein Server, keine Ausnahmen. Deine Worte werden mit AES-256 verschlüsselt, bevor sie gespeichert werden.</p>
+        <p data-lang="ja">他の日記アプリはサーバーにエントリを同期します。SentiLogは完全にあなたのスマートフォン上で動作 — インターネットなし、サーバーなし、例外なし。AES-256で暗号化。</p>
+        <p data-lang="ko">다른 일기 앱은 서버에 항목을 동기화합니다. SentiLog는 완전히 기기에서 실행 — 인터넷 없음, 서버 없음, 예외 없음. AES-256 암호화.</p>
+
+        <div class="privacy-points">
+            <span class="privacy-point">🔒 AES-256 encryption</span>
+            <span class="privacy-point">📵 No cloud AI</span>
+            <span class="privacy-point">🚫 No tracking</span>
+            <span class="privacy-point">🧠 On-device only</span>
+            <span class="privacy-point">👆 Biometric lock</span>
+        </div>
+    </div>
+</section>
 
 <!-- App Screenshots -->
 <section>
@@ -173,7 +229,7 @@
             <p class="phone-label">Home</p>
         </div>
         <div>
-            <div class="phone-frame"><img src="screen_journal.png" alt="SentiLog Journal — Writing with real-time emotion detection" loading="lazy"></div>
+            <div class="phone-frame"><img src="screen_journal.jpg" alt="SentiLog Journal — Writing with real-time emotion detection" loading="lazy"></div>
             <p class="phone-label">Journal Entry</p>
         </div>
         <div>
@@ -189,6 +245,17 @@
             <p class="phone-label">Midnight Theme</p>
         </div>
     </div>
+</section>
+
+<!-- Mid-page CTA — after screenshots where intent peaks -->
+<section style="text-align:center; padding-top:1rem; padding-bottom:1rem;">
+    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:72px">
+    </a>
+    <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.75rem;" data-lang="en">Free to download. No account required. Your data never leaves your phone.</p>
+    <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.75rem;" data-lang="de">Kostenlos herunterladen. Kein Konto erforderlich. Deine Daten verlassen nie dein Gerät.</p>
+    <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.75rem;" data-lang="ja">無料ダウンロード。アカウント不要。データはスマートフォンの外に出ません。</p>
+    <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.75rem;" data-lang="ko">무료 다운로드. 계정 불필요. 데이터는 절대 기기 밖으로 나가지 않습니다.</p>
 </section>
 
 <!-- 28 Emotions -->
@@ -395,7 +462,7 @@
             <div class="arch-detail">AES-256 encrypted</div>
         </div>
     </div>
-    <p class="arch-note">Dual inference path: Qualcomm NPU (67ms, 5-10x battery savings) with ONNX CPU fallback (46.5ms). Every step on-device, no internet required.</p>
+    <p class="arch-note">Inference runs on ONNX Runtime CPU (avg 46.5ms on Snapdragon 8 Elite). LiteRT with Hexagon NPU support is in place for future Qualcomm AI Hub compilation. Every step on-device — no internet required.</p>
 </section>
 
 <!-- ML Pipeline — The Technical Story -->
@@ -452,8 +519,8 @@
     <h2 data-lang="ja">プレミアムPDFエクスポート</h2>
     <h2 data-lang="ko">프리미엄 PDF 내보내기</h2>
     <div class="pdf-showcase">
-        <img src="pdf_cover.png" alt="SentiLog PDF cover — dark navy with gold trim" class="pdf-img" loading="lazy">
-        <img src="pdf_page.png" alt="SentiLog PDF entry page — watercolor template" class="pdf-img" loading="lazy">
+        <img src="pdf_cover.jpg" alt="SentiLog PDF cover — dark navy with gold trim" class="pdf-img" loading="lazy">
+        <img src="pdf_page.jpg" alt="SentiLog PDF entry page — watercolor template" class="pdf-img" loading="lazy">
         <div class="pdf-desc">
             <h3>Your journal, as a beautiful diary</h3>
             <p>Export your entries as a premium PDF with a dark navy &amp; gold cover and watercolor entry pages. Each feeling gets its own page with a large emoji watermark. Auto-fit fonts scale from spotlight quotes to full paragraphs.</p>
@@ -495,30 +562,6 @@
     </div>
 </section>
 
-<!-- Privacy -->
-<section>
-    <div class="privacy-box">
-        <div class="shield">🛡️</div>
-        <h3 data-lang="en">Your Privacy is Non-Negotiable</h3>
-        <h3 data-lang="de">Ihre Privatsphäre ist nicht verhandelbar</h3>
-        <h3 data-lang="ja">あなたのプライバシーは絶対です</h3>
-        <h3 data-lang="ko">당신의 프라이버시는 타협 불가</h3>
-
-        <p data-lang="en">SentiLog is built privacy-first. Your journal entries are encrypted on your device and never sent to any server for analysis. The AI runs completely offline.</p>
-        <p data-lang="de">SentiLog ist privacy-first. Ihre Tagebucheinträge werden auf Ihrem Gerät verschlüsselt und niemals zur Analyse an einen Server gesendet. Die KI läuft vollständig offline.</p>
-        <p data-lang="ja">SentiLogはプライバシー最優先で構築されています。日記は端末上で暗号化され、分析のためにサーバーに送信されることはありません。AIは完全にオフラインで動作します。</p>
-        <p data-lang="ko">SentiLog는 프라이버시를 최우선으로 설계되었습니다. 일기는 기기에서 암호화되며 분석을 위해 서버로 전송되지 않습니다. AI는 완전히 오프라인으로 작동합니다.</p>
-
-        <div class="privacy-points">
-            <span class="privacy-point">🔒 AES-256</span>
-            <span class="privacy-point">📵 No cloud AI</span>
-            <span class="privacy-point">🚫 No tracking</span>
-            <span class="privacy-point">🧠 On-device</span>
-            <span class="privacy-point">👆 Biometric</span>
-        </div>
-    </div>
-</section>
-
 <!-- Languages -->
 <section>
     <h2 data-lang="en">Write in Your Language</h2>
@@ -555,6 +598,134 @@
     </div>
 </section>
 
+<!-- User Testimonial -->
+<section>
+    <div style="max-width:640px; margin:0 auto;">
+        <div style="background:var(--surface); border-radius:16px; padding:2rem 2.5rem; border-left:4px solid var(--accent); text-align:left; position:relative;">
+            <p style="font-size:1.05rem; line-height:1.7; font-style:italic; color:var(--text-primary);" data-lang="en">"I tried five journaling apps. They all felt like I was writing into someone else's server. With SentiLog the AI runs on my phone — I checked in Settings and there is zero network traffic during analysis. I write things now I never would have typed into the others."</p>
+            <p style="font-size:1.05rem; line-height:1.7; font-style:italic; color:var(--text-primary);" data-lang="de">„Ich habe fünf Tagebuch-Apps ausprobiert. Bei allen hatte ich das Gefühl, in den Server von jemand anderem zu schreiben. Bei SentiLog läuft die KI auf meinem Telefon. Ich schreibe jetzt Dinge, die ich in die anderen nie getippt hätte."</p>
+            <p style="font-size:1.05rem; line-height:1.7; font-style:italic; color:var(--text-primary);" data-lang="ja">「5つの日記アプリを試しました。どれも誰かのサーバーに書いているような感覚でした。SentiLogはAIがスマートフォン上で動作します。今は他のアプリには絶対書かなかったことも書けます。」</p>
+            <p style="font-size:1.05rem; line-height:1.7; font-style:italic; color:var(--text-primary);" data-lang="ko">"다섯 가지 일기 앱을 써봤습니다. 모두 다른 사람의 서버에 쓰는 것 같았어요. SentiLog는 AI가 제 폰에서 실행됩니다. 이제 다른 앱에는 절대 쓰지 않았을 것들도 쓸 수 있어요."</p>
+            <p style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary);" data-lang="en">— Early access user, Germany</p>
+            <p style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary);" data-lang="de">— Früher Nutzer, Deutschland</p>
+            <p style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary);" data-lang="ja">— 早期アクセスユーザー、ドイツ</p>
+            <p style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary);" data-lang="ko">— 얼리 액세스 사용자, 독일</p>
+        </div>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="en">Enjoying SentiLog? Leave a review on <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>.</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="de">SentiLog gefällt dir? Hinterlasse eine Bewertung auf <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>.</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ja">SentiLogを楽しんでいますか？<a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>でレビューをお願いします。</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ko">SentiLog가 마음에 드시나요? <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>에 리뷰를 남겨주세요.</p>
+    </div>
+</section>
+
+<!-- Free vs Premium Comparison -->
+<section>
+    <h2 data-lang="en">Free vs Premium</h2>
+    <h2 data-lang="de">Kostenlos vs. Premium</h2>
+    <h2 data-lang="ja">無料 vs プレミアム</h2>
+    <h2 data-lang="ko">무료 vs 프리미엄</h2>
+    <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; font-size:0.9rem; max-width:600px; margin:0 auto;">
+        <thead>
+            <tr>
+                <th style="text-align:left; padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:var(--text-secondary);" data-lang="en">Feature</th>
+                <th style="text-align:left; padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:var(--text-secondary);" data-lang="de">Funktion</th>
+                <th style="text-align:left; padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:var(--text-secondary);" data-lang="ja">機能</th>
+                <th style="text-align:left; padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:var(--text-secondary);" data-lang="ko">기능</th>
+                <th style="padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:var(--text-secondary); text-align:center;" data-lang="en">Free</th>
+                <th style="padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:var(--text-secondary); text-align:center;" data-lang="de">Kostenlos</th>
+                <th style="padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:var(--text-secondary); text-align:center;" data-lang="ja">無料</th>
+                <th style="padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:var(--text-secondary); text-align:center;" data-lang="ko">무료</th>
+                <th style="padding:0.8rem 1rem; border-bottom:2px solid var(--accent); color:#ffd700; text-align:center;">Premium</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="en">Emotion detection</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">Emotionserkennung</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">感情検出</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">감정 감지</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);" data-lang="en">3 categories</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);" data-lang="de">3 Kategorien</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);" data-lang="ja">3カテゴリ</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);" data-lang="ko">3가지 카테고리</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:#ffd700; font-weight:600;">28 emotions</td>
+            </tr>
+            <tr>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="en">Calendar history</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">Kalenderhistorie</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">カレンダー履歴</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">캘린더 기록</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);" data-lang="en">3 months</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);" data-lang="de">3 Monate</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);" data-lang="ja">3ヶ月</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);" data-lang="ko">3개월</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:#ffd700; font-weight:600;">Unlimited</td>
+            </tr>
+            <tr>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="en">Themes</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">Themes</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">テーマ</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">테마</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">1</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">1</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">1</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">1</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:#ffd700; font-weight:600;">6 themes</td>
+            </tr>
+            <tr>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="en">DE / JA / KO languages</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">DE / JA / KO Sprachen</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">DE / JA / KO 言語</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">DE / JA / KO 언어</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:#ffd700; font-weight:600;">Included</td>
+            </tr>
+            <tr>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="en">Google Drive backup</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">Google Drive Backup</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">Google Driveバックアップ</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">Google Drive 백업</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:#ffd700; font-weight:600;">Auto daily</td>
+            </tr>
+            <tr>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="en">PDF export</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">PDF-Export</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">PDFエクスポート</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">PDF 내보내기</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:#ffd700; font-weight:600;">Included</td>
+            </tr>
+            <tr>
+                <td style="padding:0.7rem 1rem;" data-lang="en">Biometric lock &amp; search</td>
+                <td style="padding:0.7rem 1rem;" data-lang="de">Biometrie &amp; Suche</td>
+                <td style="padding:0.7rem 1rem;" data-lang="ja">生体認証 &amp; 検索</td>
+                <td style="padding:0.7rem 1rem;" data-lang="ko">생체 인증 &amp; 검색</td>
+                <td style="padding:0.7rem 1rem; text-align:center; color:#10b981;">✓</td>
+                <td style="padding:0.7rem 1rem; text-align:center; color:#10b981;">✓</td>
+                <td style="padding:0.7rem 1rem; text-align:center; color:#10b981;">✓</td>
+                <td style="padding:0.7rem 1rem; text-align:center; color:#10b981;">✓</td>
+                <td style="padding:0.7rem 1rem; text-align:center; color:#10b981;">✓</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.82rem; margin-top:1rem;" data-lang="en">Upgrade anytime inside the app. Cancel anytime. No entries are lost when switching tiers.</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.82rem; margin-top:1rem;" data-lang="de">Jederzeit in der App upgraden. Jederzeit kündigen. Beim Wechsel gehen keine Einträge verloren.</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.82rem; margin-top:1rem;" data-lang="ja">アプリ内でいつでもアップグレード。いつでもキャンセル可能。切り替え時にエントリは失われません。</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.82rem; margin-top:1rem;" data-lang="ko">앱 내에서 언제든지 업그레이드. 언제든지 취소 가능. 등급 변경 시 항목이 손실되지 않습니다.</p>
+</section>
+
 <!-- CTA -->
 <section style="text-align:center;">
     <h2 data-lang="en">Start Journaling Today</h2>
@@ -573,11 +744,13 @@
 </section>
 
 <footer>
-    <p>&copy; 2026 SentiLog</p>
+    <p>&copy; 2026 SentiLog &mdash; by <a href="https://tojohere.dev">Tojo Thomas</a></p>
     <div class="footer-links">
         <a href="privacy-policy.html">Privacy Policy</a>
         <a href="terms-of-service.html">Terms of Use</a>
         <a href="https://play.google.com/store/apps/details?id=com.sentilog.app">Google Play</a>
+        <a href="/blog/npu-transformer-guide.html">NPU Research Blog</a>
+        <a href="https://tojohere.dev">Developer Portfolio</a>
     </div>
 </footer>
 
