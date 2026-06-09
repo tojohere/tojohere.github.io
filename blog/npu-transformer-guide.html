@@ -5,31 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Running Transformer Models on Mobile NPUs — Tojo Thomas</title>
-  <meta name="description" content="A practical guide to deploying RoBERTa on Snapdragon 8 Elite's Hexagon NPU. Lessons from 8 backend experiments, the w8a16 quantization breakthrough, and why NPU value is about power efficiency, not raw speed." />
+  <meta name="description" content="Field-tested: deploying RoBERTa on Snapdragon 8 Elite's Hexagon NPU. Why LayerNorm breaks generic dispatch, w8a16 vs blind INT8, and 8 backend benchmarks from production." />
   <meta name="keywords" content="NPU, Transformer, BERT, RoBERTa, Snapdragon 8 Elite, Hexagon, LiteRT, TFLite, ONNX Runtime, QNN, Qualcomm AI Hub, mobile AI, on-device inference, quantization, w8a16" />
   <meta name="author" content="Tojo Thomas" />
   <link rel="canonical" href="https://tojohere.dev/blog/npu-transformer-guide.html" />
 
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Running Transformer Models on Mobile NPUs: A Practical Guide" />
-  <meta property="og:description" content="Lessons from deploying RoBERTa-base on Snapdragon 8 Elite Hexagon NPU. 8 backends tested, w8a16 quantization breakthrough, and why NPU is about power, not speed." />
+  <meta property="og:title" content="Running Transformer Models on Mobile NPUs: What Actually Works (and What Breaks)" />
+  <meta property="og:description" content="Field-tested engineering: 8 backends tested, why generic NPU dispatch fails for transformers, w8a16 breakthrough, and design decisions from SentiLog production." />
   <meta property="og:url" content="https://tojohere.dev/blog/npu-transformer-guide.html" />
+  <meta property="og:image" content="https://tojohere.dev/blog/og-npu-guide.png" />
+  <meta property="og:description" content="Field-tested: deploying RoBERTa on Snapdragon 8 Elite's Hexagon NPU. Why LayerNorm breaks generic dispatch, 8 backend benchmarks, w8a16 results." />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://tojohere.dev/blog/og-npu-guide.png" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "Running Transformer Models on Mobile NPUs: A Practical Guide",
+    "headline": "Running Transformer Models on Mobile NPUs: What Actually Works (and What Breaks)",
+    "url": "https://tojohere.dev/blog/npu-transformer-guide.html",
+    "image": "https://tojohere.dev/blog/og-npu-guide.png",
     "author": { "@type": "Person", "name": "Tojo Thomas", "url": "https://tojohere.dev" },
+    "publisher": { "@type": "Person", "name": "Tojo Thomas", "url": "https://tojohere.dev" },
     "datePublished": "2026-05-01",
-    "description": "Lessons from deploying RoBERTa-base (125M params) on Snapdragon 8 Elite Hexagon NPU for real-time emotion detection."
+    "dateModified": "2026-05-04",
+    "description": "Field-tested engineering deep dive: deploying RoBERTa-base (125M params) on Snapdragon 8 Elite Hexagon NPU for real-time emotion detection in SentiLog."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tojohere.dev/" },
+      { "@type": "ListItem", "position": 2, "name": "NPU Transformer Guide", "item": "https://tojohere.dev/blog/npu-transformer-guide.html" }
+    ]
   }
   </script>
 
   <link rel="stylesheet" href="../style.css" />
   <style>
-    /* Blog-specific styles extending the portfolio design system */
     .blog-nav { display: flex; align-items: center; gap: 1rem; }
     .blog-nav .back-link {
       font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
@@ -119,12 +135,53 @@
     }
     .callout-success strong { color: #10b981; }
 
+    .failure-box {
+      background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 0.75rem; padding: 1rem 1.25rem; margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    .failure-box .f-row { display: flex; gap: 0.75rem; margin-bottom: 0.3rem; }
+    .failure-box .f-label {
+      font-weight: 700; font-size: 0.75rem; text-transform: uppercase;
+      letter-spacing: 0.05em; min-width: 52px; padding-top: 0.1rem;
+    }
+    .failure-box .f-label.issue { color: #ef4444; }
+    .failure-box .f-label.effect { color: #f59e0b; }
+    .failure-box .f-label.fix { color: #10b981; }
+    .failure-box .f-text { color: var(--text-secondary); }
+
+    .pipeline-diagram {
+      background: rgba(17,24,39,0.8); border: 1px solid var(--border-color);
+      border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.82rem; line-height: 1.8; color: var(--text-secondary);
+      overflow-x: auto;
+    }
+    .pipeline-diagram .ph { color: var(--accent-start); font-weight: 700; }
+    .pipeline-diagram .pa { color: #f59e0b; }
+    .pipeline-diagram .ps { color: #10b981; }
+
     .step-number {
       display: inline-flex; align-items: center; justify-content: center;
       width: 28px; height: 28px; border-radius: 50%; background: var(--gradient);
       color: #fff; font-size: 0.8rem; font-weight: 700; margin-right: 0.5rem;
       flex-shrink: 0;
     }
+
+    .decision-grid {
+      display: grid; gap: 1rem; margin: 1.5rem 0;
+    }
+    .decision-card {
+      background: rgba(30,41,59,0.4); border: 1px solid var(--border-color);
+      border-radius: 0.75rem; padding: 1.25rem 1.5rem;
+    }
+    .decision-card .dc-title {
+      font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .decision-card .dc-chose { color: #10b981; font-size: 0.8rem; font-weight: 600; }
+    .decision-card .dc-rejected { color: #ef4444; font-size: 0.8rem; font-weight: 600; }
+    .decision-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0; line-height: 1.6; }
 
     .blog-footer-cta {
       text-align: center; padding: 3rem 0;
@@ -138,6 +195,7 @@
       .blog-hero { padding: 6rem 0 2rem; }
       .benchmark-table { font-size: 0.78rem; }
       .benchmark-table th, .benchmark-table td { padding: 0.5rem 0.5rem; }
+      .failure-box .f-row { flex-direction: column; gap: 0.2rem; }
     }
   </style>
 </head>
@@ -157,12 +215,12 @@
     <div class="container">
       <div class="blog-meta">
         <span>May 1, 2026</span>
-        <span>15 min read</span>
+        <span>22 min read</span>
         <span>Mobile AI &bull; NPU &bull; On-Device Inference</span>
       </div>
-      <h1>Running Transformer Models on <span>Mobile NPUs</span></h1>
+      <h1>Running Transformer Models on <span>Mobile NPUs</span>: What Actually Works (and What Breaks)</h1>
       <p class="blog-subtitle">
-        Lessons learned deploying RoBERTa-base (125M params) on Snapdragon 8 Elite's Hexagon NPU for real-time emotion detection. We tested 8 backends, discovered the w8a16 quantization sweet spot, and learned why NPU value is about power efficiency &mdash; not raw speed.
+        Field-tested engineering report from deploying RoBERTa-base (125M params) on Snapdragon 8 Elite's Hexagon NPU. 8 backends tested, real failure cases documented, and the design decisions behind a production on-device AI app.
       </p>
       <div class="blog-tags">
         <span class="blog-tag">Snapdragon 8 Elite</span>
@@ -182,23 +240,70 @@
       <div class="callout" style="border-left-color: var(--accent-mid);">
         <p><strong>Key takeaways:</strong></p>
         <ol style="margin-top:0.5rem; margin-bottom:0;">
-          <li><strong>Generic LiteRT NPU dispatch doesn't work for transformers</strong> &mdash; LayerNorm and Softmax create CPU fallback subgraphs that kill performance</li>
-          <li><strong>Qualcomm AI Hub compilation fixes this</strong> &mdash; it fuses ops that the runtime dispatcher can't</li>
-          <li><strong>Use INT8 weights + INT16 activations (w8a16)</strong> &mdash; Google's recipe for transformer NPU deployment</li>
-          <li><strong>Use a two-step pipeline</strong> &mdash; quantize first, then compile (workaround for AI Hub dtype conflict)</li>
-          <li><strong>Provide calibration data</strong> &mdash; blind INT8 drops accuracy by ~8%, w8a16 with calibration loses only ~1.4%</li>
-          <li><strong>Result: 48.3% accuracy at 67ms on NPU</strong> &mdash; comparable to ONNX CPU (49.7% at 46.5ms), CPU freed for other work</li>
+          <li><strong>Generic LiteRT NPU dispatch doesn't work for transformers</strong> &mdash; LayerNorm and Softmax fragment the graph into 7 subgraphs, only 3 on NPU</li>
+          <li><strong>Qualcomm AI Hub compilation fixes this</strong> &mdash; it fuses ops that the runtime dispatcher can't, putting all subgraphs on NPU</li>
+          <li><strong>Use INT8 weights + INT16 activations (w8a16)</strong> &mdash; only 1.4% accuracy loss vs 8.1% with blind INT8</li>
+          <li><strong>Always use a two-step pipeline</strong> &mdash; quantize first, then compile (workaround for AI Hub dtype conflict)</li>
+          <li><strong>Result: 48.3% accuracy at 67ms on NPU</strong> &mdash; comparable to ONNX CPU (49.7% at 46.5ms), all 8 CPU cores freed</li>
+          <li><strong>NPU value isn't speed &mdash; it's power</strong> &mdash; 5&ndash;10&times; less energy, no thermal throttle, buttery UI</li>
         </ol>
       </div>
 
       <div class="callout-success callout" style="padding:1.5rem; margin: 2rem 0;">
-        <p style="font-size:1.1rem; font-weight:700; color: #10b981; margin-bottom:0.75rem;">The Bottom Line: 5-10x Battery Savings</p>
-        <p>Our RoBERTa transformer runs at <strong>67ms on the Hexagon NPU</strong> vs 46.5ms on CPU &mdash; the NPU is slightly slower. But that misses the point entirely. The NPU uses <strong>5-10x less energy per inference</strong> (~2-3mW vs ~15mW). In a 1-hour journaling session with ~4,500 sentiment inferences, that's the difference between noticeable battery drain and barely registering. Plus: all 8 CPU cores stay free for buttery 120fps UI, the phone doesn't thermal throttle, and background sync runs uninterrupted.</p>
+        <p style="font-size:1.1rem; font-weight:700; color: #10b981; margin-bottom:0.75rem;">The Bottom Line: 5&ndash;10&times; Battery Savings</p>
+        <p>Our RoBERTa transformer runs at <strong>67ms on the Hexagon NPU</strong> vs 46.5ms on CPU &mdash; the NPU is actually slower. But that misses the point. The NPU uses <strong>5&ndash;10&times; less energy per inference</strong> (~2&ndash;3mW vs ~15mW). In a 1-hour journaling session with ~4,500 sentiment inferences, that's the difference between noticeable battery drain and barely registering. All 8 CPU cores stay free for buttery 120fps UI, the phone doesn't thermal throttle, and background sync runs uninterrupted.</p>
         <p style="margin-bottom:0;"><strong>NPU isn't about speed. It's about building apps that don't kill the battery.</strong></p>
       </div>
 
       <h2>The Problem</h2>
-      <p>We have a 28-emotion sentiment classifier (<a href="https://huggingface.co/SamLowe/roberta-base-go_emotions">SamLowe/roberta-base-go_emotions</a>, 125M parameters) running on-device in <strong>SentiLog</strong>, an Android journaling app. It detects emotions as you type using ONNX Runtime at 46.5ms per inference on CPU. We wanted to explore NPU acceleration for better battery life and CPU offload.</p>
+      <p>We have a 28-emotion sentiment classifier (<a href="https://huggingface.co/SamLowe/roberta-base-go_emotions">SamLowe/roberta-base-go_emotions</a>, 125M parameters) running on-device in <strong><a href="/SentiLog/">SentiLog</a></strong>, an Android journaling app. It detects emotions as you type &mdash; English, German, Japanese, and Korean &mdash; using ONNX Runtime at 46.5ms per inference on CPU. We wanted NPU acceleration for better battery life and CPU offload.</p>
+      <p>The hardware is good: OnePlus 13, Snapdragon 8 Elite, Hexagon HTP v79 NPU capable of 45 TOPS. In theory, a transformer should fly on this. In practice, getting a transformer to actually run on an NPU &mdash; not just fall back to CPU through the NPU codepath &mdash; required understanding how the model maps to hardware at the op level.</p>
+
+      <h2>Inside the Transformer: What the NPU Actually Sees</h2>
+      <p>Before you can diagnose NPU failures, you need to understand what happens when a text like "I can't stop thinking about her" enters the model. Here's every compute step, with what the NPU can and can't handle:</p>
+
+      <div class="pipeline-diagram">
+<span class="ph">Step 1: Tokenization</span>  (~0.5ms, CPU-only)
+  Text → WordPiece tokens → integer IDs
+  "I can't stop..." → [101, 146, 1391, 1864, ...]
+  CPU table lookup. Not a neural op. NPU never sees this.
+
+<span class="ph">Step 2: Embedding Lookup</span>  (~2ms)
+  [token_ids, position_ids] → 768-dim vectors per token
+  Three embedding tables, each 768-wide, results summed + LayerNorm.
+  <span class="pa">⚠ LayerNorm: Mean + Variance + Normalize + Scale = 4 ops</span>
+  <span class="pa">   NPU dispatcher sees 4 separate ops, not 1 fused instruction.</span>
+  <span class="pa">   Result: this entire step falls back to CPU.</span>
+
+<span class="ph">Step 3: 12× Transformer Layers</span>  (bulk of compute)
+  Per layer:
+  ┌─ Multi-Head Self-Attention (12 heads, 64 dim each)
+  │    QKV projections  768→768   ← MatMul    <span class="ps">✓ NPU</span>
+  │    Q·Kᵀ / √64                ← MatMul    <span class="ps">✓ NPU</span>
+  │    Softmax(scores)            ← Softmax   <span class="pa">✗ CPU (FP intermediate)</span>
+  │    Attention × V              ← MatMul    <span class="ps">✓ NPU</span>
+  │    Output projection          ← MatMul    <span class="ps">✓ NPU</span>
+  │    LayerNorm                  ← 4 ops     <span class="pa">✗ CPU</span>
+  └─ Feed-Forward Network (768→3072→768)
+       Linear 768→3072            ← MatMul    <span class="ps">✓ NPU</span>
+       GELU activation            ← GELU      <span class="pa">✗ CPU (unsupported)</span>
+       Linear 3072→768            ← MatMul    <span class="ps">✓ NPU</span>
+       LayerNorm                  ← 4 ops     <span class="pa">✗ CPU</span>
+
+  12 layers × (2 LayerNorm + 1 Softmax + 1 GELU) = <span class="pa">48 CPU fallback points</span>
+  Each fallback = DMA copy NPU→CPU, compute, DMA copy CPU→NPU
+  Each DMA: ~0.5–2ms. 48 transfers × avg 1ms = ~48ms overhead alone.
+
+<span class="ph">Step 4: Pooler + Classifier</span>  (~1ms)
+  CLS token → Linear 768→768 → Tanh → Linear 768→28 → Softmax
+  <span class="pa">Softmax again: CPU fallback</span>
+      </div>
+
+      <p>This is why generic NPU dispatch produces <strong>3/7 subgraphs on NPU</strong> instead of all 7. The MatMul ops go to NPU. Everything else &mdash; LayerNorm, Softmax, GELU &mdash; falls back to CPU. The memory transfer overhead between those 7 subgraphs is what makes it <strong>290ms instead of 46ms</strong>.</p>
+
+      <div class="callout">
+        <p><strong>What Qualcomm AI Hub does differently:</strong> It compiles the model on cloud servers that know the exact Hexagon HTP v79 instruction set. LayerNorm gets fused into a single HTP-native instruction. Softmax gets fused. GELU gets fused. The compiled binary has <em>zero</em> CPU fallback points. That's why AI Hub gives 67ms instead of 290ms.</p>
+      </div>
 
       <h2>What We Tried (and What Failed)</h2>
 
@@ -207,46 +312,69 @@
     modelPath,
     CompiledModel.Options(Accelerator.NPU, Accelerator.CPU)
 )</code></pre>
-      <p><strong>Result:</strong> 3 out of 7 subgraphs on NPU, 4 on CPU. <strong>290ms</strong> (slower than CPU-only 270ms).</p>
-      <div class="callout-warn callout">
-        <p><strong>Why it failed:</strong> LiteRT's runtime dispatcher evaluates each op individually. Transformer ops like LayerNorm (Mean&nbsp;+&nbsp;Variance&nbsp;+&nbsp;Normalize&nbsp;+&nbsp;Scale) appear as 4 separate ops &mdash; the NPU doesn't recognize the pattern. Each CPU&harr;NPU boundary requires a memory copy (~0.5-2ms). With 12 transformer layers, that's ~72 memory transfers that negate any compute savings.</p>
+
+      <div class="failure-box">
+        <div class="f-row"><span class="f-label issue">Issue</span><span class="f-text">LayerNorm, Softmax, and GELU aren't recognized as NPU-fusable by the runtime dispatcher</span></div>
+        <div class="f-row"><span class="f-label effect">Effect</span><span class="f-text">3/7 subgraphs on NPU, 4/7 on CPU. ~72 DMA transfers across 12 transformer layers. Latency: <strong>290ms</strong> (slower than CPU-only at 270ms)</span></div>
+        <div class="f-row"><span class="f-label fix">Fix</span><span class="f-text">Use ahead-of-time compilation (AI Hub) — fuses these ops at the model level, not at runtime</span></div>
       </div>
 
       <h3><span class="step-number">2</span> QualcommOptions Tuning (Burst + O3)</h3>
-      <p><strong>Result:</strong> Same 3/7 split. ~290ms. No improvement. Tuning can't add support for structurally unsupported ops.</p>
 
-      <h3><span class="step-number">3</span> Smaller Models (DistilBERT, DistilRoBERTa)</h3>
-      <p>Tested 6-layer models (67M-82M params). <strong>Result:</strong> 3/5 subgraphs on NPU. ~165-215ms. Better, but still slower than ONNX CPU.</p>
+      <div class="failure-box">
+        <div class="f-row"><span class="f-label issue">Issue</span><span class="f-text">Runtime hints (burst mode, O3 optimization) can't add hardware support for structurally unsupported ops</span></div>
+        <div class="f-row"><span class="f-label effect">Effect</span><span class="f-text">Same 3/7 split. ~290ms. No measurable improvement over default dispatch.</span></div>
+        <div class="f-row"><span class="f-label fix">Fix</span><span class="f-text">Op support is determined at compile time. Tuning hints only help if ops are already on NPU.</span></div>
+      </div>
 
-      <h3><span class="step-number">4</span> Full Static INT8 Quantization</h3>
-      <p><strong>Result:</strong> Same 3/7 split. 385ms. Accuracy broke on some runs. The subgraph split is about op support, not quantization format.</p>
+      <h3><span class="step-number">3</span> Smaller Models (DistilBERT / DistilRoBERTa)</h3>
+
+      <div class="failure-box">
+        <div class="f-row"><span class="f-label issue">Issue</span><span class="f-text">DistilBERT (67M params, 6 layers) has the same LayerNorm/Softmax/GELU pattern — just fewer of them</span></div>
+        <div class="f-row"><span class="f-label effect">Effect</span><span class="f-text">3/5 subgraphs on NPU. 165&ndash;215ms. Still slower than ONNX CPU, and ~4% worse accuracy on our validation set.</span></div>
+        <div class="f-row"><span class="f-label fix">Fix</span><span class="f-text">Model size isn't the bottleneck. The architecture is. Fewer layers = less memory transfer overhead, but it doesn't solve the root problem.</span></div>
+      </div>
+
+      <h3><span class="step-number">4</span> Full Static INT8 Quantization + LiteRT</h3>
+
+      <div class="failure-box">
+        <div class="f-row"><span class="f-label issue">Issue</span><span class="f-text">INT8 quantization doesn't change which ops run on NPU — it just changes the dtype of the ops that already do</span></div>
+        <div class="f-row"><span class="f-label effect">Effect</span><span class="f-text">Same 3/7 split. 385ms. Accuracy dropped erratically (41.6%) due to blind quantization without calibration data.</span></div>
+        <div class="f-row"><span class="f-label fix">Fix</span><span class="f-text">When using INT8, always provide calibration data. Without it, the quantizer guesses activation ranges and clips important signal.</span></div>
+      </div>
 
       <h3><span class="step-number">5</span> NNAPI Delegate</h3>
-      <p><strong>Result:</strong> NNAPI is deprecated on Android 15+. Either fails or uses the slow NNAPI reference CPU backend (~740ms). Don't use it for new development.</p>
 
-      <h2>What Actually Works</h2>
+      <div class="failure-box">
+        <div class="f-row"><span class="f-label issue">Issue</span><span class="f-text">NNAPI is deprecated on Android 15+ and routes to the NNAPI reference CPU backend on modern devices</span></div>
+        <div class="f-row"><span class="f-label effect">Effect</span><span class="f-text">~740ms. Either silently uses the slow software backend or fails entirely depending on device firmware.</span></div>
+        <div class="f-row"><span class="f-label fix">Fix</span><span class="f-text">Don't use NNAPI for new development. Use LiteRT with vendor-specific delegates or QNN EP directly.</span></div>
+      </div>
 
-      <h3>Qualcomm AI Hub: Two-Step Compilation Pipeline</h3>
-      <p>The key insight: <strong>compile the model on Qualcomm's cloud servers, not at runtime on the device.</strong> AI Hub's compiler knows the Hexagon hardware and fuses LayerNorm/Softmax into NPU-native instructions.</p>
+      <h2>What Actually Works: Qualcomm AI Hub Two-Step Pipeline</h2>
+
+      <p>The key insight: <strong>compile the model on Qualcomm's cloud servers, not at runtime on the device.</strong> AI Hub's compiler knows the Hexagon HTP v79 instruction set and fuses LayerNorm, Softmax, and GELU into NPU-native instructions before the binary is ever deployed.</p>
 
       <div class="callout-warn callout">
-        <p><strong>AI Hub Bug:</strong> Combining <code>--quantize_full_type w8a16</code> + <code>--truncate_64bit_tensors</code> + calibration data in a single <code>submit_compile_job()</code> causes dtype validation conflicts. The workaround: separate quantization from compilation.</p>
+        <p><strong>AI Hub Bug &mdash; Dtype Conflict:</strong> Combining <code>--quantize_full_type w8a16</code> + <code>--truncate_64bit_tensors</code> + calibration data in a single <code>submit_compile_job()</code> causes internal dtype validation conflicts (the quantizer produces INT16 activations but the truncation pass expects INT8). Workaround: always separate quantization from compilation into two distinct jobs.</p>
       </div>
 
       <pre><code>import qai_hub as hub
 from qai_hub import QuantizeDtype
 
-# STEP 1: Quantize (no truncation &mdash; works with int64 model + int64 calibration)
+# STEP 1: Quantize with calibration data
+# (no truncation — works with int64 model + int64 calibration)
 quantize_job = hub.submit_quantize_job(
-    model="model_fp32.onnx",
-    calibration_data=cal_dict,         # 100 representative texts, int64
+    model="model_fp32.onnx",          # clean FP32, no pre-quantization
+    calibration_data=cal_dict,        # 100 representative texts (int64 IDs)
     weights_dtype=QuantizeDtype.INT8,
-    activations_dtype=QuantizeDtype.INT16,
+    activations_dtype=QuantizeDtype.INT16,  # w8a16
 )
 quantize_job.wait()
-# Download &amp; merge external weights into single ONNX file
+# Download quantized ONNX; merge external weights into single file
 
-# STEP 2: Compile (with truncation, no calibration &mdash; already quantized)
+# STEP 2: Compile to QNN context binary
+# (truncation here — already quantized, no calibration needed)
 compile_job = hub.submit_compile_job(
     model="model_w8a16_merged.onnx",
     device=hub.Device("Snapdragon 8 Elite QRD"),
@@ -256,106 +384,220 @@ compile_job.wait()
 compile_job.download_target_model("model_w8a16_qnn.bin")</code></pre>
 
       <div class="callout-success callout">
-        <p><strong>Result: 48.3% accuracy at ~67ms on Hexagon NPU.</strong> Only 1.4% accuracy loss from the ONNX CPU baseline (49.7%), with the CPU completely freed for UI, sync, and other work.</p>
+        <p><strong>Result: 48.3% accuracy at ~67ms on Hexagon NPU.</strong> Only 1.4% accuracy loss from the ONNX CPU baseline (49.7%), with all 8 CPU cores completely free for UI, sync, and background work.</p>
       </div>
 
       <h2>Full Benchmark Results</h2>
-      <p>Snapdragon 8 Elite, RoBERTa-base, 149 curated emotion texts:</p>
+      <p>Tested on OnePlus 13 (Snapdragon 8 Elite, Hexagon HTP v79, Android 16). Validation: 149 curated emotion texts, RoBERTa-base, top-1 accuracy.</p>
       <table class="benchmark-table">
         <thead>
           <tr><th>Backend</th><th>Accuracy</th><th>Latency</th><th>Size</th><th>Notes</th></tr>
         </thead>
         <tbody>
           <tr class="winner"><td>ONNX INT8 CPU</td><td>49.7%</td><td>46.5ms</td><td>120MB</td><td>Production baseline</td></tr>
-          <tr class="winner"><td>QNN w8a16 NPU</td><td>48.3%</td><td>~67ms</td><td>158MB</td><td>Best NPU result</td></tr>
-          <tr><td>QNN FP32 NPU</td><td>49.7%</td><td>228ms</td><td>240MB</td><td>Perfect accuracy, slow</td></tr>
-          <tr><td>QNN INT8 NPU</td><td>41.6%</td><td>~86ms</td><td>121MB</td><td>Blind INT8 = 8% loss</td></tr>
+          <tr class="winner"><td>QNN w8a16 NPU (AI Hub)</td><td>48.3%</td><td>~67ms</td><td>158MB</td><td>Best NPU result — all subgraphs on NPU</td></tr>
+          <tr><td>QNN FP32 NPU (AI Hub)</td><td>49.7%</td><td>228ms</td><td>240MB</td><td>Full accuracy, too slow</td></tr>
+          <tr><td>QNN INT8 NPU (no calibration)</td><td>41.6%</td><td>~86ms</td><td>121MB</td><td>Blind INT8 = 8.1% accuracy loss</td></tr>
           <tr><td>AI Hub INT8 TFLite + LiteRT NPU</td><td>41.6%</td><td>170ms</td><td>122MB</td><td>2/3 subgraphs on NPU</td></tr>
-          <tr><td>LiteRT INT8 NPU (generic)</td><td>50.3%</td><td>290ms</td><td>122MB</td><td>3/7 subgraphs (fragmented)</td></tr>
           <tr><td>LiteRT INT8 CPU (XNNPACK)</td><td>50.3%</td><td>270ms</td><td>122MB</td><td>No NPU</td></tr>
+          <tr><td>LiteRT INT8 NPU (generic dispatch)</td><td>50.3%</td><td>290ms</td><td>122MB</td><td>3/7 subgraphs — slower than CPU</td></tr>
+          <tr><td>DistilBERT LiteRT NPU</td><td>~46%</td><td>165&ndash;215ms</td><td>83MB</td><td>3/5 subgraphs, worse accuracy</td></tr>
+          <tr><td>NNAPI CPU Backend</td><td>49.7%</td><td>~740ms</td><td>120MB</td><td>Android 15+: deprecated, software fallback</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Quantization Experiment: Where Accuracy Dies</h3>
+      <p>The accuracy impact of each quantization step, measured against the 149-text validation set:</p>
+      <table class="benchmark-table">
+        <thead>
+          <tr><th>Quantization</th><th>Accuracy</th><th>vs FP32 Baseline</th><th>Model Size</th><th>Latency (NPU)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>FP32 (no quant)</td><td>49.7%</td><td>&mdash;</td><td>476MB</td><td>228ms</td></tr>
+          <tr><td>INT8 dynamic (ONNX Runtime CPU)</td><td>49.7%</td><td>&plusmn;0%</td><td>120MB</td><td>46.5ms (CPU)</td></tr>
+          <tr><td>INT8 static, no calibration</td><td>41.6%</td><td>&minus;8.1%</td><td>121MB</td><td>~86ms</td></tr>
+          <tr class="winner"><td>w8a16 with 100-sample calibration</td><td>48.3%</td><td>&minus;1.4%</td><td>158MB</td><td>~67ms</td></tr>
+        </tbody>
+      </table>
+      <p>The 6.7 percentage-point difference between blind INT8 and calibrated w8a16 comes from how transformers use activations. LayerNorm and Softmax produce narrow-range outputs that INT8 clips aggressively without calibration. INT16 activations give these layers the numerical headroom they need.</p>
+
+      <h2>SentiLog Design Decisions</h2>
+      <p>Theory is cheap. Here's every architectural decision that shaped SentiLog's on-device AI, with the reasoning and the alternatives we rejected.</p>
+
+      <div class="decision-grid">
+
+        <div class="decision-card">
+          <div class="dc-title">Why offline-first architecture?</div>
+          <p><span class="dc-chose">Chose:</span> Fully on-device inference, zero cloud calls for AI<br>
+          <span class="dc-rejected">Rejected:</span> API-based sentiment (OpenAI, Google Cloud NLP)</p>
+          <p style="margin-top:0.75rem;">User journal entries are private. We don't trust cloud providers with unencrypted journal text &mdash; and users shouldn't have to. On-device also means: zero API cost per-inference, works on a flight, no latency from network round-trips, GDPR compliance by default. The engineering cost (120MB model bundle) was worth the trust guarantee.</p>
+        </div>
+
+        <div class="decision-card">
+          <div class="dc-title">Why RoBERTa-base, not a smaller model?</div>
+          <p><span class="dc-chose">Chose:</span> 125M parameter RoBERTa-base (fine-tuned on GoEmotions)<br>
+          <span class="dc-rejected">Rejected:</span> DistilBERT (67M), MiniLM (22M), keyword classifier</p>
+          <p style="margin-top:0.75rem;">We benchmarked DistilBERT at 165&ndash;215ms on NPU with 3/5 fragmented subgraphs — still slower than ONNX CPU, and 4% worse accuracy. The NPU bottleneck is architecture (LayerNorm/Softmax), not parameter count. A smaller model with the same attention mechanism hits the same wall. MiniLM achieved 31% top-1 accuracy on our test set, unusable for 28-emotion classification. The keyword classifier is a fallback, not a primary.</p>
+        </div>
+
+        <div class="decision-card">
+          <div class="dc-title">Why sequence length 128 and not 64?</div>
+          <p><span class="dc-chose">Chose:</span> 128 tokens max<br>
+          <span class="dc-rejected">Rejected:</span> 64 tokens (tested as V4 in nightrun)</p>
+          <p style="margin-top:0.75rem;">GoEmotions training data averages ~15 words (~20 tokens). Journal entries are typically 50&ndash;100 words. At 64 tokens, we truncate ~8% of entries and see a measurable accuracy drop on long-form reflective writing &mdash; exactly the entries where emotion detection matters most. CPU saving from seq=64 is ~15ms (46.5ms &rarr; ~31ms). NPU saving is larger (~15ms). The 0.8% accuracy loss made it not worth it for the initial release.</p>
+        </div>
+
+        <div class="decision-card">
+          <div class="dc-title">Why ship CPU as the production backend?</div>
+          <p><span class="dc-chose">Chose:</span> ONNX INT8 CPU as production default<br>
+          <span class="dc-rejected">Rejected:</span> QNN NPU as production default (yet)</p>
+          <p style="margin-top:0.75rem;">ONNX INT8 CPU at 46.5ms is reliable, well-understood, and works on every Android device. QNN NPU requires: the AI Hub-compiled binary (Snapdragon 8 Elite specific), the <code>onnxruntime-android-qnn</code> dependency, correct ADSP library path setup, and a QNN context binary that matches the exact ORT version. We hit QNN error 5000 (context binary load failure) during testing &mdash; a version mismatch between the AI Hub SDK and ORT 1.22.0. NPU is a v2.5 upgrade path, not a v2.4 production risk.</p>
+        </div>
+
+        <div class="decision-card">
+          <div class="dc-title">Why 800ms debounce on sentiment analysis?</div>
+          <p><span class="dc-chose">Chose:</span> Re-analyze every 800ms while typing<br>
+          <span class="dc-rejected">Rejected:</span> Every keypress, every word, every sentence</p>
+          <p style="margin-top:0.75rem;">Typing speed averages 40&ndash;60 WPM (~4&ndash;6 chars/sec). Analyzing on every keypress means ~5 inferences/second = 18,000/hour. At 46.5ms each, that's the CPU pegged. 800ms catches a natural typing pause (end of phrase), feels responsive, and keeps inferences at ~4,500/hour. At 15mW CPU power per inference: 18,000/hr × 15mW × 1ms ≈ 270mJ vs 4,500/hr × 15mW × 1ms ≈ 67.5mJ. Four times less battery just from the debounce.</p>
+        </div>
+
+      </div>
+
+      <h2>Trade-offs &amp; Decisions</h2>
+      <p>Every architectural choice involves a trade-off. Here's the decision matrix for SentiLog's AI stack:</p>
+      <table class="benchmark-table">
+        <thead>
+          <tr><th>Decision</th><th>What We Chose</th><th>What We Rejected</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Quantization</strong></td>
+            <td>w8a16 (INT8 weights + INT16 activations)</td>
+            <td>Blind INT8</td>
+            <td>8.1% accuracy loss with INT8 vs 1.4% with calibrated w8a16</td>
+          </tr>
+          <tr>
+            <td><strong>NPU compilation</strong></td>
+            <td>Ahead-of-time (AI Hub)</td>
+            <td>Runtime dispatch (LiteRT)</td>
+            <td>Runtime: 3/7 subgraphs on NPU, 290ms. AOT: all on NPU, 67ms</td>
+          </tr>
+          <tr>
+            <td><strong>Sequence length</strong></td>
+            <td>128 tokens</td>
+            <td>64 tokens</td>
+            <td>0.8% accuracy gain worth more than 15ms CPU saving</td>
+          </tr>
+          <tr>
+            <td><strong>Production backend</strong></td>
+            <td>ONNX INT8 CPU (46.5ms)</td>
+            <td>QNN NPU (67ms)</td>
+            <td>QNN hit error 5000; CPU is 20ms faster and has no vendor dependency</td>
+          </tr>
+          <tr>
+            <td><strong>Model architecture</strong></td>
+            <td>RoBERTa-base (125M params)</td>
+            <td>DistilBERT / MiniLM</td>
+            <td>Smaller models still hit the same NPU subgraph fragmentation, with worse accuracy</td>
+          </tr>
+          <tr>
+            <td><strong>Inference trigger</strong></td>
+            <td>800ms debounce</td>
+            <td>Per-keypress</td>
+            <td>4,500 inferences/hr vs ~18,000/hr &mdash; 4× battery reduction</td>
+          </tr>
+          <tr>
+            <td><strong>Language models</strong></td>
+            <td>Separate model per language</td>
+            <td>Single multilingual model for all languages</td>
+            <td>Language-specific fine-tuned models outperform generic multilingual on GoEmotions (DE: F1 0.447 vs ~0.31)</td>
+          </tr>
         </tbody>
       </table>
 
       <h2>Best Practices</h2>
 
       <h3>1. Don't Rely on Generic Runtime Dispatch</h3>
-      <p>LiteRT's <code>Accelerator.NPU</code> does per-op dispatch. For CNNs, this works &mdash; all ops are NPU-native. For transformers, it fragments the graph into alternating NPU/CPU subgraphs. <strong>Always use ahead-of-time compilation</strong> via Qualcomm AI Hub or similar vendor tools.</p>
+      <p>LiteRT's <code>Accelerator.NPU</code> does per-op dispatch. For CNNs with all NPU-native ops, this works. For transformers, it fragments the graph into alternating NPU/CPU subgraphs with ~0.5&ndash;2ms per memory transfer. <strong>Always use ahead-of-time compilation</strong> via Qualcomm AI Hub or equivalent vendor tools (MediaTek NeuroPilot, Samsung ONE, etc.).</p>
 
-      <h3>2. Fix Your Input Shapes</h3>
-      <p>NPUs require static tensor shapes. Convert dynamic ONNX shapes to fixed before submission:</p>
+      <h3>2. Fix Your Input Shapes Before Submission</h3>
+      <p>NPUs require static tensor shapes. Convert dynamic ONNX axes to fixed values before submitting to AI Hub:</p>
       <pre><code>import onnx
 model = onnx.load("model.onnx")
 for inp in model.graph.input:
     dims = inp.type.tensor_type.shape.dim
-    dims[0].dim_value = 1    # batch
-    dims[1].dim_value = 128  # sequence
+    dims[0].dim_value = 1    # batch size
+    dims[1].dim_value = 128  # sequence length
 onnx.save(model, "model_fixed.onnx")</code></pre>
 
       <h3>3. Use w8a16, Not Blind INT8</h3>
-      <p>INT8 weights + INT16 activations preserves numerical precision in LayerNorm and Softmax where transformers need it most. Blind INT8 drops accuracy by ~8%; w8a16 with calibration loses only ~1.4%.</p>
+      <p>INT8 weights + INT16 activations preserves numerical precision in LayerNorm and Softmax. Blind INT8 drops accuracy by ~8%; calibrated w8a16 loses only ~1.4%. Always provide 100+ representative calibration samples &mdash; the quantizer needs them to correctly set activation clipping ranges.</p>
 
-      <h3>4. Export Clean FP32 ONNX</h3>
-      <p>Don't pre-quantize with ONNX Runtime before submitting to AI Hub. The ONNX-specific quantization ops confuse the QNN converter (exit code 255). Let AI Hub handle quantization from a clean FP32 model.</p>
+      <h3>4. Submit Clean FP32 to AI Hub</h3>
+      <p>Don't pre-quantize with ONNX Runtime before submitting to AI Hub. ONNX-specific quantization ops (QLinearMatMul, etc.) confuse the QNN converter and produce exit code 255. Let AI Hub handle quantization from a clean FP32 model with int64 inputs.</p>
 
-      <h3>5. Provide Calibration Data</h3>
-      <p>100 representative inputs are enough. The calibration data determines activation ranges &mdash; without it, the quantizer guesses and accuracy suffers.</p>
-
-      <h3>6. Ship CPU as Fallback</h3>
-      <pre><code>// Backend priority with graceful fallback:
-val result = qnn?.analyze(text)       // QNN NPU (67ms)
-    ?: onnx?.analyze(text)            // ONNX CPU (46.5ms)
-    ?: keywordClassifier.analyze(text) // Keywords (0ms)</code></pre>
+      <h3>5. Ship CPU as Fallback — Always</h3>
+      <pre><code>// Graceful degradation across backends:
+val result = qnn?.analyze(text)            // QNN NPU: 67ms, 5-10x less battery
+    ?: onnxCpu?.analyze(text)              // ONNX CPU: 46.5ms, reliable
+    ?: keywordClassifier.analyze(text)     // Keywords: 0ms, 100% compatibility</code></pre>
+      <p>QNN binaries are device-specific (compiled for Snapdragon 8 Elite) and ORT-version-specific. Any device running a different chipset or a different ORT version will fall through to ONNX CPU automatically.</p>
 
       <h2>The Real Value of NPU</h2>
-      <p>For transformer models, a well-optimized CPU is actually <strong>faster</strong> than NPU (46.5ms vs 67ms). The real NPU value is elsewhere:</p>
+      <p>For transformer models, a well-optimized CPU is actually <strong>faster</strong> than NPU (46.5ms vs 67ms). The real NPU value is in power efficiency and sustained performance:</p>
 
       <table class="benchmark-table">
         <thead>
           <tr><th></th><th>CPU Inference</th><th>NPU Inference</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Energy per inference</strong></td><td>~15mW</td><td>~2-3mW (5-10x less)</td></tr>
-          <tr><td><strong>CPU availability</strong></td><td>1 core blocked</td><td>All cores free</td></tr>
-          <tr><td><strong>Thermal after 30 min</strong></td><td>Throttles (46ms &rarr; 80ms+)</td><td>Consistent 67ms</td></tr>
-          <tr><td><strong>UI smoothness</strong></td><td>Occasional jank</td><td>Butter smooth</td></tr>
-          <tr><td><strong>Battery (1hr session)</strong></td><td>Noticeable drain</td><td>Barely registers</td></tr>
+          <tr><td><strong>Energy per inference</strong></td><td>~15mW</td><td>~2&ndash;3mW (5&ndash;10&times; less)</td></tr>
+          <tr><td><strong>CPU availability</strong></td><td>1 core saturated during inference</td><td>All 8 cores free</td></tr>
+          <tr><td><strong>Thermal after 30 min</strong></td><td>Throttles: 46ms &rarr; 80ms+</td><td>Consistent 67ms (no throttle)</td></tr>
+          <tr><td><strong>UI smoothness</strong></td><td>Occasional frame drop during inference</td><td>Butter smooth 120fps</td></tr>
+          <tr><td><strong>1-hour session battery</strong></td><td>Noticeable drain</td><td>Barely registers</td></tr>
         </tbody>
       </table>
 
       <div class="callout">
-        <p><strong>The right question isn't "is NPU faster?"</strong> It's "does NPU deliver a better user experience?" For a journaling app running sentiment analysis every 800ms: same perceived speed, 5-10x less battery drain, smoother UI, no thermal throttle.</p>
+        <p><strong>The right question isn't "is NPU faster?"</strong> It's "does NPU deliver a better user experience over time?" For a journaling app running sentiment analysis every 800ms: same perceived speed (both well under the 800ms debounce), 5&ndash;10&times; less battery drain, smoother UI, no thermal throttle during extended sessions.</p>
       </div>
 
       <h2>Architecture</h2>
-      <pre><code>PyTorch Model
-    &darr; torch.onnx.export (FP32, static shapes, opset 17)
-Clean FP32 ONNX (int64 inputs, ~476MB)
-    &darr;
-    &boxur;&mdash;&rarr; AI Hub submit_quantize_job (w8a16, calibration data)
-    &boxv;       &darr; Quantized ONNX (int8 weights + int16 activations)
-    &boxv;       &darr; AI Hub submit_compile_job (QNN context binary)
-    &boxv;       &darr;
-    &boxv;   QNN Context Binary (~158MB) &rarr; ONNX Runtime QNN EP &rarr; Hexagon NPU
-    &boxv;
-    &boxur;&mdash;&rarr; ONNX Runtime quantize_dynamic (INT8)
-            &darr;
-        ONNX INT8 (~120MB) &rarr; ONNX Runtime CPU (production fallback)</code></pre>
+      <div class="pipeline-diagram">
+<span class="ph">PyTorch fine-tuned model</span>
+    ↓ torch.onnx.export (FP32, static shapes, opset 17, int64 inputs)
+<span class="ph">Clean FP32 ONNX</span> (~476MB, with external weights)
+    ↓
+    ├──→ <span class="ps">AI Hub submit_quantize_job</span> (w8a16, 100-sample calibration)
+    │       ↓ Quantized ONNX (INT8 weights + INT16 activations, ~158MB)
+    │       ↓ <span class="ps">AI Hub submit_compile_job</span> (QNN context binary, Snapdragon 8 Elite)
+    │       ↓
+    │    <span class="ps">QNN Context Binary (~158MB)</span> → ONNX Runtime QNN EP → <span class="ps">Hexagon NPU</span> (67ms)
+    │
+    └──→ <span class="ph">ONNX Runtime quantize_dynamic</span> (INT8, dynamic quantization)
+            ↓
+         <span class="ph">ONNX INT8 (~120MB)</span> → ONNX Runtime CPU EP → <span class="ph">CPU (46.5ms)</span> [production]
+
+Fallback chain in Android app:
+  QNN NPU → ONNX CPU → Keyword Classifier (0ms)
+      </div>
 
       <h2>Tools Used</h2>
       <ul>
-        <li><strong>LiteRT 2.1.1</strong> &mdash; Google's TFLite successor with CompiledModel API</li>
-        <li><strong>ONNX Runtime 1.22.0</strong> &mdash; CPU inference + QNN EP for NPU</li>
-        <li><strong>Qualcomm AI Hub</strong> &mdash; Cloud compilation for Snapdragon NPU (free account)</li>
+        <li><strong>LiteRT 2.1.1</strong> &mdash; Google's TFLite successor with CompiledModel API and QualcommOptions</li>
+        <li><strong>ONNX Runtime 1.22.0</strong> &mdash; CPU inference + QNN EP for NPU; 16KB page-aligned .so for Android 15+</li>
+        <li><strong>Qualcomm AI Hub</strong> &mdash; Cloud compilation for Snapdragon NPU (free account, ~$0.40/job)</li>
         <li><strong>litert-torch 0.9.0</strong> &mdash; PyTorch &rarr; TFLite conversion</li>
-        <li><strong>ai-edge-quantizer</strong> &mdash; Post-training quantization</li>
+        <li><strong>ai-edge-quantizer</strong> &mdash; Post-training quantization for TFLite path</li>
         <li><strong>Kotlin 2.2.0</strong> &mdash; Required for LiteRT 2.1.1 CompiledModel API</li>
       </ul>
 
       <h2>Device</h2>
-      <p><strong>OnePlus 13</strong> &mdash; Snapdragon 8 Elite, Hexagon NPU, Android 16. All benchmarks run on-device using a custom ADB Debug API with a curated 149-text multilingual validation dataset.</p>
+      <p><strong>OnePlus 13</strong> &mdash; Snapdragon 8 Elite (SM8750), Hexagon HTP v79, 16GB LPDDR5X, Android 16. All benchmarks run on-device using a custom ADB Debug API with a curated 149-text multilingual validation dataset. Testing on mid-range devices (Snapdragon 7 series, Dimensity 9000, Exynos) is planned for v2.5; results will vary due to different NPU architectures and memory bandwidth.</p>
 
       <p style="margin-top:2rem; color: var(--text-muted); font-size: 0.85rem; font-style: italic;">
-        This guide is based on real benchmarks from the <a href="https://github.com/tojohere/SentiLog">SentiLog project</a> (May 2026). Results may vary with different model architectures, chipsets, and framework versions. Source code and test datasets are available in the repository.
+        This is based on real benchmarks from the <a href="https://github.com/tojohere/SentiLog">SentiLog project</a> (May 2026). Results are specific to Snapdragon 8 Elite &mdash; other chipsets will behave differently. Source code and test datasets are in the repository.
       </p>
 
     </div>
