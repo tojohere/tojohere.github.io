@@ -74,6 +74,13 @@
         .phone-frame img { width: 100%; display: block; }
         .phone-label { text-align: center; margin-top: 0.6rem; font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; }
 
+        /* ── Platform tab pills (iOS / Android switcher for screenshots) ── */
+        .platform-pills { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.25rem; }
+        .platform-pill { background: var(--surface); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.08); padding: 0.45rem 1.1rem; border-radius: 999px; cursor: pointer; font-size: 0.85rem; font-weight: 500; font-family: inherit; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; }
+        .platform-pill:hover { border-color: var(--accent); color: var(--text-primary); }
+        .platform-pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+        [data-platform]:not(.active-platform) { display: none; }
+
         /* ── Architecture Flow ── */
         .arch-flow { display: flex; align-items: center; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin: 2rem auto; max-width: 800px; }
         .arch-node { background: var(--surface); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1rem 1.4rem; text-align: center; min-width: 130px; transition: transform 0.2s, border-color 0.2s; }
@@ -188,12 +195,12 @@
     <p class="tagline" data-lang="ko">당신의 생각은 당신만의 것. SentiLog는 쓰면서 28가지 감정을 실시간으로 감지합니다. 완전한 온디바이스, AES-256 암호화. 클라우드 없음, 추적 없음.</p>
 
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; align-items:center;">
-        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
-            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:72px">
-        </a>
         <!-- TODO: After App Store approval, replace #ios-coming-soon with https://apps.apple.com/app/idXXXXXXXXX (find your numeric Apple ID in App Store Connect → My Apps → SentiLog → App Information) -->
         <a href="#ios-coming-soon" class="cta" aria-label="Download SentiLog on the App Store (iOS — coming soon)">
             <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?releaseDate=1738368000" alt="Download on the App Store" style="height:72px">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:72px">
         </a>
     </div>
     <div class="badge" data-lang="en">iOS &amp; Android &bull; Free with Premium</div>
@@ -232,25 +239,56 @@
     <h2 data-lang="de">In Aktion erleben</h2>
     <h2 data-lang="ja">動作を見る</h2>
     <h2 data-lang="ko">직접 확인하세요</h2>
-    <div class="screenshots">
+
+    <div class="platform-pills" role="tablist" aria-label="Platform">
+        <button class="platform-pill active" type="button" onclick="switchPlatform('ios')" role="tab" aria-selected="true"></button>
+        <button class="platform-pill" type="button" onclick="switchPlatform('android')" role="tab" aria-selected="false"></button>
+    </div>
+
+    <!-- iOS screenshots (default) -->
+    <div class="screenshots active-platform" data-platform="ios">
         <div>
-            <div class="phone-frame"><img src="screen_home.png" alt="SentiLog Home — Journal entries with emotion emojis" loading="lazy"></div>
+            <div class="phone-frame"><img src="ios/ios-home.png" alt="SentiLog on iOS — Home feed with emotion entries" loading="lazy"></div>
             <p class="phone-label">Home</p>
         </div>
         <div>
-            <div class="phone-frame"><img src="screen_journal.jpg" alt="SentiLog Journal — Writing with real-time emotion detection" loading="lazy"></div>
+            <div class="phone-frame"><img src="ios/ios-journal.png" alt="SentiLog on iOS — Journal editor with emotion watermark" loading="lazy"></div>
             <p class="phone-label">Journal Entry</p>
         </div>
         <div>
-            <div class="phone-frame"><img src="screen_calendar.png" alt="SentiLog Calendar — Monthly emoji heatmap" loading="lazy"></div>
+            <div class="phone-frame"><img src="ios/ios-calendar.png" alt="SentiLog on iOS — Monthly emoji calendar" loading="lazy"></div>
             <p class="phone-label">Emotion Calendar</p>
         </div>
         <div>
-            <div class="phone-frame"><img src="screen_summary.png" alt="SentiLog Summary — Year and month mood stats" loading="lazy"></div>
+            <div class="phone-frame"><img src="ios/ios-summary.png" alt="SentiLog on iOS — Monthly summary card" loading="lazy"></div>
             <p class="phone-label">Mood Summary</p>
         </div>
         <div>
-            <div class="phone-frame"><img src="screen_midnight.png" alt="SentiLog Midnight Theme — Dark mode journal" loading="lazy"></div>
+            <div class="phone-frame"><img src="ios/ios-backup.png" alt="SentiLog on iOS — Encrypted iCloud backup" loading="lazy"></div>
+            <p class="phone-label">iCloud Backup</p>
+        </div>
+    </div>
+
+    <!-- Android screenshots -->
+    <div class="screenshots" data-platform="android">
+        <div>
+            <div class="phone-frame"><img src="screen_home.png" alt="SentiLog on Android — Journal entries with emotion emojis" loading="lazy"></div>
+            <p class="phone-label">Home</p>
+        </div>
+        <div>
+            <div class="phone-frame"><img src="screen_journal.jpg" alt="SentiLog on Android — Writing with real-time emotion detection" loading="lazy"></div>
+            <p class="phone-label">Journal Entry</p>
+        </div>
+        <div>
+            <div class="phone-frame"><img src="screen_calendar.png" alt="SentiLog on Android — Monthly emoji heatmap" loading="lazy"></div>
+            <p class="phone-label">Emotion Calendar</p>
+        </div>
+        <div>
+            <div class="phone-frame"><img src="screen_summary.png" alt="SentiLog on Android — Year and month mood stats" loading="lazy"></div>
+            <p class="phone-label">Mood Summary</p>
+        </div>
+        <div>
+            <div class="phone-frame"><img src="screen_midnight.png" alt="SentiLog on Android — Midnight dark theme" loading="lazy"></div>
             <p class="phone-label">Midnight Theme</p>
         </div>
     </div>
@@ -259,12 +297,12 @@
 <!-- Mid-page CTA — after screenshots where intent peaks -->
 <section style="text-align:center; padding-top:1rem; padding-bottom:1rem;">
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; align-items:center;">
-        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
-            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:72px">
-        </a>
         <!-- TODO: Same App Store URL placeholder as in hero — update post-approval -->
         <a href="#ios-coming-soon" class="cta" aria-label="Download SentiLog on the App Store">
             <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?releaseDate=1738368000" alt="Download on the App Store" style="height:72px">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:72px">
         </a>
     </div>
     <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.75rem;" data-lang="en">Free to download. No account required. Your data never leaves your phone.</p>
@@ -417,7 +455,7 @@
         <div class="feature-card"><div class="feature-icon">📅</div><h3>Emoji Calendar</h3><p>Monthly heatmap of your emotions. See mood patterns at a glance with dominant emotion emoji per day.</p></div>
         <div class="feature-card"><div class="feature-icon">🔐</div><h3>Encrypted Everything</h3><p>AES-256 full-database encryption. Face ID, Touch ID, and fingerprint lock. Your journal is unreadable without you.</p></div>
         <div class="feature-card"><div class="feature-icon">✍️</div><h3>Beautiful Editor</h3><p>Ruled paper with animated feather pen cursor. Emotion watermark updates as you type.</p></div>
-        <div class="feature-card"><div class="feature-icon">☁️</div><h3>Encrypted Cloud Backup</h3><p>End-to-end encrypted backup to iCloud Drive on iOS, Google Drive on Android. Restore on any device signed into your account.</p></div>
+        <div class="feature-card"><div class="feature-icon">☁️</div><h3>Encrypted Cloud Backup</h3><p>End-to-end encrypted backup to iCloud Drive (iOS) or Google Drive (Android). Restore on any device signed into your account.</p></div>
         <div class="feature-card"><div class="feature-icon">🌍</div><h3>Multilingual</h3><p>Write in English, German, Japanese, or Korean. Each language has a dedicated AI model.</p></div>
     </div>
     <div class="features" data-lang="de">
@@ -533,10 +571,10 @@
     <h2 data-lang="de">PDF-Export</h2>
     <h2 data-lang="ja">PDFエクスポート</h2>
     <h2 data-lang="ko">PDF 내보내기</h2>
-    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="en">Premium on Android · Included free on iOS</p>
-    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="de">Premium auf Android · Auf iOS kostenlos enthalten</p>
-    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="ja">Androidでプレミアム · iOSでは無料で利用可能</p>
-    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="ko">Android에서 프리미엄 · iOS에서 무료 제공</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="en">Included free on iOS · Premium on Android</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="de">Auf iOS kostenlos enthalten · Premium auf Android</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="ja">iOSでは無料で利用可能 · Androidでプレミアム</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="ko">iOS에서 무료 제공 · Android에서 프리미엄</p>
     <div class="pdf-showcase">
         <img src="pdf_cover.jpg" alt="SentiLog PDF cover — dark navy with gold trim" class="pdf-img" loading="lazy">
         <img src="pdf_page.jpg" alt="SentiLog PDF entry page — watercolor template" class="pdf-img" loading="lazy">
@@ -638,10 +676,10 @@
             <p style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary);" data-lang="ja">— 早期アクセスユーザー、ドイツ</p>
             <p style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary);" data-lang="ko">— 얼리 액세스 사용자, 독일</p>
         </div>
-        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="en">Enjoying SentiLog? Leave a review on <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a> or the <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>.</p>
-        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="de">SentiLog gefällt dir? Hinterlasse eine Bewertung auf <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a> oder im <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>.</p>
-        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ja">SentiLogを楽しんでいますか？<a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>または<a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>でレビューをお願いします。</p>
-        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ko">SentiLog가 마음에 드시나요? <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a> 또는 <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>에 리뷰를 남겨주세요.</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="en">Enjoying SentiLog? Leave a review on the <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>.</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="de">SentiLog gefällt dir? Hinterlasse eine Bewertung im <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a> oder auf <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>.</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ja">SentiLogを楽しんでいますか？<a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>または<a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>でレビューをお願いします。</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ko">SentiLog가 마음에 드시나요? <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a> 또는 <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>에 리뷰를 남겨주세요.</p>
     </div>
 </section>
 
@@ -766,12 +804,12 @@
     <p style="color:var(--text-secondary);margin-bottom:2rem;max-width:450px;margin-left:auto;margin-right:auto;" data-lang="ko">3가지 감정 카테고리로 무료 사용. 프리미엄으로 28가지 감정, 테마, 다국어 AI로 업그레이드.</p>
 
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; align-items:center;">
-        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta-bottom">
-            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:60px">
-        </a>
         <!-- TODO: Update href after App Store approval -->
         <a href="#ios-coming-soon" class="cta-bottom" aria-label="Download SentiLog on the App Store">
             <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?releaseDate=1738368000" alt="Download on the App Store" style="height:60px">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta-bottom">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:60px">
         </a>
     </div>
 </section>
@@ -779,13 +817,13 @@
 <footer>
     <p>&copy; 2026 SentiLog &mdash; by <a href="https://tojohere.dev">Tojo Thomas</a></p>
     <div class="footer-links">
-        <a href="privacy-policy.html">Privacy Policy (Android)</a>
         <a href="privacy-policy-ios.html">Privacy Policy (iOS)</a>
-        <a href="terms-of-service.html">Terms (Android)</a>
+        <a href="privacy-policy.html">Privacy Policy (Android)</a>
         <a href="terms-of-service-ios.html">Terms (iOS)</a>
-        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app">Google Play</a>
+        <a href="terms-of-service.html">Terms (Android)</a>
         <!-- TODO: Update href after App Store approval -->
         <a href="#ios-coming-soon">App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app">Google Play</a>
         <a href="/blog/npu-transformer-guide.html">NPU Research Blog</a>
         <a href="https://tojohere.dev">Developer Portfolio</a>
     </div>
@@ -793,7 +831,38 @@
 
 <script>
 var langLabels = {en:'English', de:'Deutsch', ja:'日本語', ko:'한국어'};
+
+// Localized labels for the platform pills, keyed by language then platform.
+var platformLabels = {
+    en: { ios: '🍎 iOS',     android: '🤖 Android' },
+    de: { ios: '🍎 iOS',     android: '🤖 Android' },
+    ja: { ios: '🍎 iOS',     android: '🤖 Android' },
+    ko: { ios: '🍎 iOS',     android: '🤖 Android' }
+};
+var currentLang = 'en';
+
+function applyPlatformLabels() {
+    var labels = platformLabels[currentLang] || platformLabels.en;
+    var pills = document.querySelectorAll('.platform-pill');
+    if (pills.length >= 2) {
+        pills[0].textContent = labels.ios;
+        pills[1].textContent = labels.android;
+    }
+}
+
+function switchPlatform(platform) {
+    document.querySelectorAll('.platform-pill').forEach(function(b, i) {
+        var target = (i === 0) ? 'ios' : 'android';
+        b.classList.toggle('active', target === platform);
+        b.setAttribute('aria-selected', target === platform ? 'true' : 'false');
+    });
+    document.querySelectorAll('[data-platform]').forEach(function(el) {
+        el.classList.toggle('active-platform', el.getAttribute('data-platform') === platform);
+    });
+}
+
 function switchLang(lang) {
+    currentLang = lang;
     document.querySelectorAll('.lang-btn').forEach(function(b) {
         b.classList.toggle('active', b.textContent.trim() === langLabels[lang]);
     });
@@ -801,8 +870,11 @@ function switchLang(lang) {
         el.classList.toggle('active', el.getAttribute('data-lang') === lang);
     });
     document.documentElement.lang = lang;
+    applyPlatformLabels();
 }
+
 switchLang('en');
+switchPlatform('ios');
 </script>
 
 </body>
