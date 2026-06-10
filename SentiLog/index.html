@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SentiLog — Private AI Journal App for Android | 28-Emotion Mood Tracker</title>
-    <meta name="description" content="SentiLog is a private, encrypted journaling app for Android. On-device AI detects 28 emotions as you write — no cloud, no tracking. Free with premium upgrade.">
+    <title>SentiLog — Private AI Journal App for iOS &amp; Android | 28-Emotion Mood Tracker</title>
+    <meta name="description" content="SentiLog is a private, encrypted journaling app for iPhone and Android. On-device AI detects 28 emotions as you write — no cloud, no tracking. Free with premium upgrade.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://tojohere.dev/SentiLog/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="SentiLog — Private AI Journal for Android">
+    <meta property="og:title" content="SentiLog — Private AI Journal for iOS &amp; Android">
     <meta property="og:description" content="On-device 28-emotion AI. AES-256 encrypted. No cloud. No tracking. Your journal stays on your phone.">
     <meta property="og:image" content="https://tojohere.dev/SentiLog/og-sentilog.png">
     <meta property="og:url" content="https://tojohere.dev/SentiLog/">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SentiLog — Private AI Journal for Android">
+    <meta name="twitter:title" content="SentiLog — Private AI Journal for iOS &amp; Android">
     <meta name="twitter:description" content="On-device 28-emotion AI. AES-256 encrypted. No cloud. No tracking.">
     <meta name="twitter:image" content="https://tojohere.dev/SentiLog/og-sentilog.png">
 
@@ -27,12 +27,12 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "SentiLog",
-      "operatingSystem": "Android",
+      "operatingSystem": ["iOS", "Android"],
       "applicationCategory": "LifestyleApplication",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "url": "https://tojohere.dev/SentiLog/",
       "author": { "@type": "Person", "name": "Tojo Thomas", "url": "https://tojohere.dev" },
-      "description": "AI-powered journaling app that detects 28 emotions in real-time using on-device RoBERTa. AES-256 full-database encryption, zero cloud processing, multilingual (EN/DE/JA/KO)."
+      "description": "AI-powered journaling app for iPhone and Android that detects 28 emotions in real-time using on-device RoBERTa (Core ML on iOS, ONNX Runtime on Android). AES-256 full-database encryption, zero cloud processing, multilingual (EN/DE/JA/KO)."
     }
     </script>
 
@@ -187,10 +187,19 @@
     <p class="tagline" data-lang="ja">あなたの想いはあなただけのもの。SentiLogは書きながら28の感情をリアルタイム検出。完全オンデバイス、AES-256暗号化。クラウドなし、トラッキングなし。</p>
     <p class="tagline" data-lang="ko">당신의 생각은 당신만의 것. SentiLog는 쓰면서 28가지 감정을 실시간으로 감지합니다. 완전한 온디바이스, AES-256 암호화. 클라우드 없음, 추적 없음.</p>
 
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
-    </a>
-    <div class="badge">Android &bull; v2.4.8 &bull; Free with Premium</div>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; align-items:center;">
+        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:72px">
+        </a>
+        <!-- TODO: After App Store approval, replace #ios-coming-soon with https://apps.apple.com/app/idXXXXXXXXX (find your numeric Apple ID in App Store Connect → My Apps → SentiLog → App Information) -->
+        <a href="#ios-coming-soon" class="cta" aria-label="Download SentiLog on the App Store (iOS — coming soon)">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?releaseDate=1738368000" alt="Download on the App Store" style="height:72px">
+        </a>
+    </div>
+    <div class="badge" data-lang="en">iOS &amp; Android &bull; Free with Premium</div>
+    <div class="badge" data-lang="de" style="display:none">iOS &amp; Android &bull; Kostenlos mit Premium</div>
+    <div class="badge" data-lang="ja" style="display:none">iOS &amp; Android &bull; プレミアム付き無料</div>
+    <div class="badge" data-lang="ko" style="display:none">iOS &amp; Android &bull; 프리미엄 무료</div>
 </div>
 
 <!-- Privacy — moved above fold as primary differentiator -->
@@ -249,9 +258,15 @@
 
 <!-- Mid-page CTA — after screenshots where intent peaks -->
 <section style="text-align:center; padding-top:1rem; padding-bottom:1rem;">
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:72px">
-    </a>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; align-items:center;">
+        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:72px">
+        </a>
+        <!-- TODO: Same App Store URL placeholder as in hero — update post-approval -->
+        <a href="#ios-coming-soon" class="cta" aria-label="Download SentiLog on the App Store">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?releaseDate=1738368000" alt="Download on the App Store" style="height:72px">
+        </a>
+    </div>
     <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.75rem;" data-lang="en">Free to download. No account required. Your data never leaves your phone.</p>
     <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.75rem;" data-lang="de">Kostenlos herunterladen. Kein Konto erforderlich. Deine Daten verlassen nie dein Gerät.</p>
     <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.75rem;" data-lang="ja">無料ダウンロード。アカウント不要。データはスマートフォンの外に出ません。</p>
@@ -400,33 +415,33 @@
     <div class="features" data-lang="en">
         <div class="feature-card"><div class="feature-icon">🧠</div><h3>On-Device AI</h3><p>Neural sentiment analysis runs locally. Your words never leave your phone. No internet needed.</p></div>
         <div class="feature-card"><div class="feature-icon">📅</div><h3>Emoji Calendar</h3><p>Monthly heatmap of your emotions. See mood patterns at a glance with dominant emotion emoji per day.</p></div>
-        <div class="feature-card"><div class="feature-icon">🔐</div><h3>Encrypted Everything</h3><p>AES-256 full-database encryption. Biometric lock. Your journal is unreadable without your fingerprint.</p></div>
+        <div class="feature-card"><div class="feature-icon">🔐</div><h3>Encrypted Everything</h3><p>AES-256 full-database encryption. Face ID, Touch ID, and fingerprint lock. Your journal is unreadable without you.</p></div>
         <div class="feature-card"><div class="feature-icon">✍️</div><h3>Beautiful Editor</h3><p>Ruled paper with animated feather pen cursor. Emotion watermark updates as you type.</p></div>
-        <div class="feature-card"><div class="feature-icon">☁️</div><h3>Cloud Backup</h3><p>Encrypted backup to Google Drive. Automatic daily sync. Restore on any device with one tap.</p></div>
+        <div class="feature-card"><div class="feature-icon">☁️</div><h3>Encrypted Cloud Backup</h3><p>End-to-end encrypted backup to iCloud Drive on iOS, Google Drive on Android. Restore on any device signed into your account.</p></div>
         <div class="feature-card"><div class="feature-icon">🌍</div><h3>Multilingual</h3><p>Write in English, German, Japanese, or Korean. Each language has a dedicated AI model.</p></div>
     </div>
     <div class="features" data-lang="de">
         <div class="feature-card"><div class="feature-icon">🧠</div><h3>On-Device-KI</h3><p>Neuronale Stimmungsanalyse läuft lokal. Ihre Worte verlassen nie Ihr Telefon. Kein Internet nötig.</p></div>
         <div class="feature-card"><div class="feature-icon">📅</div><h3>Emoji-Kalender</h3><p>Monatliche Heatmap Ihrer Emotionen. Stimmungsmuster auf einen Blick mit dominantem Emotions-Emoji pro Tag.</p></div>
-        <div class="feature-card"><div class="feature-icon">🔐</div><h3>Alles verschlüsselt</h3><p>AES-256-Vollverschlüsselung. Biometrische Sperre. Ihr Tagebuch ist ohne Fingerabdruck nicht lesbar.</p></div>
+        <div class="feature-card"><div class="feature-icon">🔐</div><h3>Alles verschlüsselt</h3><p>AES-256-Vollverschlüsselung. Face ID, Touch ID und Fingerabdrucksperre. Ihr Tagebuch ist ohne Sie nicht lesbar.</p></div>
         <div class="feature-card"><div class="feature-icon">✍️</div><h3>Schöner Editor</h3><p>Liniertes Papier mit animiertem Füllfederhalter-Cursor. Emotions-Wasserzeichen aktualisiert sich beim Tippen.</p></div>
-        <div class="feature-card"><div class="feature-icon">☁️</div><h3>Cloud-Backup</h3><p>Verschlüsseltes Backup auf Google Drive. Automatische tägliche Synchronisation. Mit einem Tippen wiederherstellen.</p></div>
+        <div class="feature-card"><div class="feature-icon">☁️</div><h3>Verschlüsseltes Cloud-Backup</h3><p>Ende-zu-Ende verschlüsseltes Backup auf iCloud Drive (iOS) oder Google Drive (Android). Auf jedem Gerät wiederherstellen.</p></div>
         <div class="feature-card"><div class="feature-icon">🌍</div><h3>Mehrsprachig</h3><p>Schreiben Sie auf Englisch, Deutsch, Japanisch oder Koreanisch. Jede Sprache hat ein eigenes KI-Modell.</p></div>
     </div>
     <div class="features" data-lang="ja">
         <div class="feature-card"><div class="feature-icon">🧠</div><h3>オンデバイスAI</h3><p>ニューラル感情分析がローカルで動作。テキストがスマートフォンから外に出ることはありません。インターネット不要。</p></div>
         <div class="feature-card"><div class="feature-icon">📅</div><h3>絵文字カレンダー</h3><p>月間感情ヒートマップ。日ごとの支配的な感情絵文字で気分パターンを一目で確認。</p></div>
-        <div class="feature-card"><div class="feature-icon">🔐</div><h3>完全暗号化</h3><p>AES-256データベース全体暗号化。生体認証ロック。指紋なしでは読めません。</p></div>
+        <div class="feature-card"><div class="feature-icon">🔐</div><h3>完全暗号化</h3><p>AES-256データベース全体暗号化。Face ID、Touch ID、指紋ロック対応。あなた以外には読めません。</p></div>
         <div class="feature-card"><div class="feature-icon">✍️</div><h3>美しいエディタ</h3><p>罫線付き用紙とアニメーション万年筆カーソル。入力中に感情ウォーターマークが更新。</p></div>
-        <div class="feature-card"><div class="feature-icon">☁️</div><h3>クラウドバックアップ</h3><p>Google Driveへの暗号化バックアップ。毎日自動同期。ワンタップでどのデバイスでも復元。</p></div>
+        <div class="feature-card"><div class="feature-icon">☁️</div><h3>暗号化クラウドバックアップ</h3><p>iOSはiCloud Drive、AndroidはGoogle Driveへエンドツーエンド暗号化バックアップ。どのデバイスでも復元可能。</p></div>
         <div class="feature-card"><div class="feature-icon">🌍</div><h3>多言語対応</h3><p>英語、ドイツ語、日本語、韓国語で記録。各言語に専用のAIモデルを搭載。</p></div>
     </div>
     <div class="features" data-lang="ko">
         <div class="feature-card"><div class="feature-icon">🧠</div><h3>온디바이스 AI</h3><p>신경망 감정 분석이 로컬에서 실행됩니다. 텍스트가 휴대폰 밖으로 나가지 않습니다. 인터넷 불필요.</p></div>
         <div class="feature-card"><div class="feature-icon">📅</div><h3>이모지 캘린더</h3><p>월간 감정 히트맵. 일별 주요 감정 이모지로 기분 패턴을 한눈에 확인.</p></div>
-        <div class="feature-card"><div class="feature-icon">🔐</div><h3>완전 암호화</h3><p>AES-256 전체 데이터베이스 암호화. 생체 인증 잠금. 지문 없이는 읽을 수 없습니다.</p></div>
+        <div class="feature-card"><div class="feature-icon">🔐</div><h3>완전 암호화</h3><p>AES-256 전체 데이터베이스 암호화. Face ID, Touch ID, 지문 잠금 지원. 본인 외에는 읽을 수 없습니다.</p></div>
         <div class="feature-card"><div class="feature-icon">✍️</div><h3>아름다운 에디터</h3><p>줄이 있는 종이 디자인과 애니메이션 만년필 커서. 입력하면서 감정 워터마크가 업데이트.</p></div>
-        <div class="feature-card"><div class="feature-icon">☁️</div><h3>클라우드 백업</h3><p>Google Drive로 암호화된 백업. 매일 자동 동기화. 한 번의 탭으로 어떤 기기에서든 복원.</p></div>
+        <div class="feature-card"><div class="feature-icon">☁️</div><h3>암호화 클라우드 백업</h3><p>iOS는 iCloud Drive, Android는 Google Drive에 종단간 암호화 백업. 어떤 기기에서든 복원 가능.</p></div>
         <div class="feature-card"><div class="feature-icon">🌍</div><h3>다국어 지원</h3><p>영어, 독일어, 일본어, 한국어로 작성. 각 언어에 전용 AI 모델 탑재.</p></div>
     </div>
 </section>
@@ -446,8 +461,8 @@
         <div class="arch-arrow">→</div>
         <div class="arch-node" style="border-color: var(--accent);">
             <div class="arch-icon">⚡</div>
-            <div class="arch-label">NPU / CPU</div>
-            <div class="arch-detail">Hexagon NPU or ONNX CPU</div>
+            <div class="arch-label">ANE / NPU / CPU</div>
+            <div class="arch-detail">Apple Neural Engine, Hexagon NPU, or CPU fallback</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node">
@@ -458,11 +473,11 @@
         <div class="arch-arrow">→</div>
         <div class="arch-node">
             <div class="arch-icon">🔐</div>
-            <div class="arch-label">SQLCipher DB</div>
-            <div class="arch-detail">AES-256 encrypted</div>
+            <div class="arch-label">Encrypted DB</div>
+            <div class="arch-detail">AES-256 (iOS Data Protection on iPhone, SQLCipher on Android)</div>
         </div>
     </div>
-    <p class="arch-note">Inference runs on ONNX Runtime CPU (avg 46.5ms on Snapdragon 8 Elite). LiteRT with Hexagon NPU support is in place for future Qualcomm AI Hub compilation. Every step on-device — no internet required.</p>
+    <p class="arch-note">Inference runs via Core ML on the Apple Neural Engine (iOS) or ONNX Runtime CPU on Android (avg 46.5ms on Snapdragon 8 Elite). LiteRT with Hexagon NPU support is in place for future Qualcomm AI Hub compilation. Every step on-device — no internet required.</p>
 </section>
 
 <!-- ML Pipeline — The Technical Story -->
@@ -491,7 +506,7 @@
         <div class="pipeline-step">
             <div class="step-num">Step 4</div>
             <h4>Quantize &amp; Ship</h4>
-            <p>ONNX export + INT8 dynamic quantization. 1.1GB FP32 → 266MB INT8. Runs in ONNX Runtime on Android.</p>
+            <p>ONNX + INT8 dynamic quantization (1.1GB FP32 → 266MB INT8) for ONNX Runtime on Android, plus Core ML conversion via coremltools for the Apple Neural Engine on iOS.</p>
         </div>
     </div>
 
@@ -514,10 +529,14 @@
 
 <!-- PDF Export -->
 <section>
-    <h2 data-lang="en">Premium PDF Export</h2>
-    <h2 data-lang="de">Premium PDF-Export</h2>
-    <h2 data-lang="ja">プレミアムPDFエクスポート</h2>
-    <h2 data-lang="ko">프리미엄 PDF 내보내기</h2>
+    <h2 data-lang="en">PDF Export</h2>
+    <h2 data-lang="de">PDF-Export</h2>
+    <h2 data-lang="ja">PDFエクスポート</h2>
+    <h2 data-lang="ko">PDF 내보내기</h2>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="en">Premium on Android · Included free on iOS</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="de">Premium auf Android · Auf iOS kostenlos enthalten</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="ja">Androidでプレミアム · iOSでは無料で利用可能</p>
+    <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:-0.5rem; margin-bottom:1rem;" data-lang="ko">Android에서 프리미엄 · iOS에서 무료 제공</p>
     <div class="pdf-showcase">
         <img src="pdf_cover.jpg" alt="SentiLog PDF cover — dark navy with gold trim" class="pdf-img" loading="lazy">
         <img src="pdf_page.jpg" alt="SentiLog PDF entry page — watercolor template" class="pdf-img" loading="lazy">
@@ -542,6 +561,14 @@
     <h2 data-lang="ja">使用技術</h2>
     <h2 data-lang="ko">사용 기술</h2>
     <div class="tech-grid">
+        <span class="tech-badge">Swift / SwiftUI</span>
+        <span class="tech-badge">Core ML + Apple Neural Engine</span>
+        <span class="tech-badge">CryptoKit (AES-256-GCM)</span>
+        <span class="tech-badge">iCloud Drive + Keychain</span>
+        <span class="tech-badge">StoreKit 2</span>
+        <span class="tech-badge">LocalAuthentication (Face ID / Touch ID)</span>
+        <span class="tech-badge">GRDB.swift</span>
+        <span class="tech-badge">PDFKit</span>
         <span class="tech-badge">Kotlin 2.2</span>
         <span class="tech-badge">Jetpack Compose</span>
         <span class="tech-badge">ONNX Runtime + QNN EP</span>
@@ -611,10 +638,10 @@
             <p style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary);" data-lang="ja">— 早期アクセスユーザー、ドイツ</p>
             <p style="margin-top:1rem; font-size:0.85rem; color:var(--text-secondary);" data-lang="ko">— 얼리 액세스 사용자, 독일</p>
         </div>
-        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="en">Enjoying SentiLog? Leave a review on <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>.</p>
-        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="de">SentiLog gefällt dir? Hinterlasse eine Bewertung auf <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>.</p>
-        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ja">SentiLogを楽しんでいますか？<a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>でレビューをお願いします。</p>
-        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ko">SentiLog가 마음에 드시나요? <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>에 리뷰를 남겨주세요.</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="en">Enjoying SentiLog? Leave a review on <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a> or the <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>.</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="de">SentiLog gefällt dir? Hinterlasse eine Bewertung auf <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a> oder im <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>.</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ja">SentiLogを楽しんでいますか？<a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a>または<a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>でレビューをお願いします。</p>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:var(--text-secondary);" data-lang="ko">SentiLog가 마음에 드시나요? <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" style="color:var(--accent)">Google Play</a> 또는 <a href="#ios-coming-soon" style="color:var(--accent)">App Store</a>에 리뷰를 남겨주세요.</p>
     </div>
 </section>
 
@@ -685,10 +712,10 @@
                 <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:#ffd700; font-weight:600;">Included</td>
             </tr>
             <tr>
-                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="en">Google Drive backup</td>
-                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">Google Drive Backup</td>
-                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">Google Driveバックアップ</td>
-                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">Google Drive 백업</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="en">Encrypted cloud backup</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">Verschlüsseltes Cloud-Backup</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">暗号化クラウドバックアップ</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">암호화 클라우드 백업</td>
                 <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
                 <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
                 <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
@@ -700,10 +727,10 @@
                 <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="de">PDF-Export</td>
                 <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ja">PDFエクスポート</td>
                 <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);" data-lang="ko">PDF 내보내기</td>
-                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
-                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
-                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
-                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary);">—</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary); font-size:0.78rem;">iOS only</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary); font-size:0.78rem;">nur iOS</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary); font-size:0.78rem;">iOSのみ</td>
+                <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:var(--text-secondary); font-size:0.78rem;">iOS만</td>
                 <td style="padding:0.7rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06); text-align:center; color:#ffd700; font-weight:600;">Included</td>
             </tr>
             <tr>
@@ -738,17 +765,27 @@
     <p style="color:var(--text-secondary);margin-bottom:2rem;max-width:450px;margin-left:auto;margin-right:auto;" data-lang="ja">3つの感情カテゴリで無料利用可能。プレミアムで28の感情、テーマ、多言語AIにアップグレード。</p>
     <p style="color:var(--text-secondary);margin-bottom:2rem;max-width:450px;margin-left:auto;margin-right:auto;" data-lang="ko">3가지 감정 카테고리로 무료 사용. 프리미엄으로 28가지 감정, 테마, 다국어 AI로 업그레이드.</p>
 
-    <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta-bottom">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:60px">
-    </a>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; align-items:center;">
+        <a href="https://play.google.com/store/apps/details?id=com.sentilog.app" class="cta-bottom">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:60px">
+        </a>
+        <!-- TODO: Update href after App Store approval -->
+        <a href="#ios-coming-soon" class="cta-bottom" aria-label="Download SentiLog on the App Store">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?releaseDate=1738368000" alt="Download on the App Store" style="height:60px">
+        </a>
+    </div>
 </section>
 
 <footer>
     <p>&copy; 2026 SentiLog &mdash; by <a href="https://tojohere.dev">Tojo Thomas</a></p>
     <div class="footer-links">
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-service.html">Terms of Use</a>
+        <a href="privacy-policy.html">Privacy Policy (Android)</a>
+        <a href="privacy-policy-ios.html">Privacy Policy (iOS)</a>
+        <a href="terms-of-service.html">Terms (Android)</a>
+        <a href="terms-of-service-ios.html">Terms (iOS)</a>
         <a href="https://play.google.com/store/apps/details?id=com.sentilog.app">Google Play</a>
+        <!-- TODO: Update href after App Store approval -->
+        <a href="#ios-coming-soon">App Store</a>
         <a href="/blog/npu-transformer-guide.html">NPU Research Blog</a>
         <a href="https://tojohere.dev">Developer Portfolio</a>
     </div>
